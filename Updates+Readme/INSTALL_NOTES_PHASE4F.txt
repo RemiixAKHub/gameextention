@@ -1,0 +1,27 @@
+PHASE 4F — RETEST PREP + CONTEXTO CLOSENESS BAR
+
+Built on top of Phase 4E.
+
+Scope:
+- popup.css
+- js/games/contexto.js
+
+Changes:
+- Adds Contexto closeness bar styling supplied by the user.
+- Adds the required Contexto row markup and heat-class mapping so the CSS actually displays.
+- Keeps the previous Wordly, Contexto, Solitaire history, Sudoku hotfix, and all Sonar phase fixes.
+- Does not modify shared routing, manifest, storage, or unrelated game logic.
+
+Install:
+1. Extract this zip into the extension root.
+2. Replace files in destination.
+3. Reload the unpacked extension.
+
+Test:
+1. Open Contexto.
+2. Submit several guesses.
+3. Confirm each guess row shows a colored closeness bar.
+4. Confirm close guesses trend green/yellow and far guesses trend orange/red.
+5. Confirm Wordly still opens.
+6. Confirm one or two recent Sonar-refactored games still open.
+7. Re-run SonarQube and share the new report for Phase 5.

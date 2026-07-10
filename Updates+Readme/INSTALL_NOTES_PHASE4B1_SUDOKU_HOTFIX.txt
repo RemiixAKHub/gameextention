@@ -1,0 +1,25 @@
+PHASE 4B.1 — Sudoku hotfix overlay
+
+Built on top of Phase 4B.
+
+Scope:
+- js/games/sudoku.js only
+
+Fixes:
+1. Hard/Medium/Easy puzzle selection now avoids repeating the same puzzle for the same difficulty on the next load when more than one puzzle exists in that difficulty bank.
+2. Right-click now toggles between Pen and Pencil mode instead of only forcing Pencil mode on.
+3. The Sudoku hint text now matches the updated right-click behaviour.
+
+Install:
+- Extract this zip into the extension root.
+- Choose "Replace files in destination".
+- Reload the unpacked extension.
+
+Regression tests:
+1. Open Sudoku.
+2. Select Hard, then Medium, then Hard again; Hard should not repeat the same board back-to-back where an alternative exists.
+3. Right-click a cell once: mode toggles Pencil/Pen.
+4. Right-click again: mode toggles back.
+5. Confirm P still toggles Pencil/Pen.
+6. Confirm number entry, notes, delete/backspace, and arrow movement still work.
+7. Confirm Wordly and Contexto still open.

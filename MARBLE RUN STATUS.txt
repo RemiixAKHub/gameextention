@@ -1,0 +1,550 @@
+# Marble Run – Gameplay Refinement Worklog
+
+Current Status:
+The base Marble Run game is playable. Before adding more features, the focus is improving gameplay, replayability and spectator enjoyment.
+
+---
+
+## Priority 1 – Camera & Viewing Experience
+
+### Current Issues
+
+* Camera follows the leading marble instead of the player's chosen marble.
+* Difficult to see where other marbles are.
+* Impossible to tell if another marble is stuck.
+* Race feels disconnected once the player's marble leaves the screen.
+
+### Goals
+
+Implement selectable camera modes.
+
+Camera Modes:
+
+* Follow My Marble
+* Follow Race Leader
+* Overview Camera (entire course visible if possible)
+* Free Camera (optional)
+
+Add camera buttons so the player can switch modes at any time.
+
+---
+
+## Priority 2 – Proper 1v1 Mode
+
+Current implementation still spawns unnecessary marbles.
+
+Requirements:
+
+* Exactly 2 marbles.
+* Dedicated track.
+* No hidden AI marbles.
+* Independent balancing from the main race mode.
+
+Future idea:
+
+* Best of 3
+* Best of 5
+* Championship ladder
+
+---
+
+## Priority 3 – Dynamic Track Generation
+
+Current problem:
+
+Race outcome is heavily influenced by starting position.
+
+This makes races predictable.
+
+Goal:
+
+Each race should feel unique.
+
+Possible solution:
+
+Build the track from modular sections.
+
+Example library:
+
+Speed Section
+Curve Section
+Plinko Section
+Funnel Section
+Loop Section
+Dome Section
+Balance Beam Section
+Spiral Section
+Bounce Chamber
+Drop Tower
+
+At race creation, randomly assemble sections.
+
+Example:
+
+Start
+
+↓
+
+Speed
+
+↓
+
+Plinko
+
+↓
+
+Funnel
+
+↓
+
+Loop
+
+↓
+
+Plinko
+
+↓
+
+Balance Beam
+
+↓
+
+Dome
+
+↓
+
+Spiral
+
+↓
+
+Finish
+
+Every race becomes different.
+
+---
+
+## Priority 4 – Position Mixing
+
+Need more opportunities for overtakes.
+
+Ideas:
+
+### Multiple Plinko Fields
+
+Pins randomly redirect marbles.
+
+### Funnel Merges
+
+Several lanes merge into one.
+
+### Dome Drops
+
+Random exit points.
+
+### Balance Beam
+
+Marbles roll slowly across angled platforms.
+
+Minor differences create overtakes.
+
+### Spiral Bowl
+
+Marbles circle before dropping.
+
+### Bounce Chamber
+
+Soft bumpers create random rebounds.
+
+### Multi-Level Drops
+
+Different fall paths.
+
+### Crossing Paths
+
+Marbles intersect.
+
+### Random Split Gates
+
+Track randomly sends marbles left or right.
+
+---
+
+## Priority 5 – Race Pace
+
+Current races finish too quickly.
+
+Increase race duration by:
+
+* Longer course
+* Additional obstacle modules
+* More momentum changes
+* Reduced average speed
+* More recovery opportunities
+
+Target race duration:
+
+45–90 seconds.
+
+---
+
+## Priority 6 – Economy Review
+
+Current betting system does not significantly improve gameplay.
+
+Review whether betting should remain.
+
+Possible alternatives:
+
+### Cosmetic Unlocks
+
+Currency unlocks:
+
+* Marble colours
+* Trails
+* Glow effects
+* Particle effects
+
+### Special Marbles
+
+Visual only.
+
+No physics advantage.
+
+### Track Themes
+
+Unlock:
+
+* Neon
+* Space
+* Ice
+* Volcano
+* Cyber
+* Jungle
+
+### Tournament Entry
+
+Currency used to enter optional tournaments.
+
+Higher rewards.
+
+### Daily Challenges
+
+Reward cosmetics rather than gambling.
+
+Decision:
+
+Do not continue expanding the betting system until its purpose has been agreed.
+
+---
+
+## Priority 7 – Long-Term Vision
+
+Main Race
+
+* 8 marbles
+* Random tracks
+* Dynamic cameras
+
+1v1 Duel
+
+* Two marbles
+* Head-to-head
+* Separate maps
+
+Tournament Mode
+
+* Quarter Finals
+* Semi Finals
+* Final
+
+Daily Challenge
+
+* Fixed seed
+* Everyone races the same course
+
+Time Trial Mode
+
+* Ghost races
+* Personal best tracking
+
+---
+
+Current Development Priority
+
+1. Camera improvements.
+2. 1v1 corrections.
+3. Modular track generation.
+4. New obstacle modules.
+5. Economy redesign.
+6. Polish.
+
+
+# MARBLE RUN - DEVELOPMENT PROTOCOL V2
+
+The current Marble Run implementation is functional but requires refinement before new gameplay systems are introduced.
+
+This project will now be developed using **Milestones** and **Micro-Tasks**.
+
+The objective is to ensure every conversation produces working code without exceeding usage limits.
+
+---
+
+# IMPORTANT RULES
+
+1. Never attempt an entire milestone in one response.
+
+2. Complete ONE micro-task only.
+
+3. Maximum files modified:
+   2
+
+4. Maximum new code:
+   250 lines
+
+5. Do not redesign completed systems.
+
+6. Do not revisit previous milestones unless explicitly requested.
+
+7. Produce code as early as possible.
+
+8. If implementation is too large:
+
+STOP.
+
+Split the work into smaller micro-tasks.
+
+Do not begin partially.
+
+9. At the end of every response output:
+
+---
+
+CHECKPOINT
+
+Current Milestone:
+
+Current Micro-Task:
+
+Files Modified:
+
+Testing Required:
+
+Next Recommended Task:
+
+---
+
+10. After completing a micro-task, stop and wait for approval.
+
+Never automatically continue.
+
+---
+
+# DEVELOPMENT ORDER
+
+## MILESTONE 1
+
+Core Stability
+
+Goal:
+Ensure Marble Run is reliable.
+
+Micro-Tasks:
+
+1.1 Race completion stability
+
+1.2 Winner detection
+
+1.3 Credit recovery/testing tools
+
+1.4 Camera bug fixes
+
+1.5 1v1 mode spawning only two marbles
+
+Checkpoint after every task.
+
+---
+
+## MILESTONE 2
+
+Camera Experience
+
+Goal:
+Watching the race should be enjoyable.
+
+Micro-Tasks
+
+2.1 Follow My Marble
+
+2.2 Follow Leader
+
+2.3 Overview Camera
+
+2.4 Camera Switch UI
+
+2.5 Camera smoothing
+
+Stop after every task.
+
+---
+
+## MILESTONE 3
+
+Track Framework
+
+Goal:
+Prepare the engine for modular tracks.
+
+Micro-Tasks
+
+3.1 Track section manager
+
+3.2 Section connection system
+
+3.3 Random section loader
+
+3.4 Section configuration file
+
+3.5 Track validation
+
+No new obstacles yet.
+
+Only infrastructure.
+
+---
+
+## MILESTONE 4
+
+Obstacle Library
+
+Each obstacle is its own micro-task.
+
+4.1 Plinko
+
+4.2 Funnel
+
+4.3 Dome
+
+4.4 Loop
+
+4.5 Spiral Bowl
+
+4.6 Balance Beam
+
+4.7 Drop Tower
+
+4.8 Split Gate
+
+Every obstacle must be independently testable.
+
+---
+
+## MILESTONE 5
+
+Race Variety
+
+Goal:
+No two races should feel identical.
+
+Micro-Tasks
+
+5.1 Random section ordering
+
+5.2 Duplicate section support
+
+Example:
+
+3 Plinkos
+
+2 Funnels
+
+1 Dome
+
+5.3 Multiple finish paths
+
+5.4 Random spawn balancing
+
+5.5 Overtake tuning
+
+Goal:
+
+The leading marble should frequently change.
+
+---
+
+## MILESTONE 6
+
+Visual Improvements
+
+6.1 Motion trails
+
+6.2 Better lighting
+
+6.3 Speed effects
+
+6.4 Better finish celebration
+
+6.5 Improved UI
+
+---
+
+## MILESTONE 7
+
+Game Modes
+
+7.1 Proper 1v1
+
+7.2 Tournament Mode
+
+7.3 Championship
+
+Each mode receives its own dedicated track.
+
+---
+
+## MILESTONE 8
+
+Progression & Economy
+
+This milestone MUST NOT begin until all previous milestones are complete.
+
+Economy should support progression rather than gambling.
+
+Potential unlocks:
+
+• Marble colours
+
+• Marble skins
+
+• Particle trails
+
+• Track themes
+
+• Finish celebrations
+
+• Camera themes
+
+• Sound packs
+
+No unlock may alter marble physics or provide gameplay advantages.
+
+---
+
+# RESPONSE FORMAT
+
+Every response must contain only:
+
+1. Micro-task being completed.
+
+2. Files modified.
+
+3. Code.
+
+4. CHECKPOINT.
+
+No architecture discussion.
+
+No future planning.
+
+No unnecessary explanations.
+
+Wait for approval before continuing.

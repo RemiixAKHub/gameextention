@@ -1,0 +1,38 @@
+SONARQUBE PHASE 4D — MARBLE RUN FINAL COMPLEXITY PASS
+
+Base:
+- Built on top of Phase 4C.
+- Keeps Wordly, Contexto, history.js / Solitaire undo support, and all previous SonarQube phase fixes.
+
+Targeted file:
+- js/games/marblerun.js
+
+What changed:
+- Split track building into named helpers.
+- Split canvas drawing into small render helpers for background, grid, boosts, segments, pegs, funnels, domes, loops, finish label, trails, and marble bodies.
+- Split physics into velocity, side-wall, segment collision, obstacle collision, trail, and finish helpers.
+- Split race loop progress/camera/physics steps into helpers.
+- Split race screen position chip rendering into helpers.
+- Split race start/spawn/reset/entry-charge logic into helpers.
+- Split pick screen HTML and event binding into helpers.
+- Fixed a low-risk pick-screen event bug where race mode buttons could also be treated as wager buttons because they shared the mr-wager-btn class.
+
+No level data or shared routing logic was changed.
+
+Install:
+1. Extract this zip into your extension root:
+   C:\Users\rwilli11\OneDrive - Thames Water Utilities Limited\Desktop\gs-e
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Regression test:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Marble Run.
+4. Select a marble.
+5. Switch Single Race / Tournament and confirm the wager does not become invalid.
+6. Select each wager option.
+7. Start a single race.
+8. Confirm the race animates, HUD updates, and result screen appears.
+9. Start tournament and confirm Next Round works.
+10. Re-run SonarQube.

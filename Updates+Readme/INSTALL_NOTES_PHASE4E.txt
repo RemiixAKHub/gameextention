@@ -1,0 +1,38 @@
+SonarQube Phase 4E — Connect 4 final complexity pass
+
+Built on top of Phase 4D.
+
+Included safeguards:
+- Keeps Wordly and Contexto wiring.
+- Keeps history.js/Solitaire undo support.
+- Keeps all earlier Phase 1–4D fixes.
+- Only targets js/games/connect4.js for this phase.
+
+Targeted file:
+- js/games/connect4.js
+
+Changes:
+- Split board/drop helpers.
+- Split win/draw logic into smaller helpers.
+- Split scoring/window generation helpers.
+- Split minimax and best-move update helpers.
+- Split AI turn finishing from column selection.
+- Split player turn finishing helpers.
+- Split markup and event wiring helpers.
+- Preserved public API: init, onKey, reset.
+
+Install:
+1. Extract this pack into your extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Test:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Connect 4.
+4. Move cursor left/right.
+5. Drop pieces with Space, Enter, Down, and mouse click.
+6. Confirm AI responds.
+7. Play until a win/draw or reset mid-game.
+8. Reload popup and confirm saved Connect 4 resumes.
+9. Re-run SonarQube.
