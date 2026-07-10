@@ -1,0 +1,38 @@
+PHASE 4F — FINAL LOCAL RETEST / SONAR CHECKPOINT
+
+Built on top of Phase 4E.
+
+Purpose:
+- This phase is a checkpoint before more code refactoring.
+- It performs local static checks and safe CSS cleanup only.
+- It does not touch gameplay logic, game data, routing, storage, or manifest permissions.
+
+Included from previous phases:
+- Wordly wiring and js/games/wordly.js
+- Contexto wiring and contexto-data.js/contexto.js
+- history.js load order for Solitaire undo/redo
+- Phase 1 through Phase 4E fixes
+- Sudoku right-click Pen/Pencil hotfix
+
+Phase 4F changes:
+- popup.css only
+- Removed remaining duplicate CSS selectors detected locally:
+  - .ms-flagged / .ms-questioned structure cleaned up
+  - .bj-split-area removed from duplicate combined selector pattern
+  - .sol-stock / .sol-waste / .sol-foundation cleaned up
+
+Local validation completed:
+- node --check passed for every JavaScript file in this pack.
+- popup.html still loads history.js before game scripts.
+- popup.html still loads Wordly before popup.js.
+- popup.js still registers Wordly and Contexto.
+- No Math.random references found in js/.
+- No charCodeAt references found in js/.
+- No JSON.parse(JSON.stringify(...)) clone references found in js/.
+- No duplicate CSS selectors found by local selector scan.
+
+Next action:
+- Install this pack.
+- Re-run SonarQube.
+- Export/upload the fresh SonarQube report.
+- Use the fresh report for Phase 5 / remaining targeted fixes.

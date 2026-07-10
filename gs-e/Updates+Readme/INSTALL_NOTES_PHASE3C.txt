@@ -1,0 +1,31 @@
+SonarQube Phase 3C — Yahtzee JS cleanup
+
+Base:
+- Built on top of Phase 3B.
+- Keeps Wordly, Contexto, popup wiring, history.js load order, and previous Sonar fixes.
+
+Targeted file:
+- js/games/yahtzee.js
+
+Changes:
+- Added js/games/yahtzee.js into the overlay pack.
+- Replaced Math.random dice rolling with crypto.getRandomValues based dice rolling.
+- Changed Array(7).fill(0) to new Array(7).fill(0).
+- Used optional chaining for saved-state detection.
+- Replaced equality-based .some(...) checks with .includes(...).
+- Refactored calcScore into score helper functions and a SCORE_HANDLERS lookup to reduce cognitive complexity.
+
+Install:
+1. Extract this zip into the extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Regression tests:
+1. Open Yahtzee.
+2. Roll dice.
+3. Hold/unhold dice.
+4. Re-roll held/unheld dice and confirm held dice stay unchanged.
+5. Score at least one upper category and one lower category.
+6. Start a new game.
+7. Confirm Wordly and Contexto still open.
+8. Re-run SonarQube.

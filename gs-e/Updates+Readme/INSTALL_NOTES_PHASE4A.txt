@@ -1,0 +1,44 @@
+SonarQube Phase 4A — Chess-only refactor
+
+Use this pack as the latest overlay. It is built on top of Phase 3E and keeps:
+- Wordly
+- Contexto
+- history.js / Solitaire undo support
+- Phase 1 baseline fixes
+- Phase 2 CSS fixes
+- Phase 3A, 3B, 3C, 3D, and 3E fixes
+
+Targeted file:
+- js/games/chess.js
+
+What changed:
+- Split chess raw move generation into per-piece helpers.
+- Split castling helper logic while preserving existing castling behaviour.
+- Split attack detection and legal move filtering helpers.
+- Split AI minimax helper logic and move shuffling.
+- Split evaluation helpers for piece-square scoring.
+- Split render() into board, square, info, labels, and promotion overlay helpers.
+- Split user square-click handling into selection/promotion/move helpers.
+- Kept public API: init, onKey, reset.
+- Kept saved-state key: game_chess.
+
+Install:
+1. Extract this zip into your extension root folder.
+2. Replace files when prompted.
+3. Reload the unpacked extension.
+
+Chess regression tests:
+1. Open Chess.
+2. Move a white pawn two squares.
+3. Confirm the AI responds as black.
+4. Select and deselect pieces.
+5. Capture a piece if available.
+6. Start a new game.
+7. Reload the popup and confirm the saved game resumes.
+8. Re-run SonarQube.
+
+Full extension smoke tests:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Solitaire and confirm undo/redo still loads.
+4. Open Traffic Jam, Marble Run, Connect 4, Yahtzee, Tetris, 2048, Lights Out, Puzzle 15, Minesweeper, Blackjack, and Picture Poker once.

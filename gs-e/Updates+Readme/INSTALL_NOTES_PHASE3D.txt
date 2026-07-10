@@ -1,0 +1,39 @@
+SonarQube Phase 3D — 2048 / Lights Out / Puzzle 15 / Minesweeper
+
+This pack is built on top of Phase 3C.
+
+It preserves:
+- Wordly integration
+- Contexto integration
+- history.js load order for Solitaire undo/redo
+- Phase 1 safe baseline cleanup
+- Phase 2 CSS accessibility/display cleanup
+- Phase 3A Blackjack / Picture Poker / Tetris cleanup
+- Phase 3B Solitaire / history cleanup
+- Phase 3C Yahtzee cleanup
+
+Targeted files in this phase:
+- js/games/game2048.js
+- js/games/lightsout.js
+- js/games/puzzle15.js
+- js/games/minesweeper.js
+
+Main changes:
+- Replaced saved-state guard patterns with optional chaining in the targeted games.
+- Extracted 2048 tile font sizing out of a nested ternary.
+- Extracted Lights Out board-size, win-message, and cell-class helpers.
+- Changed Puzzle 15 shuffle setup to use new Array(...).
+- Split Minesweeper render/cell-display/event wiring into smaller helpers.
+
+Install:
+1. Extract this zip into your extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Recommended tests:
+1. Open Wordly and Contexto to confirm they still appear.
+2. 2048: start game, move in all directions, reset.
+3. Lights Out: switch 3x3 / 5x5 / 7x7, click cells, reset.
+4. Puzzle 15: shuffle, move tiles with mouse, move gap with arrows.
+5. Minesweeper: Beginner / Intermediate / Expert, left click reveal, right click flag/question, reset face.
+6. Re-run SonarQube.
