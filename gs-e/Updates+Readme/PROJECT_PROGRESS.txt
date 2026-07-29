@@ -1,0 +1,279 @@
+# Marble Run – Gameplay Refinement Worklog
+
+Current Status:
+The base Marble Run game is playable. Before adding more features, the focus is improving gameplay, replayability and spectator enjoyment.
+
+---
+
+## Priority 1 – Camera & Viewing Experience
+
+### Current Issues
+
+* Camera follows the leading marble instead of the player's chosen marble.
+* Difficult to see where other marbles are.
+* Impossible to tell if another marble is stuck.
+* Race feels disconnected once the player's marble leaves the screen.
+
+### Goals
+
+Implement selectable camera modes.
+
+Camera Modes:
+
+* Follow My Marble
+* Follow Race Leader
+* Overview Camera (entire course visible if possible)
+* Free Camera (optional)
+
+Add camera buttons so the player can switch modes at any time.
+
+---
+
+## Priority 2 – Proper 1v1 Mode
+
+Current implementation still spawns unnecessary marbles.
+
+Requirements:
+
+* Exactly 2 marbles.
+* Dedicated track.
+* No hidden AI marbles.
+* Independent balancing from the main race mode.
+
+Future idea:
+
+* Best of 3
+* Best of 5
+* Championship ladder
+
+---
+
+## Priority 3 – Dynamic Track Generation
+
+Current problem:
+
+Race outcome is heavily influenced by starting position.
+
+This makes races predictable.
+
+Goal:
+
+Each race should feel unique.
+
+Possible solution:
+
+Build the track from modular sections.
+
+Example library:
+
+Speed Section
+Curve Section
+Plinko Section
+Funnel Section
+Loop Section
+Dome Section
+Balance Beam Section
+Spiral Section
+Bounce Chamber
+Drop Tower
+
+At race creation, randomly assemble sections.
+
+Example:
+
+Start
+
+↓
+
+Speed
+
+↓
+
+Plinko
+
+↓
+
+Funnel
+
+↓
+
+Loop
+
+↓
+
+Plinko
+
+↓
+
+Balance Beam
+
+↓
+
+Dome
+
+↓
+
+Spiral
+
+↓
+
+Finish
+
+Every race becomes different.
+
+---
+
+## Priority 4 – Position Mixing
+
+Need more opportunities for overtakes.
+
+Ideas:
+
+### Multiple Plinko Fields
+
+Pins randomly redirect marbles.
+
+### Funnel Merges
+
+Several lanes merge into one.
+
+### Dome Drops
+
+Random exit points.
+
+### Balance Beam
+
+Marbles roll slowly across angled platforms.
+
+Minor differences create overtakes.
+
+### Spiral Bowl
+
+Marbles circle before dropping.
+
+### Bounce Chamber
+
+Soft bumpers create random rebounds.
+
+### Multi-Level Drops
+
+Different fall paths.
+
+### Crossing Paths
+
+Marbles intersect.
+
+### Random Split Gates
+
+Track randomly sends marbles left or right.
+
+---
+
+## Priority 5 – Race Pace
+
+Current races finish too quickly.
+
+Increase race duration by:
+
+* Longer course
+* Additional obstacle modules
+* More momentum changes
+* Reduced average speed
+* More recovery opportunities
+
+Target race duration:
+
+45–90 seconds.
+
+---
+
+## Priority 6 – Economy Review
+
+Current betting system does not significantly improve gameplay.
+
+Review whether betting should remain.
+
+Possible alternatives:
+
+### Cosmetic Unlocks
+
+Currency unlocks:
+
+* Marble colours
+* Trails
+* Glow effects
+* Particle effects
+
+### Special Marbles
+
+Visual only.
+
+No physics advantage.
+
+### Track Themes
+
+Unlock:
+
+* Neon
+* Space
+* Ice
+* Volcano
+* Cyber
+* Jungle
+
+### Tournament Entry
+
+Currency used to enter optional tournaments.
+
+Higher rewards.
+
+### Daily Challenges
+
+Reward cosmetics rather than gambling.
+
+Decision:
+
+Do not continue expanding the betting system until its purpose has been agreed.
+
+---
+
+## Priority 7 – Long-Term Vision
+
+Main Race
+
+* 8 marbles
+* Random tracks
+* Dynamic cameras
+
+1v1 Duel
+
+* Two marbles
+* Head-to-head
+* Separate maps
+
+Tournament Mode
+
+* Quarter Finals
+* Semi Finals
+* Final
+
+Daily Challenge
+
+* Fixed seed
+* Everyone races the same course
+
+Time Trial Mode
+
+* Ghost races
+* Personal best tracking
+
+---
+
+Current Development Priority
+
+1. Camera improvements.
+2. 1v1 corrections.
+3. Modular track generation.
+4. New obstacle modules.
+5. Economy redesign.
+6. Polish.

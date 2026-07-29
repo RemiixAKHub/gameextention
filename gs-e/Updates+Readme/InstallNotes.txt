@@ -1,0 +1,613 @@
+# INSTALL NOTES — CONSOLIDATED MASTER FILE
+
+## Coverage
+
+This file consolidates the installation and regression-test notes for the
+Combined Games Extension SonarQube work from the original Phase 1 safe pack
+through Phase 4F.
+
+Included sequence:
+
+- Phase 1 — Wordly-safe SonarQube fixes
+- Phase 2 — CSS accessibility and quality cleanup
+- Phase 3A — Blackjack, Picture Poker and Tetris
+- Phase 3B — Solitaire and history
+- Phase 3C — Yahtzee
+- Phase 3D — 2048, Lights Out, Puzzle 15 and Minesweeper
+- Phase 3E — Connect 4, Marble Run and Traffic Jam
+- Phase 4A — Chess
+- Phase 4B — Sudoku
+- Phase 4B.1 — Sudoku hotfix
+- Phase 4C — Traffic Jam final complexity pass
+- Phase 4D — Marble Run final complexity pass
+- Phase 4E — Connect 4 final complexity pass
+- Phase 4F — Retest preparation and Contexto closeness bar
+
+## General installation pattern
+
+Unless a phase states otherwise:
+
+1. Extract the relevant overlay into the extension root.
+2. Replace files when prompted.
+3. Reload the unpacked extension.
+4. Run the listed regression checks.
+5. Re-run SonarQube where requested.
+
+## Preservation rule
+
+Later packs are described as overlays built on top of earlier phases. Their
+notes repeatedly preserve Wordly, Contexto, Solitaire history/undo support and
+earlier completed SonarQube fixes unless a phase explicitly states otherwise.
+
+## Contents
+
+1. Combined Games Extension — Wordly + SonarQube Phase 1 Safe Fix Pack
+2. Combined Games Extension — SonarQube Phase 2 CSS Quality Fix Pack
+3. SonarQube Phase 3A — Low-risk JS maintainability
+4. SonarQube Phase 3B — Solitaire/history low-risk JS cleanup
+5. SonarQube Phase 3C — Yahtzee JS cleanup
+6. SonarQube Phase 3D — 2048 / Lights Out / Puzzle 15 / Minesweeper
+7. SONARQUBE PHASE 3E — CONNECT 4 / MARBLE RUN / TRAFFIC JAM LOW-RISK CLEANUP
+8. SonarQube Phase 4A — Chess-only refactor
+9. SONARQUBE PHASE 4B — SUDOKU WORDLY-SAFE FIX PACK
+10. PHASE 4B.1 — Sudoku hotfix overlay
+11. SONARQUBE PHASE 4C — TRAFFIC JAM FINAL COMPLEXITY PASS
+12. SONARQUBE PHASE 4D — MARBLE RUN FINAL COMPLEXITY PASS
+13. SonarQube Phase 4E — Connect 4 final complexity pass
+14. PHASE 4F — RETEST PREP + CONTEXTO CLOSENESS BAR
+
+============================================================================================
+DOCUMENT 1: Combined Games Extension — Wordly + SonarQube Phase 1 Safe Fix Pack
+SOURCE FILE: INSTALL_NOTES.txt
+============================================================================================
+
+Combined Games Extension — Wordly + SonarQube Phase 1 Safe Fix Pack
+
+This pack replaces the earlier Wordly/Sonar pack and keeps Wordly wired in.
+
+Includes:
+- popup.html with history.js, Contexto, and Wordly script loading preserved.
+- js/popup.js with Contexto and Wordly tabs preserved.
+- js/games/wordly.js preserved from the earlier Wordly integration.
+- popup.css with Wordly styles preserved, Traffic Jam duplicate CSS removed, #tab-bar selector merged, and Picture Poker font fallback fixed.
+- Phase 1 safe Sonar fixes for current game files.
+
+Phase 1 fixes:
+- Replaces game Math.random() usage with crypto.getRandomValues-backed helpers in affected game files.
+- Removes/wires small unused or redundant code flagged by Sonar.
+- Replaces simple bare Array() patterns flagged by Sonar.
+- Uses structuredClone for Solitaire snapshots.
+- Replaces nested Minesweeper template literal.
+- Adds handled logging to Traffic Jam catch blocks.
+
+Not included:
+- No manifest.json change.
+- No high-cognitive-complexity refactors yet.
+- No top-level await conversion in popup.js because it is loaded as a classic script, not an ES module.
+- Yahtzee was present in the Sonar report, but yahtzee.js was not present in the mounted reuploaded files. Upload yahtzee.js separately for a safe Yahtzee-specific cleanup.
+
+Install:
+1. Copy the contents of this zip into your extension root folder, preserving paths.
+2. Replace files when Windows asks.
+3. Reload the unpacked extension.
+4. Confirm Contexto and Wordly still appear.
+5. Open every game once.
+6. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 2: Combined Games Extension — SonarQube Phase 2 CSS Quality Fix Pack
+SOURCE FILE: INSTALL_NOTES_PHASE2.txt
+============================================================================================
+
+Combined Games Extension — SonarQube Phase 2 CSS Quality Fix Pack
+
+This is a complete overlay pack built on top of the Phase 1 Wordly-safe pack.
+It keeps Wordly, Contexto, history.js, and all Phase 1 JavaScript cleanup intact.
+
+Phase 2 target:
+- CSS-only accessibility and quality cleanup in popup.css.
+
+Changes:
+- Improves low-contrast Traffic Jam helper text and level-select labels.
+- Improves low-contrast Marble Run wager note text.
+- Improves low-contrast Picture Poker empty-hand text.
+- Improves low-contrast Contexto cold/top-100 result labels.
+- Improves Wordly absent-key contrast.
+
+Not changed:
+- No manifest changes.
+- No popup.js routing changes beyond the previous Phase 1/Wordly-safe pack.
+- No game logic changes.
+- No cognitive-complexity refactors yet.
+
+Install:
+1. Copy this pack into your extension root folder, preserving paths.
+2. Replace files when Windows asks.
+3. Reload the unpacked extension.
+4. Confirm Wordly and Contexto still appear.
+5. Open Traffic Jam, Marble Run, Picture Poker, Contexto, and Wordly to check visual display.
+6. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 3: SonarQube Phase 3A — Low-risk JS maintainability
+SOURCE FILE: INSTALL_NOTES_PHASE3.txt
+============================================================================================
+
+SonarQube Phase 3A — Low-risk JS maintainability
+
+Install:
+1. Extract this zip into your extension root folder.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+This pack is built on top of Phase 2 and preserves:
+- Wordly wiring
+- Contexto wiring
+- history.js / Solitaire undo support
+- Phase 1 safe JS fixes
+- Phase 2 CSS fixes
+
+Phase 3A scope:
+- js/games/blackjack.js
+- js/games/picpoker.js
+- js/games/tetris.js
+
+Changes:
+- Blackjack: optional-chain load guard, removed unused clearBetAction wrapper, fixed Clear so it clears the staged bet without incorrectly adding chips, extracted hand-value label formatting.
+- Picture Poker: optional-chain load guard, extracted hand-result resolution to remove redundant winnings assignment.
+- Tetris: optional-chain load guard, split render and keyboard logic into smaller helpers to reduce cognitive-complexity findings while preserving behaviour.
+
+Validation performed:
+- node --check passed for every JS file included in the pack.
+
+Suggested tests:
+1. Blackjack: place a bet, clear it, confirm chips do not increase; deal/hit/stand still work.
+2. Picture Poker: deal, hold cards, draw, next round.
+3. Tetris: left/right/down/rotate/hard drop, new game, switch tabs and return.
+4. Confirm Wordly and Contexto still appear and open.
+
+============================================================================================
+DOCUMENT 4: SonarQube Phase 3B — Solitaire/history low-risk JS cleanup
+SOURCE FILE: INSTALL_NOTES_PHASE3B.txt
+============================================================================================
+
+SonarQube Phase 3B — Solitaire/history low-risk JS cleanup
+
+Install:
+1. Extract this zip into your extension root folder.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension in chrome://extensions or opera://extensions.
+
+This pack is built on top of Phase 3A and preserves:
+- Wordly wiring
+- Contexto wiring
+- history.js load order for Solitaire undo/redo
+- Phase 1 security/reliability cleanup
+- Phase 2 CSS cleanup
+- Phase 3A Blackjack / Picture Poker / Tetris cleanup
+
+Phase 3B targeted files:
+- js/games/solitaire.js
+- js/history.js retained from Phase 3A because it already has the .at() cleanup
+
+Yahtzee:
+- yahtzee.js was still not present in the mounted file set used to build this pack.
+- Upload yahtzee.js when ready and handle it as Phase 3C.
+
+Test checklist:
+1. Open Wordly and confirm it loads.
+2. Open Contexto and confirm it loads.
+3. Open Solitaire and start a new game.
+4. Solitaire: stock draw / recycle stock.
+5. Solitaire: move waste to tableau.
+6. Solitaire: double-click waste/tableau to foundation.
+7. Solitaire: Auto foundation.
+8. Solitaire: Undo button, Redo button, Ctrl+Z, Ctrl+Y.
+9. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 5: SonarQube Phase 3C — Yahtzee JS cleanup
+SOURCE FILE: INSTALL_NOTES_PHASE3C.txt
+============================================================================================
+
+SonarQube Phase 3C — Yahtzee JS cleanup
+
+Base:
+- Built on top of Phase 3B.
+- Keeps Wordly, Contexto, popup wiring, history.js load order, and previous Sonar fixes.
+
+Targeted file:
+- js/games/yahtzee.js
+
+Changes:
+- Added js/games/yahtzee.js into the overlay pack.
+- Replaced Math.random dice rolling with crypto.getRandomValues based dice rolling.
+- Changed Array(7).fill(0) to new Array(7).fill(0).
+- Used optional chaining for saved-state detection.
+- Replaced equality-based .some(...) checks with .includes(...).
+- Refactored calcScore into score helper functions and a SCORE_HANDLERS lookup to reduce cognitive complexity.
+
+Install:
+1. Extract this zip into the extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Regression tests:
+1. Open Yahtzee.
+2. Roll dice.
+3. Hold/unhold dice.
+4. Re-roll held/unheld dice and confirm held dice stay unchanged.
+5. Score at least one upper category and one lower category.
+6. Start a new game.
+7. Confirm Wordly and Contexto still open.
+8. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 6: SonarQube Phase 3D — 2048 / Lights Out / Puzzle 15 / Minesweeper
+SOURCE FILE: INSTALL_NOTES_PHASE3D.txt
+============================================================================================
+
+SonarQube Phase 3D — 2048 / Lights Out / Puzzle 15 / Minesweeper
+
+This pack is built on top of Phase 3C.
+
+It preserves:
+- Wordly integration
+- Contexto integration
+- history.js load order for Solitaire undo/redo
+- Phase 1 safe baseline cleanup
+- Phase 2 CSS accessibility/display cleanup
+- Phase 3A Blackjack / Picture Poker / Tetris cleanup
+- Phase 3B Solitaire / history cleanup
+- Phase 3C Yahtzee cleanup
+
+Targeted files in this phase:
+- js/games/game2048.js
+- js/games/lightsout.js
+- js/games/puzzle15.js
+- js/games/minesweeper.js
+
+Main changes:
+- Replaced saved-state guard patterns with optional chaining in the targeted games.
+- Extracted 2048 tile font sizing out of a nested ternary.
+- Extracted Lights Out board-size, win-message, and cell-class helpers.
+- Changed Puzzle 15 shuffle setup to use new Array(...).
+- Split Minesweeper render/cell-display/event wiring into smaller helpers.
+
+Install:
+1. Extract this zip into your extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Recommended tests:
+1. Open Wordly and Contexto to confirm they still appear.
+2. 2048: start game, move in all directions, reset.
+3. Lights Out: switch 3x3 / 5x5 / 7x7, click cells, reset.
+4. Puzzle 15: shuffle, move tiles with mouse, move gap with arrows.
+5. Minesweeper: Beginner / Intermediate / Expert, left click reveal, right click flag/question, reset face.
+6. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 7: SONARQUBE PHASE 3E — CONNECT 4 / MARBLE RUN / TRAFFIC JAM LOW-RISK CLEANUP
+SOURCE FILE: INSTALL_NOTES_PHASE3E.txt
+============================================================================================
+
+SONARQUBE PHASE 3E — CONNECT 4 / MARBLE RUN / TRAFFIC JAM LOW-RISK CLEANUP
+
+Install:
+1. Extract this zip into the extension root folder.
+2. Choose "Replace files in destination".
+3. Reload the unpacked extension in the browser extension page.
+
+This pack is built on top of Phase 3D and keeps:
+- Wordly
+- Contexto
+- history.js / Solitaire undo support
+- Phase 1 safe cleanup
+- Phase 2 CSS cleanup
+- Phase 3A Blackjack / Picture Poker / Tetris cleanup
+- Phase 3B Solitaire / History cleanup
+- Phase 3C Yahtzee cleanup
+- Phase 3D small-game cleanup
+
+Phase 3E targeted files:
+- js/games/connect4.js
+- js/games/marblerun.js
+- js/games/trafficjam.js
+
+Regression checks:
+1. Reload unpacked extension.
+2. Confirm Wordly opens.
+3. Confirm Contexto opens.
+4. Connect 4: move cursor, drop a piece, allow AI move, reset.
+5. Marble Run: select marble, select wager, start single race, tournament if desired.
+6. Traffic Jam: open level select, load a level, drag cars, use arrow-key movement after selecting a car, reset, return to level select.
+7. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 8: SonarQube Phase 4A — Chess-only refactor
+SOURCE FILE: INSTALL_NOTES_PHASE4A.txt
+============================================================================================
+
+SonarQube Phase 4A — Chess-only refactor
+
+Use this pack as the latest overlay. It is built on top of Phase 3E and keeps:
+- Wordly
+- Contexto
+- history.js / Solitaire undo support
+- Phase 1 baseline fixes
+- Phase 2 CSS fixes
+- Phase 3A, 3B, 3C, 3D, and 3E fixes
+
+Targeted file:
+- js/games/chess.js
+
+What changed:
+- Split chess raw move generation into per-piece helpers.
+- Split castling helper logic while preserving existing castling behaviour.
+- Split attack detection and legal move filtering helpers.
+- Split AI minimax helper logic and move shuffling.
+- Split evaluation helpers for piece-square scoring.
+- Split render() into board, square, info, labels, and promotion overlay helpers.
+- Split user square-click handling into selection/promotion/move helpers.
+- Kept public API: init, onKey, reset.
+- Kept saved-state key: game_chess.
+
+Install:
+1. Extract this zip into your extension root folder.
+2. Replace files when prompted.
+3. Reload the unpacked extension.
+
+Chess regression tests:
+1. Open Chess.
+2. Move a white pawn two squares.
+3. Confirm the AI responds as black.
+4. Select and deselect pieces.
+5. Capture a piece if available.
+6. Start a new game.
+7. Reload the popup and confirm the saved game resumes.
+8. Re-run SonarQube.
+
+Full extension smoke tests:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Solitaire and confirm undo/redo still loads.
+4. Open Traffic Jam, Marble Run, Connect 4, Yahtzee, Tetris, 2048, Lights Out, Puzzle 15, Minesweeper, Blackjack, and Picture Poker once.
+
+============================================================================================
+DOCUMENT 9: SONARQUBE PHASE 4B — SUDOKU WORDLY-SAFE FIX PACK
+SOURCE FILE: INSTALL_NOTES_PHASE4B.txt
+============================================================================================
+
+SONARQUBE PHASE 4B — SUDOKU WORDLY-SAFE FIX PACK
+
+Built on top of Phase 4A.
+
+Scope:
+- js/games/sudoku.js only.
+
+What changed:
+- Refactored Sudoku input handling into smaller pen/pencil helpers.
+- Refactored conflict checks into row, column, and box helpers.
+- Refactored render into grid, cell, class, note, and event helpers.
+- Refactored pane setup and key handling into smaller named handlers.
+- Preserved the public GameSudoku API used by popup.js.
+- Preserved Wordly, Contexto, history.js, and all previous Phase 1–4A fixes.
+
+Install:
+1. Extract this zip into your extension root folder.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Regression tests:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Sudoku.
+4. Start Easy, Medium, and Hard games.
+5. Select cells with mouse.
+6. Enter values using keyboard 1-9 and the numpad buttons.
+7. Press P to toggle Pencil mode.
+8. Right-click a cell and confirm Pencil mode turns on.
+9. Add and clear notes.
+10. Use Delete, Backspace, or 0 to clear a selected editable cell.
+11. Use arrow keys to move selection.
+12. Confirm fixed cells cannot be edited.
+13. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 10: PHASE 4B.1 — Sudoku hotfix overlay
+SOURCE FILE: INSTALL_NOTES_PHASE4B1_SUDOKU_HOTFIX.txt
+============================================================================================
+
+PHASE 4B.1 — Sudoku hotfix overlay
+
+Built on top of Phase 4B.
+
+Scope:
+- js/games/sudoku.js only
+
+Fixes:
+1. Hard/Medium/Easy puzzle selection now avoids repeating the same puzzle for the same difficulty on the next load when more than one puzzle exists in that difficulty bank.
+2. Right-click now toggles between Pen and Pencil mode instead of only forcing Pencil mode on.
+3. The Sudoku hint text now matches the updated right-click behaviour.
+
+Install:
+- Extract this zip into the extension root.
+- Choose "Replace files in destination".
+- Reload the unpacked extension.
+
+Regression tests:
+1. Open Sudoku.
+2. Select Hard, then Medium, then Hard again; Hard should not repeat the same board back-to-back where an alternative exists.
+3. Right-click a cell once: mode toggles Pencil/Pen.
+4. Right-click again: mode toggles back.
+5. Confirm P still toggles Pencil/Pen.
+6. Confirm number entry, notes, delete/backspace, and arrow movement still work.
+7. Confirm Wordly and Contexto still open.
+
+============================================================================================
+DOCUMENT 11: SONARQUBE PHASE 4C — TRAFFIC JAM FINAL COMPLEXITY PASS
+SOURCE FILE: INSTALL_NOTES_PHASE4C.txt
+============================================================================================
+
+SONARQUBE PHASE 4C — TRAFFIC JAM FINAL COMPLEXITY PASS
+
+Built on top of Phase 4B.1 Sudoku hotfix.
+
+Targeted file:
+- js/games/trafficjam.js
+
+Scope:
+- Traffic Jam code structure only.
+- No Traffic Jam level data was edited.
+- No shared routing, manifest, storage, Wordly, Contexto, Solitaire, Chess, or Sudoku behaviour was intentionally changed.
+
+Main changes:
+- Split level validation into smaller helpers.
+- Added board constants for board size, exit row, and empty grid cells.
+- Split grid/cell/car placement helpers.
+- Split horizontal/vertical movement checks into one-direction helpers.
+- Split move application into horizontal/vertical helpers.
+- Split pointer capture and drag clamping helpers.
+- Split level button creation from level-select rendering.
+- Split car metrics/hints from car rendering.
+- Split win-overlay creation from button wiring.
+- Split keyboard handling into direction lookup, validation, and selected-car move helpers.
+
+Install:
+1. Extract this zip into the extension root folder.
+2. Choose "Replace files in destination".
+3. Reload the unpacked extension.
+
+Regression checks:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Traffic Jam level select.
+4. Load an unlocked level.
+5. Drag horizontal cars.
+6. Drag vertical cars.
+7. Select a car and move it with arrow keys.
+8. Reset the level.
+9. Solve or force-test a low level and confirm win overlay buttons work.
+10. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 12: SONARQUBE PHASE 4D — MARBLE RUN FINAL COMPLEXITY PASS
+SOURCE FILE: INSTALL_NOTES_PHASE4D.txt
+============================================================================================
+
+SONARQUBE PHASE 4D — MARBLE RUN FINAL COMPLEXITY PASS
+
+Base:
+- Built on top of Phase 4C.
+- Keeps Wordly, Contexto, history.js / Solitaire undo support, and all previous SonarQube phase fixes.
+
+Targeted file:
+- js/games/marblerun.js
+
+What changed:
+- Split track building into named helpers.
+- Split canvas drawing into small render helpers for background, grid, boosts, segments, pegs, funnels, domes, loops, finish label, trails, and marble bodies.
+- Split physics into velocity, side-wall, segment collision, obstacle collision, trail, and finish helpers.
+- Split race loop progress/camera/physics steps into helpers.
+- Split race screen position chip rendering into helpers.
+- Split race start/spawn/reset/entry-charge logic into helpers.
+- Split pick screen HTML and event binding into helpers.
+- Fixed a low-risk pick-screen event bug where race mode buttons could also be treated as wager buttons because they shared the mr-wager-btn class.
+
+No level data or shared routing logic was changed.
+
+Install:
+1. Extract this zip into your extension root:
+   C:\Users\rwilli11\OneDrive - Thames Water Utilities Limited\Desktop\gs-e
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Regression test:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Marble Run.
+4. Select a marble.
+5. Switch Single Race / Tournament and confirm the wager does not become invalid.
+6. Select each wager option.
+7. Start a single race.
+8. Confirm the race animates, HUD updates, and result screen appears.
+9. Start tournament and confirm Next Round works.
+10. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 13: SonarQube Phase 4E — Connect 4 final complexity pass
+SOURCE FILE: INSTALL_NOTES_PHASE4E.txt
+============================================================================================
+
+SonarQube Phase 4E — Connect 4 final complexity pass
+
+Built on top of Phase 4D.
+
+Included safeguards:
+- Keeps Wordly and Contexto wiring.
+- Keeps history.js/Solitaire undo support.
+- Keeps all earlier Phase 1–4D fixes.
+- Only targets js/games/connect4.js for this phase.
+
+Targeted file:
+- js/games/connect4.js
+
+Changes:
+- Split board/drop helpers.
+- Split win/draw logic into smaller helpers.
+- Split scoring/window generation helpers.
+- Split minimax and best-move update helpers.
+- Split AI turn finishing from column selection.
+- Split player turn finishing helpers.
+- Split markup and event wiring helpers.
+- Preserved public API: init, onKey, reset.
+
+Install:
+1. Extract this pack into your extension root.
+2. Choose Replace files in destination.
+3. Reload the unpacked extension.
+
+Test:
+1. Confirm Wordly opens.
+2. Confirm Contexto opens.
+3. Open Connect 4.
+4. Move cursor left/right.
+5. Drop pieces with Space, Enter, Down, and mouse click.
+6. Confirm AI responds.
+7. Play until a win/draw or reset mid-game.
+8. Reload popup and confirm saved Connect 4 resumes.
+9. Re-run SonarQube.
+
+============================================================================================
+DOCUMENT 14: PHASE 4F — RETEST PREP + CONTEXTO CLOSENESS BAR
+SOURCE FILE: INSTALL_NOTES_PHASE4F.txt
+============================================================================================
+
+PHASE 4F — RETEST PREP + CONTEXTO CLOSENESS BAR
+
+Built on top of Phase 4E.
+
+Scope:
+- popup.css
+- js/games/contexto.js
+
+Changes:
+- Adds Contexto closeness bar styling supplied by the user.
+- Adds the required Contexto row markup and heat-class mapping so the CSS actually displays.
+- Keeps the previous Wordly, Contexto, Solitaire history, Sudoku hotfix, and all Sonar phase fixes.
+- Does not modify shared routing, manifest, storage, or unrelated game logic.
+
+Install:
+1. Extract this zip into the extension root.
+2. Replace files in destination.
+3. Reload the unpacked extension.
+
+Test:
+1. Open Contexto.
+2. Submit several guesses.
+3. Confirm each guess row shows a colored closeness bar.
+4. Confirm close guesses trend green/yellow and far guesses trend orange/red.
+5. Confirm Wordly still opens.
+6. Confirm one or two recent Sonar-refactored games still open.
+7. Re-run SonarQube and share the new report for Phase 5.

@@ -1,0 +1,19 @@
+JEWEL DROP — PHASE 1.3
+
+Replacement files:
+- js/games/jeweldrop.js
+- popup.css
+
+No changes were made to popup.html, js/popup.js, manifest.json, or any other game module.
+
+Added:
+- Automatic no-move detection after every completed drop.
+- Controlled reshuffle-out and reshuffle-in animation.
+- Reshuffling preserves the exact jewel inventory whenever validation succeeds.
+- Capped random reshuffle attempts with a guaranteed-playable fallback.
+- Validation of saved board dimensions and jewel values.
+- Internal board validation self-tests.
+- Recovery path for malformed saved boards.
+- Safe reshuffle of a valid saved board that contains no available move.
+
+High score, current score, move count, and save/resume behaviour are preserved.

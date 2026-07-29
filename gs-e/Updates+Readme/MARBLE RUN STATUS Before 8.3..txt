@@ -1,0 +1,4511 @@
+# MARBLE RUN STATUS — COMPLETE CONSOLIDATED MASTER FILE
+
+## Current consolidated position
+
+The Marble Run project is documented from the original gameplay refinement
+worklog through Phase 8.2.
+
+Current roadmap position:
+
+- Phase 7: Complete
+- Phase 8.1: Generated-course balance audit — complete
+- Phase 8.2: Favourite seeds and compact pick-screen layout — awaiting confirmation
+- Phase 8.3: Course-length and obstacle-frequency controls — next
+- Phase 8.4: Long-course timeout and pacing refinement
+- Phase 8.5: Overview and Course Preview visual polish
+- Phase 8.6: Stable-version developer diagnostic cleanup
+
+Latest documented implementation status:
+
+- Favourite Seeds audit: PASS
+- Expected compact developer summary: `DEV CHECKS: 21/21 PASS`
+- Maximum saved favourite entries: 30
+- Blank Generate creates a reproducible random seed
+- Seed saving is supported after Single, Duel and every BO3 round
+
+Latest obstacle and course status:
+
+- Normal generated patterns: 17
+- Reserved showcase patterns: 1
+- Reserved Obstacle Showcase seeds: `1`, `seed-1`, `course-1`
+- Registered obstacle coverage: 22/22
+- Showcase sections: 26
+- Showcase finish: 5476px
+- Showcase world height: 6276px
+- Course balance audit: PASS
+- Phase 7 obstacle library: complete
+
+## Permanent development rules retained
+
+- Work in milestones and micro-tasks.
+- Complete one micro-task at a time.
+- Do not redesign completed systems unless explicitly requested.
+- Preserve Single Race, Duel and BO3 behaviour during unrelated changes.
+- Keep shared marble physics identical across all colours.
+- Use validated builders, compatibility rules and seeded reproducibility.
+- Keep seeds `1`, `seed-1`, and `course-1` as the evolving Obstacle Showcase.
+- Add every new obstacle to the showcase and its automated coverage audit.
+- Protect payouts, saved credits, rankings and game-mode behaviour.
+- Provide future replacement files as downloadable ZIP archives where applicable.
+
+## Consolidation notes
+
+This complete file contains:
+
+- Original status and roadmap material
+- Milestone and phase checkpoints
+- Detailed technical validation reports
+- Obstacle-library reports
+- Hotfix reports
+- Phase 8 roadmap notes
+
+Checkpoint/report pairs are intentionally retained because checkpoints record
+project state while reports preserve deeper technical evidence. No missing
+phase or result has been invented.
+
+## Contents
+
+1. Marble Run – Gameplay Refinement Worklog — `MARBLE RUN STATUS.txt`
+2. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.1.md`
+3. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.2.md`
+4. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.3.md`
+5. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.4.md`
+6. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.5.md`
+7. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_4.6.md`
+8. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_5.1.md`
+9. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_5.2.md`
+10. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_5.3.md`
+11. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_5.4.md`
+12. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_5.5.md`
+13. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.1.md`
+14. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.2.md`
+15. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.3.md`
+16. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.4.md`
+17. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.5.md`
+18. Marble Run — Camera Preview Report 6.7 — `MARBLE_RUN_CAMERA_PREVIEW_REPORT_6.7.md`
+19. Marble Run — Balance Beam Report 7.5 — `MARBLE_RUN_BALANCE_BEAM_REPORT_7.5.md`
+20. Marble Run — Bounce Chamber Report 7.7 — `MARBLE_RUN_BOUNCE_CHAMBER_REPORT_7.7.md`
+21. Marble Run — Section Connection Report 5.2 — `MARBLE_RUN_CONNECTION_REPORT_5.2(1).md`
+22. Marble Run — Controlled Recipe Report 6.2 — `MARBLE_RUN_CONTROLLED_RECIPES_REPORT_6.2(1).md`
+23. Marble Run — Dynamic Geometry Report 6.5 — `MARBLE_RUN_DYNAMIC_GEOMETRY_REPORT_6.5.md`
+24. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.6(1).md`
+25. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_6.7(1).md`
+26. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.1(1).md`
+27. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.2(1).md`
+28. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.3(1).md`
+29. Marble Run — Dome and Centre-Hole Library Report 7.3 — `MARBLE_RUN_DOME_LIBRARY_REPORT_7.3.md`
+30. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.5(1).md`
+31. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.6(1).md`
+32. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.7(1).md`
+33. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.7.1(1).md`
+34. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.8(1).md`
+35. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.9(1).md`
+36. Marble Run — Drop Tower Report 7.9 — `MARBLE_RUN_DROP_TOWER_REPORT_7.9.md`
+37. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_7.9.1(1).md`
+38. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_8.1(1).md`
+39. Marble Run — Generated-Course Balance Report 8.1 — `MARBLE_RUN_COURSE_BALANCE_REPORT_8.1.md`
+40. Marble Run Project Checkpoint — `MARBLE_RUN_CHECKPOINT_8.2(1).md`
+41. Marble Run — Favourite Seeds and Layout Report 8.2 — `MARBLE_RUN_FAVOURITE_SEEDS_REPORT_8.2.md`
+42. Marble Run — Funnel Obstacle Library Report 7.2 — `MARBLE_RUN_FUNNEL_LIBRARY_REPORT_7.2.md`
+43. Marble Run — Controlled Generated Course Report 6.6 — `MARBLE_RUN_GENERATED_COURSE_REPORT_6.6.md`
+44. Marble Run Hotfix Report 7.7.1 — `MARBLE_RUN_HOTFIX_REPORT_7.7.1.md`
+45. Marble Run Hotfix Report 7.9.1 — `MARBLE_RUN_HOTFIX_REPORT_7.9.1.md`
+46. Marble Run — Physics Fairness Report — `MARBLE_RUN_PHYSICS_FAIRNESS_REPORT.md`
+47. Marble Run — Plinko Obstacle Library Report 7.1 — `MARBLE_RUN_PLINKO_LIBRARY_REPORT_7.1.md`
+48. Marble Run Roadmap Notes — `MARBLE_RUN_ROADMAP_NOTES.md`
+49. Marble Run — Section Builder Report 5.3 — `MARBLE_RUN_SECTION_BUILDER_REPORT_5.3.md`
+50. Marble Run — Section Compatibility Report 6.4 — `MARBLE_RUN_SECTION_COMPATIBILITY_REPORT_6.4.md`
+51. Marble Run — Section Definition Format — `MARBLE_RUN_SECTION_FORMAT_5.1.md`
+52. Marble Run — Seeded Recipe Selection Report 6.3 — `MARBLE_RUN_SEEDED_SELECTION_REPORT_6.3.md`
+53. Marble Run — Spiral Bowl and Obstacle Showcase Report 7.6 — `MARBLE_RUN_SPIRAL_SHOWCASE_REPORT_7.6(1).md`
+54. Marble Run — Split Gate Report 7.8 — `MARBLE_RUN_SPLIT_GATE_REPORT_7.8(1).md`
+55. Marble Run — Fixed Track Assembly Report 5.4 — `MARBLE_RUN_TRACK_ASSEMBLY_REPORT_5.4(1).md`
+56. Marble Run — Full Track Validation Report 5.5 — `MARBLE_RUN_TRACK_VALIDATION_REPORT_5.5(1).md`
+
+================================================================================================
+DOCUMENT 1: Marble Run – Gameplay Refinement Worklog
+SOURCE FILE: MARBLE RUN STATUS.txt
+================================================================================================
+
+# Marble Run – Gameplay Refinement Worklog
+
+Current Status:
+The base Marble Run game is playable. Before adding more features, the focus is improving gameplay, replayability and spectator enjoyment.
+
+---
+
+## Priority 1 – Camera & Viewing Experience
+
+### Current Issues
+
+* Camera follows the leading marble instead of the player's chosen marble.
+* Difficult to see where other marbles are.
+* Impossible to tell if another marble is stuck.
+* Race feels disconnected once the player's marble leaves the screen.
+
+### Goals
+
+Implement selectable camera modes.
+
+Camera Modes:
+
+* Follow My Marble
+* Follow Race Leader
+* Overview Camera (entire course visible if possible)
+* Free Camera (optional)
+
+Add camera buttons so the player can switch modes at any time.
+
+---
+
+## Priority 2 – Proper 1v1 Mode
+
+Current implementation still spawns unnecessary marbles.
+
+Requirements:
+
+* Exactly 2 marbles.
+* Dedicated track.
+* No hidden AI marbles.
+* Independent balancing from the main race mode.
+
+Future idea:
+
+* Best of 3
+* Best of 5
+* Championship ladder
+
+---
+
+## Priority 3 – Dynamic Track Generation
+
+Current problem:
+
+Race outcome is heavily influenced by starting position.
+
+This makes races predictable.
+
+Goal:
+
+Each race should feel unique.
+
+Possible solution:
+
+Build the track from modular sections.
+
+Example library:
+
+Speed Section
+Curve Section
+Plinko Section
+Funnel Section
+Loop Section
+Dome Section
+Balance Beam Section
+Spiral Section
+Bounce Chamber
+Drop Tower
+
+At race creation, randomly assemble sections.
+
+Example:
+
+Start
+
+↓
+
+Speed
+
+↓
+
+Plinko
+
+↓
+
+Funnel
+
+↓
+
+Loop
+
+↓
+
+Plinko
+
+↓
+
+Balance Beam
+
+↓
+
+Dome
+
+↓
+
+Spiral
+
+↓
+
+Finish
+
+Every race becomes different.
+
+---
+
+## Priority 4 – Position Mixing
+
+Need more opportunities for overtakes.
+
+Ideas:
+
+### Multiple Plinko Fields
+
+Pins randomly redirect marbles.
+
+### Funnel Merges
+
+Several lanes merge into one.
+
+### Dome Drops
+
+Random exit points.
+
+### Balance Beam
+
+Marbles roll slowly across angled platforms.
+
+Minor differences create overtakes.
+
+### Spiral Bowl
+
+Marbles circle before dropping.
+
+### Bounce Chamber
+
+Soft bumpers create random rebounds.
+
+### Multi-Level Drops
+
+Different fall paths.
+
+### Crossing Paths
+
+Marbles intersect.
+
+### Random Split Gates
+
+Track randomly sends marbles left or right.
+
+---
+
+## Priority 5 – Race Pace
+
+Current races finish too quickly.
+
+Increase race duration by:
+
+* Longer course
+* Additional obstacle modules
+* More momentum changes
+* Reduced average speed
+* More recovery opportunities
+
+Target race duration:
+
+45–90 seconds.
+
+---
+
+## Priority 6 – Economy Review
+
+Current betting system does not significantly improve gameplay.
+
+Review whether betting should remain.
+
+Possible alternatives:
+
+### Cosmetic Unlocks
+
+Currency unlocks:
+
+* Marble colours
+* Trails
+* Glow effects
+* Particle effects
+
+### Special Marbles
+
+Visual only.
+
+No physics advantage.
+
+### Track Themes
+
+Unlock:
+
+* Neon
+* Space
+* Ice
+* Volcano
+* Cyber
+* Jungle
+
+### Tournament Entry
+
+Currency used to enter optional tournaments.
+
+Higher rewards.
+
+### Daily Challenges
+
+Reward cosmetics rather than gambling.
+
+Decision:
+
+Do not continue expanding the betting system until its purpose has been agreed.
+
+---
+
+## Priority 7 – Long-Term Vision
+
+Main Race
+
+* 8 marbles
+* Random tracks
+* Dynamic cameras
+
+1v1 Duel
+
+* Two marbles
+* Head-to-head
+* Separate maps
+
+Tournament Mode
+
+* Quarter Finals
+* Semi Finals
+* Final
+
+Daily Challenge
+
+* Fixed seed
+* Everyone races the same course
+
+Time Trial Mode
+
+* Ghost races
+* Personal best tracking
+
+---
+
+Current Development Priority
+
+1. Camera improvements.
+2. 1v1 corrections.
+3. Modular track generation.
+4. New obstacle modules.
+5. Economy redesign.
+6. Polish.
+
+
+# MARBLE RUN - DEVELOPMENT PROTOCOL V2
+
+The current Marble Run implementation is functional but requires refinement before new gameplay systems are introduced.
+
+This project will now be developed using **Milestones** and **Micro-Tasks**.
+
+The objective is to ensure every conversation produces working code without exceeding usage limits.
+
+---
+
+# IMPORTANT RULES
+
+1. Never attempt an entire milestone in one response.
+
+2. Complete ONE micro-task only.
+
+3. Maximum files modified:
+   2
+
+4. Maximum new code:
+   250 lines
+
+5. Do not redesign completed systems.
+
+6. Do not revisit previous milestones unless explicitly requested.
+
+7. Produce code as early as possible.
+
+8. If implementation is too large:
+
+STOP.
+
+Split the work into smaller micro-tasks.
+
+Do not begin partially.
+
+9. At the end of every response output:
+
+---
+
+CHECKPOINT
+
+Current Milestone:
+
+Current Micro-Task:
+
+Files Modified:
+
+Testing Required:
+
+Next Recommended Task:
+
+---
+
+10. After completing a micro-task, stop and wait for approval.
+
+Never automatically continue.
+
+---
+
+# DEVELOPMENT ORDER
+
+## MILESTONE 1
+
+Core Stability
+
+Goal:
+Ensure Marble Run is reliable.
+
+Micro-Tasks:
+
+1.1 Race completion stability
+
+1.2 Winner detection
+
+1.3 Credit recovery/testing tools
+
+1.4 Camera bug fixes
+
+1.5 1v1 mode spawning only two marbles
+
+Checkpoint after every task.
+
+---
+
+## MILESTONE 2
+
+Camera Experience
+
+Goal:
+Watching the race should be enjoyable.
+
+Micro-Tasks
+
+2.1 Follow My Marble
+
+2.2 Follow Leader
+
+2.3 Overview Camera
+
+2.4 Camera Switch UI
+
+2.5 Camera smoothing
+
+Stop after every task.
+
+---
+
+## MILESTONE 3
+
+Track Framework
+
+Goal:
+Prepare the engine for modular tracks.
+
+Micro-Tasks
+
+3.1 Track section manager
+
+3.2 Section connection system
+
+3.3 Random section loader
+
+3.4 Section configuration file
+
+3.5 Track validation
+
+No new obstacles yet.
+
+Only infrastructure.
+
+---
+
+## MILESTONE 4
+
+Obstacle Library
+
+Each obstacle is its own micro-task.
+
+4.1 Plinko
+
+4.2 Funnel
+
+4.3 Dome
+
+4.4 Loop
+
+4.5 Spiral Bowl
+
+4.6 Balance Beam
+
+4.7 Drop Tower
+
+4.8 Split Gate
+
+Every obstacle must be independently testable.
+
+---
+
+## MILESTONE 5
+
+Race Variety
+
+Goal:
+No two races should feel identical.
+
+Micro-Tasks
+
+5.1 Random section ordering
+
+5.2 Duplicate section support
+
+Example:
+
+3 Plinkos
+
+2 Funnels
+
+1 Dome
+
+5.3 Multiple finish paths
+
+5.4 Random spawn balancing
+
+5.5 Overtake tuning
+
+Goal:
+
+The leading marble should frequently change.
+
+---
+
+## MILESTONE 6
+
+Visual Improvements
+
+6.1 Motion trails
+
+6.2 Better lighting
+
+6.3 Speed effects
+
+6.4 Better finish celebration
+
+6.5 Improved UI
+
+---
+
+## MILESTONE 7
+
+Game Modes
+
+7.1 Proper 1v1
+
+7.2 Tournament Mode
+
+7.3 Championship
+
+Each mode receives its own dedicated track.
+
+---
+
+## MILESTONE 8
+
+Progression & Economy
+
+This milestone MUST NOT begin until all previous milestones are complete.
+
+Economy should support progression rather than gambling.
+
+Potential unlocks:
+
+• Marble colours
+
+• Marble skins
+
+• Particle trails
+
+• Track themes
+
+• Finish celebrations
+
+• Camera themes
+
+• Sound packs
+
+No unlock may alter marble physics or provide gameplay advantages.
+
+---
+
+# RESPONSE FORMAT
+
+Every response must contain only:
+
+1. Micro-task being completed.
+
+2. Files modified.
+
+3. Code.
+
+4. CHECKPOINT.
+
+No architecture discussion.
+
+No future planning.
+
+No unnecessary explanations.
+
+Wait for approval before continuing.
+
+
+================================================================================================
+DOCUMENT 2: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.1.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.1 — Starting-position audit instrumentation
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Persistent audit storage key: `mr_start_audit_v1`
+- Starting-slot tracking on each marble
+- Full eight-slot result capture
+- Winner-slot, selected-slot, DNF and duration recording
+- Result-screen fairness summary
+- Pick-screen sample count and audit reset
+
+## Testing required
+1. Run at least 10 eight-marble races.
+2. Confirm audit sample count increases once per race.
+3. Confirm Duel races do not increase the count.
+4. Confirm Reset Start Audit clears the sample.
+5. Confirm Single, Duel and Tournament still work.
+6. Confirm payouts remain correct.
+7. Confirm no new console errors appear.
+
+## Next active micro-task
+4.2 — Balanced spawn layout, but only after reviewing the audit sample.
+
+Do not tune starting positions until enough race data exists to show which slots are advantaged.
+
+
+================================================================================================
+DOCUMENT 3: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.2.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.2 — Balanced spawn layout
+
+## Evidence used
+The original 23-race audit showed:
+- S8: 10 wins / average #2.7
+- S4: 4 wins / average #2.4
+- S1: 0 wins / average #6.2
+- S5: 0 wins / average #7.0
+
+## Files modified
+- `marblerun.js` only
+
+## Changes
+- Replaced the vertically staggered two-row start with one equal-height launch line.
+- Narrowed the start distribution around the chute centre.
+- Added symmetric centre-seeking launch velocity.
+- Started a separate V2 audit sample.
+
+## Testing required
+1. Run 15–25 eight-marble races.
+2. Confirm the new audit begins from zero.
+3. Confirm all marbles launch without clipping the chute walls.
+4. Confirm the chosen colour still changes starting slot.
+5. Confirm Single, Duel and Tournament remain functional.
+6. Confirm payouts and saved balance remain correct.
+7. Confirm stuck recovery and DNF resolution remain active.
+
+## Next active micro-task
+4.3 — Early pack mixer, after reviewing the balanced-layout audit.
+
+The first obstacle should only be redesigned if the V2 sample still shows meaningful horizontal slot bias.
+
+
+================================================================================================
+DOCUMENT 4: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.3.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.3 — Early pack mixer
+
+## Evidence used
+The 25-race balanced-start sample still showed meaningful bias:
+- S3: 11 wins / average #2.8
+- S1: 5 wins / average #2.7
+- S5: 0 wins / average #5.5
+- S8: 0 wins / average #5.6
+
+## Files modified
+- `marblerun.js` only
+
+## Changes
+- Replaced the decorative early curves with a mandatory vortex bowl.
+- Added a real centre-hole route.
+- Added varied orbit direction, speed and duration per marble.
+- Added a controlled centre release into the next funnel.
+- Started a fresh audit sample under `mr_start_audit_v3_early_mixer`.
+
+## Testing required
+1. Run 15–25 eight-marble races.
+2. Confirm all eight marbles are captured by the bowl.
+3. Confirm each marble exits through the central hole.
+4. Confirm race order visibly changes inside the bowl.
+5. Confirm no permanent bowl trapping.
+6. Confirm Single, Duel and Tournament still work.
+7. Confirm payout, DNF and stuck-recovery behaviour remains correct.
+
+## Next active micro-task
+4.4 — Mid-race pack mixer.
+
+Planned 4.4 scope:
+Convert the first later dome/centre-hole graphic into a real physical sink-hole
+or vortex obstacle so marbles cannot simply pass across or behind it.
+
+
+================================================================================================
+DOCUMENT 5: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.4.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.4 — Mid-race pack mixer
+
+## Evidence used
+The 19-race Early Mixer audit showed improved fairness:
+- S1: 3 wins / average #5.1
+- S2: 3 wins / average #4.7
+- S3: 2 wins / average #3.8
+- S4: 3 wins / average #4.4
+- S5: 1 win / average #5.1
+- S6: 5 wins / average #3.8
+- S7: 1 win / average #4.9
+- S8: 1 win / average #4.2
+
+No slot dominated the sample, so development moved to the planned mid-race mixer.
+
+## Files modified
+- `marblerun.js` only
+
+## Changes
+- Replaced the first later decorative dome with a mandatory centre-hole vortex.
+- Generalised the mixer logic so each marble can complete multiple mixers.
+- Added independent orbit/release settings for Early and Mid mixers.
+- Added full-width capture so edge marbles cannot bypass the Mid Mixer.
+- Started a fresh audit under `mr_start_audit_v4_mid_mixer`.
+
+## Testing required
+1. Run 15–25 eight-marble races.
+2. Confirm all eight marbles enter the Mid Mixer.
+3. Confirm every marble exits through the centre.
+4. Confirm no bypasses or permanent trapping.
+5. Confirm the pack order changes again after Plinko.
+6. Confirm Single, Duel and Tournament work.
+7. Confirm payouts, DNF handling and saved balance remain correct.
+
+## Next active micro-task
+4.5 — Late-race overtake opportunity.
+
+Planned direction:
+Convert or replace the later dome near y≈1710 with a final-third mixer so a
+mid-race leader is not guaranteed to remain ahead through the finish.
+
+
+================================================================================================
+DOCUMENT 6: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.5.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.5 — Late-race overtake opportunity
+
+## Evidence used
+The 27-race Mid Mixer audit showed a reasonable spread:
+- S1: 3 wins / average #4.4
+- S2: 4 wins / average #3.6
+- S3: 3 wins / average #5.3
+- S4: 1 win / average #4.5
+- S5: 2 wins / average #4.6
+- S6: 5 wins / average #4.1
+- S7: 2 wins / average #4.8
+- S8: 4 wins / average #4.8
+
+No position dominated strongly, so the roadmap moved to a final-third overtake
+opportunity.
+
+## Files modified
+- `marblerun.js` only
+
+## Changes
+- Replaced the final decorative dome with a mandatory third vortex.
+- Added wider orbit-time variation for late-race reshuffling.
+- Added controlled centre-hole release before the second Plinko.
+- Added a distinct gold/orange visual treatment.
+- Started a fresh audit under `mr_start_audit_v5_late_mixer`.
+
+## Testing required
+1. Run 15–25 eight-marble races.
+2. Confirm every marble enters and exits the Late Mixer.
+3. Confirm positions can change in the final third.
+4. Confirm clean transition into Plinko 2.
+5. Confirm no permanent trapping.
+6. Confirm Single, Duel and Tournament work.
+7. Confirm payouts, DNF handling and saved balance remain correct.
+
+## Next active micro-task
+4.6 — Physics fairness audit.
+
+The next step should verify that every colour uses identical radius, gravity,
+friction, bounce, speed caps and obstacle handling before Milestone 5 begins.
+
+
+================================================================================================
+DOCUMENT 7: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_4.6.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 4 — Fair Starts and Overtaking
+
+## Completed micro-task
+4.6 — Physics fairness audit
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Audit conclusion
+- All eight colours use one shared immutable physics profile.
+- Colour selection remains cosmetic.
+- No per-colour mass, radius, gravity, friction, bounce or speed overrides
+  were found.
+- Start randomness and mixer randomness use identical distributions for every
+  marble.
+
+## Testing required
+1. Confirm PHYSICS FAIRNESS: PASS appears on the pick screen.
+2. Run Single Race.
+3. Run 1v1 Duel.
+4. Run BO3 Tournament.
+5. Confirm PASS remains visible on the result screen.
+6. Confirm collisions, mixers, stuck recovery, DNF handling and payouts work.
+7. Confirm no new browser-console warning appears.
+
+## Milestone exit condition
+Once the regression tests pass, Milestone 4 is complete.
+
+## Next active milestone
+Milestone 5 — Modular Track Framework
+
+## Next active micro-task
+5.1 — Section Definition Format
+
+The next task will introduce track-section metadata only. It must not randomise
+or visually alter the current course.
+
+
+================================================================================================
+DOCUMENT 8: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_5.1.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 5 — Modular Track Framework
+
+## Completed micro-task
+5.1 — Section Definition Format
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Immutable authoritative section definitions.
+- Fresh per-track section manifest.
+- Thirteen named sections covering the current fixed course.
+- Entry/exit geometry, repeatability, mixing strength, difficulty and
+  component identifiers.
+- `track.sections` on the current built track.
+
+## Protected behaviour
+The following were not changed:
+- Obstacle coordinates
+- Track order
+- Finish position
+- Physics profile
+- Starting fairness
+- Early, Mid and Late mixers
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Testing required
+1. Confirm Physics Fairness remains PASS.
+2. Complete one Single Race.
+3. Complete one Duel.
+4. Complete one BO3 Tournament.
+5. Confirm all obstacle transitions look unchanged.
+6. Confirm payouts and saved credits work.
+7. Confirm no console errors.
+
+## Next active micro-task
+5.2 — Section Connection System
+
+The next step should compare adjacent `exit` and `entry` metadata and produce
+connection records. It must keep the fixed section order and must not
+randomise or move any obstacle.
+
+
+================================================================================================
+DOCUMENT 9: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_5.2.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 5 — Modular Track Framework
+
+## Completed micro-task
+5.2 — Section Connection System
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Twelve adjacent section-connection records.
+- Direct and controlled-short-drop connection types.
+- Vertical gap and horizontal overlap checks.
+- Incoming/outgoing connection references on sections.
+- `track.connections`.
+- Visible Track Connections PASS/REVIEW panel.
+- Console warning for future invalid joins.
+
+## Current connection result
+- 13 sections
+- 12 required joins
+- 12 passing joins
+- 8 direct
+- 4 controlled short drops
+
+## Protected behaviour
+The following were not changed:
+- Track order
+- Track coordinates
+- Obstacles and mixers
+- Physics profile
+- Start layout
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Testing required
+1. Confirm PHYSICS FAIRNESS: PASS.
+2. Confirm TRACK CONNECTIONS: PASS.
+3. Complete one Single Race.
+4. Complete one Duel.
+5. Complete one BO3 Tournament.
+6. Confirm all transitions look unchanged.
+7. Confirm payouts and saved credits work.
+8. Confirm no console errors.
+
+## Next active micro-task
+5.3 — Existing Track Conversion / Section Builders
+
+The next task should extract the current hard-coded section blocks into named
+builder functions referenced by each section's `builderKey`. Every existing
+coordinate must remain unchanged and the course must still use the fixed order.
+
+
+================================================================================================
+DOCUMENT 10: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_5.3.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 5 — Modular Track Framework
+
+## Completed micro-task
+5.3 — Existing Track Conversion / Section Builders
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Thirteen named section-builder functions.
+- Frozen builder registry keyed by each section's `builderKey`.
+- Fixed-order builder execution inside `buildTrack()`.
+- Internal `sectionId` and `componentId` tags on generated objects.
+- Per-section build records in `track.sectionBuilds`.
+- Builder/component/count validation.
+- Visible SECTION BUILDERS PASS/REVIEW panel.
+- Console warning for future builder regressions.
+
+## Automated verification completed
+The generated 5.3 arrays match the 5.2 arrays exactly after ignoring only the
+new internal metadata tags.
+
+Expected and confirmed counts:
+- 13 segments
+- 55 pegs
+- 3 boosts
+- 3 funnels
+- 2 loops
+- 0 domes
+- 3 mixers
+
+## Protected behaviour
+The following were not changed:
+- Track coordinates
+- Section order
+- Connections
+- Physics profile
+- Start fairness
+- Early, Mid and Late mixers
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Testing required
+1. Confirm PHYSICS FAIRNESS: PASS.
+2. Confirm TRACK CONNECTIONS: PASS.
+3. Confirm SECTION BUILDERS: PASS.
+4. Complete one Single Race.
+5. Complete one Duel.
+6. Complete one BO3 Tournament.
+7. Confirm all obstacles and transitions look unchanged.
+8. Confirm payouts and saved credits work.
+9. Confirm no console errors.
+
+## Next active micro-task
+5.4 — Track Assembly Using Fixed Order
+
+The next task should create an explicit fixed track recipe containing the
+section IDs and assemble the course from that recipe. It must not randomise,
+duplicate or omit sections.
+
+
+================================================================================================
+DOCUMENT 11: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_5.4.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 5 — Modular Track Framework
+
+## Completed micro-task
+5.4 — Track Assembly Using Fixed Order
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Immutable `CLASSIC_TRACK_RECIPE`.
+- Explicit ordered list of all 13 section IDs.
+- Recipe-based section assembly.
+- Unknown, duplicate and missing-section protection.
+- Start/finish recipe guards.
+- `track.recipe` and `track.assembly`.
+- Visible TRACK ASSEMBLY PASS/REVIEW panel.
+- Console warning for future assembly regressions.
+
+## Automated verification
+The assembled 5.4 course matches the 5.3 course exactly after ignoring only
+internal metadata.
+
+Confirmed counts:
+- 13 segments
+- 55 pegs
+- 3 boosts
+- 3 funnels
+- 2 loops
+- 0 domes
+- 3 mixers
+
+## Protected behaviour
+The following were not changed:
+- Track coordinates
+- Track visuals
+- Section builders
+- Connections
+- Physics profile
+- Start fairness
+- Early, Mid and Late mixers
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Developer panel plan
+The large diagnostic panels are temporary. Once the framework and final
+regression work are complete, normal gameplay will no longer display them at
+full size. They will be removed or placed behind a compact developer toggle.
+
+## Testing required
+1. Confirm all four framework/fairness checks show PASS.
+2. Complete one Single Race.
+3. Complete one Duel.
+4. Complete one BO3 Tournament.
+5. Confirm course appearance and behaviour remain unchanged.
+6. Confirm payouts and saved credits work.
+7. Confirm no console errors.
+
+## Next active micro-task
+5.5 — Track Validation
+
+The next task should validate the complete assembled track:
+- valid recipe
+- valid start and finish
+- unique IDs
+- registered builders
+- valid connections
+- obstacle bounds
+- required mixers
+- track height and finish consistency
+
+It must not randomise or move the current course.
+
+
+================================================================================================
+DOCUMENT 12: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_5.5.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Milestone 5 — Modular Track Framework
+
+## Completed micro-task
+5.5 — Full Track Validation
+
+## Status
+Awaiting final Milestone 5 regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Validation result
+PASS
+
+Confirmed:
+- 13 valid sections
+- 12 valid adjacent connections
+- 13 registered and executed section builders
+- Fixed recipe begins with Start and ends with Finish
+- Unique section and mixer IDs
+- 79 generated track objects within bounds
+- 3/3 mandatory vortex mixers
+- One finish segment aligned to `FINISH_Y`
+- Course height fits within the configured world
+
+## Protected behaviour
+The following were not changed:
+- Track coordinates
+- Track order
+- Track visuals
+- Physics profile
+- Start fairness
+- Mixers and Plinko behaviour
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Testing required
+1. Confirm PHYSICS FAIRNESS: PASS.
+2. Confirm TRACK CONNECTIONS: PASS.
+3. Confirm SECTION BUILDERS: PASS.
+4. Confirm TRACK ASSEMBLY: PASS.
+5. Confirm TRACK VALIDATION: PASS.
+6. Complete one Single Race.
+7. Complete one Duel.
+8. Complete one BO3 Tournament.
+9. Confirm payouts and saved credits work.
+10. Confirm no console errors.
+
+## Milestone exit condition
+Once those regression tests pass, Milestone 5 is complete.
+
+## Next recommended task
+Development UI Cleanup
+
+Hide or collapse the large audit/validation panels while retaining:
+- Console diagnostics
+- An optional compact Developer Checks control
+- The full normal Marble Run viewport
+
+After cleanup, begin the next track-variety milestone without immediately
+introducing uncontrolled random generation.
+
+
+================================================================================================
+DOCUMENT 13: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.1.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.1 — Developer UI Cleanup
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was changed
+- Replaced five permanently visible diagnostic panels with one compact toggle.
+- Moved the Late Mixer Audit into the same developer drawer.
+- Kept all checks active internally.
+- Kept console warnings active.
+- Kept Reset Mixer Audit available inside the drawer.
+- Applied the compact drawer to both pick and result screens.
+
+## Default player view
+Only this compact line is visible:
+
+`DEV CHECKS: 5/5 PASS`
+
+All detailed diagnostics are collapsed.
+
+## Protected behaviour
+The following were not changed:
+- Track sections, builders, connections or fixed recipe
+- Track validation
+- Physics profile
+- Mixers and Plinko
+- Starting fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 modes
+
+## Testing required
+1. Confirm the developer drawer starts collapsed.
+2. Confirm all five checks remain available when expanded.
+3. Confirm Reset Mixer Audit still works.
+4. Complete one Single Race.
+5. Complete one Duel.
+6. Complete one BO3 Tournament.
+7. Confirm payouts and saved credits work.
+8. Confirm no console errors.
+
+## Next active task
+6.2 — Controlled Track Recipe Variants
+
+Create deterministic recipe variants from validated sections before any
+unrestricted random track generator is introduced.
+
+
+================================================================================================
+DOCUMENT 14: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.2.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.2 — Controlled Track Recipe Variants
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Three controlled recipes: Classic, Rapid and Deep.
+- Pick-screen recipe selector.
+- Local recipe-selection persistence.
+- Recipe label on the result screen.
+- Recipe-specific mixer timing/release profiles.
+- Recipe-separated start-position audit samples.
+- Generalised assembly validation for all registered controlled recipes.
+
+## Automated verification
+All three recipes pass:
+- Track connections
+- Section builders
+- Track assembly
+- Full track validation
+
+All retain:
+- 13 sections
+- 12 connections
+- 79 validated track objects
+- 3 mandatory mixers
+- Finish line at 2400px
+
+## Protected behaviour
+The following were not changed:
+- Section order
+- Obstacle coordinates
+- World and finish height
+- Shared marble physics
+- Starting-slot fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Testing required
+1. Test Classic, Rapid and Deep.
+2. Confirm all show DEV CHECKS: 5/5 PASS.
+3. Confirm Rapid feels quicker through mixers.
+4. Confirm Deep produces longer/wider pack mixing.
+5. Confirm the chosen recipe persists after reopening.
+6. Complete one Duel and one BO3 on a non-Classic recipe.
+7. Confirm payouts and credits remain correct.
+8. Confirm no console errors.
+
+## Next active task
+6.3 — Seeded Deterministic Recipe Selection
+
+Use a reproducible seed to select among the three validated recipes. Do not
+reorder, duplicate or remove sections yet.
+
+
+================================================================================================
+DOCUMENT 15: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.3.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.3 — Seeded Deterministic Recipe Selection
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## What was added
+- Seed input and Use Seed control.
+- Stable seed normalization and FNV-1a hash.
+- Deterministic mapping to Classic, Rapid or Deep.
+- Manual / Seeded selection modes.
+- Local persistence of mode and seed.
+- Seed/mode information on the result screen.
+- Seed/mode information in race audit records.
+
+## Deterministic test values
+- `seed-0` -> Deep
+- `seed-1` -> Classic
+- `seed-2` -> Rapid
+
+## Protected behaviour
+The following were not changed:
+- Validated 13-section order
+- Connections and builders
+- Obstacle coordinates
+- Finish and world height
+- Physics fairness
+- Cameras
+- Mixers and Plinko
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Testing required
+1. Verify all three example seeds.
+2. Verify repeating a seed returns the same recipe.
+3. Verify Seeded mode persists after reopening.
+4. Verify Manual mode still works.
+5. Complete Single, Duel and BO3 in Seeded mode.
+6. Confirm DEV CHECKS: 5/5 PASS.
+7. Confirm payouts and saved credits work.
+8. Confirm no console errors.
+
+## Next active task
+6.4 — Section Repetition Compatibility Rules
+
+Define safe adjacency and repetition limits for reusable sections. The live
+course must remain unchanged during 6.4.
+
+
+================================================================================================
+DOCUMENT 16: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.4.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.4 — Section Repetition Compatibility Rules
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Eight section-type compatibility rules.
+- Thirteen section repetition limits.
+- Allowed previous/next type validation.
+- Adjacent duplicate protection.
+- Unique Start and Finish protection.
+- Compatibility validation before live track assembly.
+- Sixth developer check and console warning.
+
+## Live-course impact
+None. The section order, coordinates and objects remain unchanged.
+
+## Testing required
+1. Confirm DEV CHECKS: 6/6 PASS.
+2. Confirm SECTION COMPATIBILITY: PASS.
+3. Test all three manual recipes.
+4. Test one seed.
+5. Complete Single, Duel and BO3.
+6. Confirm payouts and saved credits.
+7. Confirm no console errors.
+
+## Next active task
+6.5 — Dynamic Course and Finish Height
+
+The next task will calculate course height, finish position and camera bounds
+from assembled section metadata rather than fixed constants.
+
+## Recorded later task
+6.7 — Track Preview and Camera Preset
+
+Add pick-screen camera selection and permit races to start in Mine, Leader or
+Overview. Also provide a pre-race Overview preview once generated course bounds
+are available.
+
+
+================================================================================================
+DOCUMENT 17: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.5.md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.5 — Dynamic Course and Finish Height
+
+## Status
+Awaiting regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Derived `track.geometry`.
+- Dynamic finish Y.
+- Dynamic course start/end.
+- Dynamic world height.
+- Dynamic camera maximum.
+- Dynamic progress calculation.
+- Finish builder driven by Finish-section metadata.
+- Seventh developer check.
+
+## Current derived values
+- Finish: 2400px
+- Course end: 2420px
+- World height: 3200px
+- Camera maximum: 2640px
+- Developer checks: 7/7 PASS
+
+## Protected behaviour
+The current values match the previous fixed values. No intended change to:
+- Track appearance
+- Race flow
+- Physics
+- Mixers
+- Camera feel
+- Payouts
+- Single, Duel or BO3
+- Recipe selection
+- Shared extension files
+
+## Testing required
+1. Confirm DEV CHECKS: 7/7 PASS.
+2. Confirm DYNAMIC GEOMETRY: PASS.
+3. Complete Single Race.
+4. Complete Duel.
+5. Complete BO3.
+6. Confirm progress and finish detection work.
+7. Confirm camera reaches the finish.
+8. Confirm payouts and saved credits.
+9. Confirm no console errors.
+
+## Next active task
+6.6 — Controlled Random Recipe Generation
+
+Use only:
+- Validated sections
+- Compatibility rules
+- Repetition limits
+- Derived course geometry
+- Seeded reproducibility
+
+Do not introduce unrestricted or unvalidated random courses.
+
+
+================================================================================================
+DOCUMENT 18: Marble Run — Camera Preview Report 6.7
+SOURCE FILE: MARBLE_RUN_CAMERA_PREVIEW_REPORT_6.7.md
+================================================================================================
+
+# Marble Run — Camera Preview Report 6.7
+
+## Result
+
+**PASS**
+
+## Pick-screen controls
+
+The player can choose:
+
+- Mine
+- Leader
+- Overview
+
+The selection is stored and applied when the next race begins.
+
+## Full-course preview
+
+The pick screen now contains a collapsible schematic course map.
+
+It renders:
+
+- Start and Finish
+- Walls and ramps
+- Boost zones
+- Funnels
+- Plinko pegs
+- Loops
+- Early, Mid and Late vortex mixers
+- Section count
+- Generated finish height
+
+The preview uses the currently assembled track, so changing or generating a
+course refreshes the preview.
+
+## Race Overview
+
+Overview mode now renders the complete course rather than following the active
+pack vertically.
+
+Marbles appear as coloured markers. The selected marble has an additional
+white ring.
+
+Mine and Leader continue using the close-up scrolling camera.
+
+## Persistence
+
+The camera preset is stored under:
+
+`mr_camera_preset_v1`
+
+Selecting a camera during a live race also updates the next-race preset.
+
+## Developer status
+
+The compact developer summary becomes:
+
+`DEV CHECKS: 9/9 PASS`
+
+
+================================================================================================
+DOCUMENT 19: Marble Run — Balance Beam Report 7.5
+SOURCE FILE: MARBLE_RUN_BALANCE_BEAM_REPORT_7.5.md
+================================================================================================
+
+# Marble Run — Balance Beam Report 7.5
+
+## Result
+
+**PASS**
+
+## New section
+
+| Section | Builder | Beams | Guide/floor segments | Height | Fixed-course requirement |
+|---|---|---:|---:|---:|---|
+| Balance Beam | `balanceBeam` | 1 | 3 | 260px | Optional |
+
+## Behaviour
+
+The Balance Beam is a live rotating obstacle rather than a decorative line.
+
+It includes:
+
+- A central pivot
+- Load-driven angular movement
+- Capped angular velocity
+- Minimum and maximum rotation limits
+- Spring return toward level
+- Damping to prevent endless oscillation
+- Controlled collision restitution
+- A low-speed downhill escape impulse
+
+## Generated pattern
+
+One pattern was added:
+
+- `balance-trial`
+
+Total controlled generated patterns: **13**
+
+Quick test seed:
+
+- `beam-11`
+
+## Runtime safeguards
+
+The Balance Beam:
+
+- Remains within safe horizontal and vertical course bounds.
+- Cannot overturn.
+- Cannot exceed its configured angular velocity.
+- Receives a unique ID when repeated.
+- Has a registered compatibility and repetition rule.
+- Remains optional for Classic, Rapid and Deep.
+
+## Automated validation
+
+Testing covered:
+
+- 3 fixed profiles
+- 5,000 generated seeds
+- 13/13 generated patterns
+- Same-seed reproduction
+- Full framework validation
+
+Direct obstacle simulation:
+
+- 8 marbles tested
+- 8/8 cleared the beam
+- 113 beam contacts
+- Safe angle limits respected
+- Observable tilt produced in both directions
+
+## Fixed-course regression
+
+Classic, Rapid and Deep remain:
+
+- 13 sections
+- 0 Balance Beams
+- 13 segments
+- 55 pegs
+- 3 funnels
+- 3 mixers
+- Finish at 2400px
+
+## Developer status
+
+`DEV CHECKS: 14/14 PASS`
+
+New check:
+
+`BALANCE BEAM: PASS`
+
+
+================================================================================================
+DOCUMENT 20: Marble Run — Bounce Chamber Report 7.7
+SOURCE FILE: MARBLE_RUN_BOUNCE_CHAMBER_REPORT_7.7.md
+================================================================================================
+
+# Marble Run — Bounce Chamber Report 7.7
+
+## Result
+
+**PASS**
+
+## New section
+
+| Section | Builder | Bumpers | Segments | Height | Fixed-course requirement |
+|---|---|---:|---:|---:|---|
+| Bounce Chamber | `bounceChamber` | 7 | 5 | 280px | Optional |
+
+## Behaviour
+
+The section uses seven specialised bumper pegs.
+
+Each bumper defines:
+
+- Radius between 12px and 15px
+- Restitution of 1.08
+- Controlled side kick
+- Brief upward rebound
+- Downward escape bias
+- Unique runtime ID
+
+Standard Plinko pegs retain their existing behaviour.
+
+## Generated pattern
+
+- ID: `bumper-blitz`
+- Label: `BUMPER BLITZ`
+- Test seed: `bounce-12`
+
+## Direct simulation
+
+Eight marbles were placed above the live chamber.
+
+Result:
+
+- Marbles tested: 8
+- Marbles clearing the chamber: 8/8
+- Recovery attempts: 0
+- All seven bumpers received contact
+- Result: PASS
+
+## Obstacle Showcase
+
+Reserved Generate Course seeds remain:
+
+- `1`
+- `seed-1`
+- `course-1`
+
+Current showcase:
+
+- Registered obstacle coverage: 20/20
+- Total sections: 24
+- Finish: 4896px
+- World height: 5696px
+- Bounce Chamber included: yes
+
+## Generated catalogue
+
+- Normal generated patterns: 15
+- Reserved showcase pattern: 1
+- Total catalogue entries: 16
+
+## Automated validation
+
+Passed:
+
+- Three fixed profiles
+- 5,000 generated seeds
+- All 15 normal patterns
+- Same-seed reproduction
+- Builder/component counts
+- Unique bumper IDs
+- Bounce geometry and physics limits
+- Full framework validation
+
+## Developer status
+
+`DEV CHECKS: 17/17 PASS`
+
+New check:
+
+`BOUNCE CHAMBER: PASS`
+
+
+================================================================================================
+DOCUMENT 21: Marble Run — Section Connection Report 5.2
+SOURCE FILE: MARBLE_RUN_CONNECTION_REPORT_5.2(1).md
+================================================================================================
+
+# Marble Run — Section Connection Report 5.2
+
+## Result
+
+**PASS — 12/12 adjacent section joins validated**
+
+## Connection rules
+
+- Maximum permitted vertical short drop: **12px**
+- Minimum horizontal overlap: **50% of the narrower opening**
+- Negative vertical movement is rejected as overlap/backtracking
+- Larger gaps are marked for review
+
+## Current fixed-course connections
+
+| # | From | To | Type | Vertical gap | Result |
+|---:|---|---|---|---:|---|
+| 1 | Start Chute | Speed Zone | Direct | 0px | PASS |
+| 2 | Speed Zone | Early Mixer | Short drop | 10px | PASS |
+| 3 | Early Mixer | Funnel 1 | Short drop | 6px | PASS |
+| 4 | Funnel 1 | Plinko 1 | Direct | 0px | PASS |
+| 5 | Plinko 1 | Mid Mixer | Direct | 0px | PASS |
+| 6 | Mid Mixer | Funnel 2 | Short drop | 10px | PASS |
+| 7 | Funnel 2 | Loop Section | Direct | 0px | PASS |
+| 8 | Loop Section | Late Overtake | Direct | 0px | PASS |
+| 9 | Late Overtake | Plinko 2 | Short drop | 8px | PASS |
+| 10 | Plinko 2 | Funnel 3 | Direct | 0px | PASS |
+| 11 | Funnel 3 | Final Sprint | Direct | 0px | PASS |
+| 12 | Final Sprint | Finish | Direct | 0px | PASS |
+
+## Runtime data
+
+The built track now includes:
+
+```javascript
+track.sections
+track.connections
+```
+
+Each section also receives:
+
+```javascript
+incomingConnectionId
+outgoingConnectionId
+```
+
+Each connection records:
+
+- Stable connection ID
+- From/to section IDs
+- From-exit geometry
+- To-entry geometry
+- Horizontal and vertical deltas
+- Overlap width and ratio
+- Connection type
+- Pass/review status
+- Any detected issues
+
+## Scope protection
+
+This milestone only describes and checks the current course. It does not move
+or rebuild any obstacle. Random track assembly remains out of scope.
+
+
+================================================================================================
+DOCUMENT 22: Marble Run — Controlled Recipe Report 6.2
+SOURCE FILE: MARBLE_RUN_CONTROLLED_RECIPES_REPORT_6.2(1).md
+================================================================================================
+
+# Marble Run — Controlled Recipe Report 6.2
+
+## Result
+
+**PASS — 3/3 controlled recipes validated**
+
+## Recipe catalogue
+
+### Classic Fixed Course
+
+- ID: `classic-fixed-v1`
+- Mixer profile: Standard Mix
+- Orbit scale: 1.00
+- Angular-speed scale: 1.00
+- Release-spread scale: 1.00
+- Release-velocity scale: 1.00
+
+This is the existing validated behaviour.
+
+### Rapid Mix Course
+
+- ID: `rapid-mix-v1`
+- Mixer profile: Rapid Mix
+- Orbit scale: 0.72
+- Angular-speed scale: 1.10
+- Release-spread scale: 0.85
+- Release-velocity scale: 1.08
+
+This reduces time spent in vortex sections while keeping the full course.
+
+### Deep Mix Course
+
+- ID: `deep-mix-v1`
+- Mixer profile: Deep Mix
+- Orbit scale: 1.20
+- Angular-speed scale: 0.95
+- Release-spread scale: 1.15
+- Release-velocity scale: 0.98
+
+This gives each vortex more time and release variation to reshuffle the pack.
+
+## Shared structure
+
+Every recipe uses the same validated section order:
+
+1. Start Chute
+2. Speed Zone
+3. Early Mixer
+4. Funnel 1
+5. Plinko 1
+6. Mid Mixer
+7. Funnel 2
+8. Loop Section
+9. Late Mixer
+10. Plinko 2
+11. Funnel 3
+12. Final Sprint
+13. Finish
+
+No section is reordered, omitted or duplicated.
+
+## Validation
+
+All recipes pass:
+
+- Physics fairness
+- Section connections
+- Section builders
+- Track assembly
+- Full track validation
+
+All produce identical track-object counts:
+
+- 13 segments
+- 55 pegs
+- 3 boosts
+- 3 funnels
+- 2 loops
+- 3 mixers
+
+## Persistence and auditing
+
+The chosen recipe is stored under:
+
+`mr_track_recipe_v1`
+
+Race audit records now include their recipe ID. The compact audit summary only
+shows samples belonging to the currently selected recipe, preventing results
+from different profiles being mixed together.
+
+## Scope protection
+
+This phase does not introduce randomisation. Seeded selection is reserved for
+6.3, and section repetition/dynamic height remain reserved for later phases.
+
+
+================================================================================================
+DOCUMENT 23: Marble Run — Dynamic Geometry Report 6.5
+SOURCE FILE: MARBLE_RUN_DYNAMIC_GEOMETRY_REPORT_6.5.md
+================================================================================================
+
+# Marble Run — Dynamic Geometry Report 6.5
+
+## Result
+
+**PASS**
+
+## Derived current-course geometry
+
+| Property | Derived value |
+|---|---:|
+| Course start | 40px |
+| Finish line | 2400px |
+| Course end | 2420px |
+| World height | 3200px |
+| Viewport height | 560px |
+| Maximum camera Y | 2640px |
+| Bottom padding | 780px |
+
+## Runtime systems converted
+
+The following systems now read from `track.geometry`:
+
+- Finish crossing detection
+- Race progress percentage
+- Finish-line label rendering
+- Mine camera bounds
+- Leader camera bounds
+- Overview camera bounds
+- Full structural validation
+- Object and section world-bound checks
+
+## Generated finish line
+
+The Finish builder now uses the Finish section metadata:
+
+- Centre X: 200px
+- Width: 340px
+- Generated endpoints: 30px to 370px
+- Generated Y: 2400px
+
+The builder no longer relies on a separate hard-coded finish constant.
+
+## World-height calculation
+
+World height is calculated from:
+
+```text
+course end + viewport-safe bottom padding
+```
+
+For the current course:
+
+```text
+2420 + 780 = 3200
+```
+
+This deliberately preserves current behaviour while enabling future assembled
+courses to expand or contract safely.
+
+## Validation
+
+The new geometry check confirms:
+
+- One finish segment exists.
+- Finish segment and Finish section agree.
+- Finish lies within course bounds.
+- World height contains all sections and objects.
+- Camera maximum equals world height minus viewport height.
+- Lower camera padding is sufficient.
+
+## Developer status
+
+The compact developer summary becomes:
+
+`DEV CHECKS: 7/7 PASS`
+
+
+================================================================================================
+DOCUMENT 24: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.6(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.6 — Controlled Random Recipe Generation
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Generate Course control.
+- Four controlled structural patterns.
+- Deterministic seed-to-layout mapping.
+- Deterministic seed-to-mixer-profile mapping.
+- Runtime vertical section layout.
+- Unique repeated-section and mixer IDs.
+- Dynamic generated-course finish and world bounds.
+- Eighth developer check.
+
+## Automated verification
+- Classic, Rapid and Deep: PASS
+- 200 generated seeds: PASS
+- Four generated patterns observed
+- Same-seed reproducibility: PASS
+- JavaScript syntax: PASS
+
+## Testing required
+1. Generate several seeded courses.
+2. Confirm actual course objects/order change.
+3. Confirm the same seed reproduces the same course.
+4. Confirm DEV CHECKS: 8/8 PASS.
+5. Complete Single, Duel and BO3.
+6. Confirm generated finish/progress/camera behaviour.
+7. Confirm payouts and saved credits.
+8. Confirm no console errors.
+
+## Next active task
+6.7 — Track Preview and Camera Preset
+
+Add to the pick screen:
+- Mine / Leader / Overview starting-camera choice
+- Persisted camera preference
+- Pre-race full-course overview
+- Generated-course name and length
+- Correct framing using generated course bounds
+
+
+================================================================================================
+DOCUMENT 25: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_6.7(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 6 — Player Experience and Controlled Track Variety
+
+## Completed micro-task
+6.7 — Track Preview and Camera Preset
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Persisted Mine / Leader / Overview starting-camera preference.
+- Pick-screen camera controls.
+- Collapsible full-course preview.
+- True full-course race Overview renderer.
+- Selected-marble highlight in Overview.
+- Ninth developer check.
+
+## Protected behaviour
+No intended changes to:
+- Generated-course recipes
+- Track compatibility and geometry
+- Physics
+- Mixers and Plinko
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Testing required
+1. Confirm DEV CHECKS: 9/9 PASS.
+2. Open and close Course Preview.
+3. Test each starting-camera option.
+4. Confirm Overview displays the whole course.
+5. Confirm Mine and Leader still work.
+6. Confirm preference persists after reopening.
+7. Test one generated course.
+8. Complete Single, Duel and BO3.
+9. Confirm payouts and credits.
+10. Confirm no console errors.
+
+## Phase 6 exit condition
+Once those tests pass, Phase 6 is complete.
+
+## Next recommended milestone
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+Add new independently validated track sections one at a time before expanding
+the generated recipe catalogue.
+
+
+================================================================================================
+DOCUMENT 26: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.1(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.1 — Plinko Obstacle Library
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Zigzag Plinko section.
+- Diamond Plinko section.
+- Two new section builders.
+- Explicit builder-count guards.
+- Repetition and compatibility support.
+- Two new generated patterns.
+- Obstacle Library developer audit.
+- Tenth development check.
+
+## Protected behaviour
+The following remain unchanged:
+- Classic fixed course geometry
+- Rapid and Deep fixed course geometry
+- Marble physics
+- Existing mixer profiles
+- Starting fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- JavaScript syntax: PASS
+- Manual profiles: 3/3 PASS
+- Generated seeds tested: 1,000
+- Generated patterns: 6/6 observed
+- New Plinko variants: 2/2 observed
+- Same-seed determinism: PASS
+- Full framework validation: PASS
+
+## Testing required
+1. Confirm DEV CHECKS: 10/10 PASS.
+2. Confirm OBSTACLE LIBRARY: PASS.
+3. Generate Zigzag Rush.
+4. Generate Diamond Drop.
+5. Complete Single, Duel and BO3.
+6. Confirm Overview and preview.
+7. Confirm payouts and credits.
+8. Confirm no console errors.
+
+## Next active task
+7.2 — Funnel Variants
+
+Add new funnel sections one micro-task at a time without changing the original
+fixed course.
+
+
+================================================================================================
+DOCUMENT 27: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.2(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.2 — Funnel Obstacle Library
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Pinpoint Funnel section and builder.
+- Twin Funnel section and builder.
+- Twin Funnel splitter peg.
+- Explicit builder-count guards.
+- Repetition and compatibility support.
+- Pinpoint Plunge generated pattern.
+- Twin Channel generated pattern.
+- Funnel Library audit.
+- Eleventh development check.
+
+## Protected behaviour
+The following remain unchanged:
+- Classic fixed-course geometry
+- Rapid and Deep fixed-course geometry
+- Marble physics
+- Existing mixers and Plinko sections
+- Starting fairness
+- Cameras and preview
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- JavaScript syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds tested: 2,000
+- Generated patterns: 8/8 observed
+- New Funnel variants: 2/2 observed
+- Same-seed determinism: PASS
+- Full framework validation: PASS
+
+## Quick test seeds
+- `funnel-17` — Pinpoint Plunge
+- `funnel-2` — Twin Channel
+
+## Testing required
+1. Confirm DEV CHECKS: 11/11 PASS.
+2. Confirm FUNNEL LIBRARY: PASS.
+3. Test both quick seeds.
+4. Complete Single, Duel and BO3.
+5. Confirm Overview and preview.
+6. Confirm payouts and credits.
+7. Confirm no console errors.
+
+## Next active task
+7.3 — Dome and Centre-Hole Variants
+
+Add new centre-hole obstacles one at a time without changing the original fixed
+course.
+
+
+================================================================================================
+DOCUMENT 28: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.3(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.3 — Dome and Centre-Hole Obstacle Library
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Gravity Dome section.
+- Orbit Dome section.
+- Two visible Dome builders.
+- Two hidden mandatory centre-hole physics cores.
+- Two generated patterns.
+- Dome-specific repetition rules.
+- Unique repeated-Dome IDs.
+- Dome rendering in Course Preview and Overview.
+- Dome Library developer audit.
+- Twelfth development check.
+
+## Protected behaviour
+The following remain unchanged:
+- Classic fixed course
+- Rapid fixed course
+- Deep fixed course
+- Shared marble physics profile
+- Existing mixers
+- Existing Plinko and Funnel sections
+- Starting fairness
+- Camera controls
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- JavaScript syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds tested: 5,000
+- Generated patterns: 10/10 observed
+- Dome variants: 2/2 observed
+- Same-seed determinism: PASS
+- Direct Dome release simulations: 16/16 PASS
+- Full framework validation: PASS
+
+## Quick test seeds
+- `dome-6` -> Gravity Well
+- `dome-12` -> Orbit Bowl
+
+## Testing required
+1. Confirm DEV CHECKS: 12/12 PASS.
+2. Confirm DOME LIBRARY: PASS.
+3. Test Gravity Well.
+4. Test Orbit Bowl.
+5. Confirm all marbles use the centre hole.
+6. Complete Single, Duel and BO3.
+7. Confirm Preview and Overview.
+8. Confirm payouts and saved credits.
+9. Confirm no console errors.
+
+## Next active task
+7.4 — Loop Variants
+
+Add new Loop sections individually without changing the original fixed course.
+
+
+================================================================================================
+DOCUMENT 29: Marble Run — Dome and Centre-Hole Library Report 7.3
+SOURCE FILE: MARBLE_RUN_DOME_LIBRARY_REPORT_7.3.md
+================================================================================================
+
+# Marble Run — Dome and Centre-Hole Library Report 7.3
+
+## Result
+
+**PASS**
+
+## Library contents
+
+| Section | Builder | Visible Domes | Mandatory cores | Height | Fixed-course requirement |
+|---|---|---:|---:|---:|---|
+| Gravity Dome | `domeGravity` | 1 | 1 | 220px | Optional |
+| Orbit Dome | `domeOrbit` | 1 | 1 | 220px | Optional |
+
+## Gravity Dome
+
+The Gravity Dome uses a broad elliptical shell and a 20px centre hole.
+
+Its hidden core provides:
+
+- Mandatory capture
+- A shorter inward orbit
+- Tight centre release
+- Controlled downward relaunch
+
+Components:
+
+- `gravity-dome-shell`
+- `gravity-dome-core`
+
+## Orbit Dome
+
+The Orbit Dome uses a deeper elliptical shell and a 22px centre hole.
+
+Its hidden core provides:
+
+- Mandatory capture
+- Longer inward rotations
+- Wider release variation
+- Stronger pack reshuffling
+
+Components:
+
+- `orbit-dome-shell`
+- `orbit-dome-core`
+
+## Generated patterns
+
+Two patterns were added:
+
+- `gravity-well`
+- `orbit-bowl`
+
+Total controlled generated patterns: **10**
+
+## Runtime safeguards
+
+Each Dome section:
+
+- Builds one visible Dome.
+- Builds one hidden mandatory centre-hole core.
+- Has valid hole geometry.
+- Releases below the hole.
+- Has a registered repetition limit.
+- Is used by a generated pattern.
+- Remains optional for the fixed course.
+
+Repeated Dome and core objects receive unique runtime IDs.
+
+## Automated validation
+
+Testing covered:
+
+- 3 fixed profiles
+- 5,000 generated seeds
+- 10/10 generated patterns
+- 2/2 Dome variants
+- Same-seed reproduction
+- Full framework validation
+- Eight simulated marbles through Gravity Dome
+- Eight simulated marbles through Orbit Dome
+
+Every simulated marble was captured and released below the relevant centre hole.
+
+## Fixed-course regression
+
+Classic, Rapid and Deep remain:
+
+- 13 sections
+- 13 segments
+- 55 pegs
+- 3 funnels
+- 3 mixers
+- 0 Domes
+- Finish at 2400px
+
+## Developer status
+
+`DEV CHECKS: 12/12 PASS`
+
+New check:
+
+`DOME LIBRARY: PASS`
+
+
+================================================================================================
+DOCUMENT 30: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.5(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.5 — Balance Beam
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Optional Balance Beam section.
+- Live pivoting beam physics.
+- Beam rendering in race view, Course Preview and Overview.
+- Guide ramps and exit floor.
+- Beam compatibility and repetition rules.
+- Balance Trial generated pattern.
+- Unique repeated-beam IDs.
+- Balance Beam developer audit.
+- Fourteenth development check.
+
+## Protected behaviour
+The following remain unchanged:
+- Classic fixed course geometry
+- Rapid and Deep fixed course geometry
+- Marble physics profile
+- Existing Mixers, Plinko, Funnels, Domes and Loops
+- Starting fairness
+- Camera controls
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- JavaScript syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds tested: 5,000
+- Generated patterns: 13/13 observed
+- Same-seed determinism: PASS
+- Eight-marble beam simulation: 8/8 cleared
+- Full framework validation: PASS
+
+## Quick test seed
+- `beam-11` -> Balance Trial
+
+## Testing required
+1. Confirm DEV CHECKS: 14/14 PASS.
+2. Confirm BALANCE BEAM: PASS.
+3. Test Balance Trial.
+4. Confirm the beam tilts and returns toward level.
+5. Confirm marbles clear the section.
+6. Complete Single, Duel and BO3.
+7. Confirm Preview and Overview.
+8. Confirm payouts and saved credits.
+9. Confirm no console errors.
+
+## Next active task
+7.6 — Spiral Bowl
+
+Add one optional Spiral Bowl and one generated pattern without changing the
+original fixed course.
+
+
+================================================================================================
+DOCUMENT 31: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.6(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.6 — Spiral Bowl and Evolving Obstacle Showcase
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Interactive Spiral Bowl.
+- Visible inward spiral rendering.
+- Mandatory centre-hole physics core.
+- Spiral Descent generated pattern.
+- Reserved seed-1 Obstacle Showcase.
+- Full registered-obstacle coverage audit.
+- Dynamic race timeout for long courses.
+- Two developer checks.
+
+## Reserved showcase seeds
+- `1`
+- `seed-1`
+- `course-1`
+
+## Current showcase
+- 23 total sections
+- 19/19 obstacle sections
+- Finish at 4616px
+- World height 5416px
+- Timeout approximately 231 seconds
+
+## Protected behaviour
+No intended change to:
+- Classic, Rapid or Deep fixed geometry
+- Shared marble physics
+- Existing obstacle behaviour
+- Camera selection
+- Payouts
+- Single, Duel or BO3 rules
+- Shared extension files
+
+## Automated verification
+- Syntax: PASS
+- Showcase aliases: 3/3
+- Showcase framework checks: PASS
+- Normal generated seeds: 1,000 PASS
+- Spiral Bowl direct simulations: 8/8 PASS
+- Developer checks: 16/16 PASS
+
+## Testing required
+1. Generate seed-1.
+2. Confirm all obstacle families appear.
+3. Confirm DEV CHECKS: 16/16 PASS.
+4. Generate spiral-0.
+5. Confirm Spiral Bowl capture and centre release.
+6. Complete Single Race.
+7. Test Duel or BO3 when practical.
+8. Confirm long-course camera, progress and finish.
+9. Confirm payouts and no console errors.
+
+## Next active task
+7.7 — Bounce Chamber
+
+The Bounce Chamber must also be added to the seed-1 showcase before its phase
+can pass the evolving showcase audit.
+
+
+================================================================================================
+DOCUMENT 32: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.7(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.7 — Bounce Chamber
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Optional Bounce Chamber section.
+- Seven specialised live bumpers.
+- Bounce-specific collision settings.
+- Distinct bumper rendering.
+- Bumper Blitz generated pattern.
+- Bounce Chamber in seed-1 Obstacle Showcase.
+- Unique repeated-bumper IDs.
+- Bounce Chamber developer audit.
+- Seventeenth development check.
+
+## Permanent showcase rule
+Generate Course seeds:
+- `1`
+- `seed-1`
+- `course-1`
+
+must include every registered obstacle section.
+
+Current showcase:
+- 20/20 obstacles
+- 24 total sections
+- Finish 4896px
+- World 5696px
+
+## Protected behaviour
+No intended changes to:
+- Classic, Rapid or Deep
+- Standard Plinko peg physics
+- Existing obstacles
+- Starting fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- Syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds: 5,000 PASS
+- Normal patterns: 15/15 observed
+- Direct Bounce Chamber test: 8/8 cleared
+- Recovery attempts: 0
+- Seed-1 coverage: 20/20
+- Developer checks: 17/17 PASS
+
+## Quick test seed
+- `bounce-12` -> Bumper Blitz
+
+## Testing required
+1. Confirm DEV CHECKS: 17/17 PASS.
+2. Confirm BOUNCE CHAMBER: PASS.
+3. Test Bumper Blitz.
+4. Confirm visible rebound and safe exit.
+5. Confirm Bounce Chamber appears in seed-1.
+6. Complete Single, Duel and BO3 as practical.
+7. Confirm Preview and Overview.
+8. Confirm payouts and no console errors.
+
+## Next active task
+7.8 — Split Gate
+
+The Split Gate must be added to one normal generated pattern and to seed-1.
+
+
+================================================================================================
+DOCUMENT 33: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.7.1(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Hotfix
+7.7.1 — Slalom Loop Centre Gate
+
+## Status
+Awaiting user visual regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Two green centre-gate rails to Slalom Loops.
+- Updated Slalom builder metadata and expected segment count.
+- Loop audit support for sections containing additional guide segments.
+
+## Confirmed
+- 45/45 centre-lane approaches redirected.
+- 45/45 cleared.
+- Zero recovery attempts.
+- Loop Library PASS.
+- Obstacle Showcase PASS.
+- Developer check count remains 17/17.
+
+## Next task after confirmation
+7.8 — Split Gate
+
+The Split Gate must be added to:
+- one normal generated pattern;
+- the permanent seed-1 Obstacle Showcase.
+
+
+================================================================================================
+DOCUMENT 34: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.8(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.8 — Split Gate
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Optional Split Gate section.
+- Live direction-changing gate paddle.
+- Lower centre-blocking exit chevron.
+- Split Decision generated pattern.
+- Split Gate in seed-1 Obstacle Showcase.
+- Unique repeated-gate IDs.
+- Split Gate developer audit.
+- Eighteenth development check.
+
+## Permanent showcase rule
+Generate Course seeds:
+- `1`
+- `seed-1`
+- `course-1`
+
+must include every registered obstacle section.
+
+Current showcase:
+- 21/21 obstacles
+- 25 total sections
+- Finish 5156px
+- World 5956px
+
+## Protected behaviour
+No intended changes to:
+- Classic, Rapid or Deep
+- Existing obstacles
+- Shared marble physics profile
+- Starting fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- Syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds: 5,000 PASS
+- Normal patterns: 16/16 observed
+- Direct Split Gate simulation: 72/72 cleared
+- Centre bypasses: 0
+- Stuck recoveries: 0
+- Seed-1 coverage: 21/21
+- Developer checks: 18/18 PASS
+
+## Quick test seed
+- `gate-3` -> Split Decision
+
+## Testing required
+1. Confirm DEV CHECKS: 18/18 PASS.
+2. Confirm SPLIT GATE: PASS.
+3. Test Split Decision.
+4. Confirm the paddle alternates direction.
+5. Confirm both lanes are used.
+6. Confirm no centre shortcut remains.
+7. Confirm Split Gate appears in seed-1.
+8. Complete Single, Duel and BO3 as practical.
+9. Confirm Preview and Overview.
+10. Confirm payouts and no console errors.
+
+## Next active task
+7.9 — Drop Tower
+
+The Drop Tower must be added to one normal generated pattern and to seed-1.
+
+
+================================================================================================
+DOCUMENT 35: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.9(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 7 — Obstacle Library and Expanded Track Variety
+
+## Completed micro-task
+7.9 — Drop Tower
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Optional Drop Tower section.
+- Three alternating centre-blocking shelves.
+- Tower Plunge generated pattern.
+- Drop Tower in seed-1 Obstacle Showcase.
+- Drop Tower rendering in race, Preview and Overview.
+- Drop Tower developer audit.
+- Nineteenth development check.
+
+## Permanent showcase rule
+Generate Course seeds:
+- `1`
+- `seed-1`
+- `course-1`
+
+must include every registered obstacle section.
+
+Current showcase:
+- 22/22 obstacles
+- 26 total sections
+- Finish 5476px
+- World 6276px
+
+## Protected behaviour
+No intended changes to:
+- Classic, Rapid or Deep
+- Existing obstacles
+- Shared marble physics
+- Starting fairness
+- Cameras
+- Stuck recovery and DNF handling
+- Payouts
+- Single, Duel and BO3 rules
+- Shared extension files
+
+## Automated verification
+- Syntax: PASS
+- Fixed profiles: 3/3 PASS
+- Generated seeds: 5,000 PASS
+- Normal patterns: 17/17 observed
+- Direct tower approaches: 45/45 cleared
+- Lane changes: 45/45
+- Seed-1 coverage: 22/22
+- Developer checks: 19/19 PASS
+
+## Quick test seed
+- `tower-10` -> Tower Plunge
+
+## Testing required
+1. Confirm DEV CHECKS: 19/19 PASS.
+2. Confirm DROP TOWER: PASS.
+3. Test Tower Plunge.
+4. Confirm alternating shelf interaction.
+5. Confirm no centre shortcut.
+6. Confirm Drop Tower appears in seed-1.
+7. Complete Single, Duel and BO3 as practical.
+8. Confirm Preview and Overview.
+9. Confirm payouts and no console errors.
+
+## Phase 7 exit condition
+Once those tests pass, Phase 7 is complete.
+
+## Next recommended milestone
+Phase 8 — Generated Course Refinement and Player Controls
+
+
+================================================================================================
+DOCUMENT 36: Marble Run — Drop Tower Report 7.9
+SOURCE FILE: MARBLE_RUN_DROP_TOWER_REPORT_7.9.md
+================================================================================================
+
+# Marble Run — Drop Tower Report 7.9
+
+## Result
+
+**PASS**
+
+## New section
+
+| Section | Builder | Tower segments | Height | Fixed-course requirement |
+|---|---|---:|---:|---|
+| Drop Tower | `dropTower` | 8 | 320px | Optional |
+
+## Geometry
+
+The Drop Tower builds:
+
+- Two entry rails
+- Two side walls
+- Three alternating shelves
+- One exit floor
+
+All three shelves cross the centre line, preventing a direct vertical shortcut.
+
+## Generated pattern
+
+- ID: `tower-plunge`
+- Label: `TOWER PLUNGE`
+- Test seed: `tower-10`
+
+## Direct simulation
+
+Forty-five approaches were tested across:
+
+- Nine starting positions
+- Five horizontal approach speeds
+
+Results:
+
+- Cleared the section: 45/45
+- Interacted with tower shelves: 45/45
+- Changed side at least once: 45/45
+- Stuck recovery required: 0
+- Result: PASS
+
+## Obstacle Showcase
+
+Reserved Generate Course seeds remain:
+
+- `1`
+- `seed-1`
+- `course-1`
+
+Current showcase:
+
+- Registered obstacle coverage: 22/22
+- Total sections: 26
+- Finish: 5476px
+- World height: 6276px
+- Drop Tower included: yes
+
+## Generated catalogue
+
+- Normal generated patterns: 17
+- Reserved showcase pattern: 1
+- Total catalogue entries: 18
+
+## Automated validation
+
+Passed:
+
+- Three fixed profiles
+- 5,000 generated seeds
+- All 17 normal patterns
+- Same-seed reproduction
+- Drop Tower centre-line coverage
+- Builder/component counts
+- Safe tower bounds
+- Full framework validation
+
+## Developer status
+
+`DEV CHECKS: 19/19 PASS`
+
+New check:
+
+`DROP TOWER: PASS`
+
+
+================================================================================================
+DOCUMENT 37: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_7.9.1(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current milestone
+Phase 7 complete, pre-Phase-8 finish-area hotfix
+
+## Hotfix
+7.9.1 — Finish Funnel and Ranking Chute
+
+## Files modified
+- `marblerun.js` only
+
+## Status
+Awaiting visual regression test
+
+## Confirmed by automated checks
+- JavaScript syntax passes.
+- Final section emits four physical segments.
+- Fixed-course expected segment count is updated.
+- Finish entry width matches the 48px chute.
+- Finish-order staging function is installed.
+- Rank badges use official standings.
+
+## Testing required
+1. Confirm the zigzag has been replaced.
+2. Confirm every marble enters the centre chute.
+3. Confirm finishers queue first-to-last.
+4. Confirm DEV CHECKS: 19/19 PASS.
+5. Test race completion, payouts, and console.
+
+## Next task after confirmation
+Phase 8 — Generated Course Refinement and Player Controls
+
+
+================================================================================================
+DOCUMENT 38: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_8.1(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 8 — Generated Course Refinement and Player Controls
+
+## Completed micro-task
+8.1 — Generated-Course Balance and Obstacle-Frequency Audit
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- `marblerun.js` only
+
+## Added
+- Read-only pattern-frequency audit.
+- Read-only obstacle-variant coverage audit.
+- Pattern length and mixing checks.
+- 4,096-seed pattern/profile distribution test.
+- Course Balance developer panel.
+- Twentieth developer check.
+
+## Automated result
+- Patterns: 17
+- Variant sections: 13
+- Seeds sampled: 4096
+- Pattern deviation: 10.4%
+- Profile deviation: 5.2%
+- Result: PASS
+
+## Seed stability
+No pattern order, hashing, recipe, profile or saved seed was changed.
+
+## Testing required
+1. Confirm DEV CHECKS: 20/20 PASS.
+2. Confirm COURSE BALANCE: PASS.
+3. Re-test one known generated seed.
+4. Re-test seed-1.
+5. Complete one generated race.
+6. Confirm payouts and no console errors.
+
+## Next task
+8.2 — Favourite Seed Management
+
+
+================================================================================================
+DOCUMENT 39: Marble Run — Generated-Course Balance Report 8.1
+SOURCE FILE: MARBLE_RUN_COURSE_BALANCE_REPORT_8.1.md
+================================================================================================
+
+# Marble Run — Generated-Course Balance Report 8.1
+
+## Result
+
+**PASS**
+
+## Catalogue audit
+
+- Normal generated patterns: 17
+- Reserved showcase patterns: 1
+- Variant obstacle sections tracked: 13
+- Pattern length range: 12-15 sections
+- Average pattern length: 13.18 sections
+
+Every normal pattern:
+
+- Begins with Start Chute.
+- Ends with Finish.
+- Remains within the approved section-count range.
+- Contains the required high-mixing coverage.
+
+## Frequency audit
+
+Every Phase 7 variant section appears in at least one normal generated pattern.
+No Phase 7 variant appears in more than half of the normal catalogue.
+
+Least-used variant frequency: 1 pattern(s)
+
+Most-used variant frequency: 7 pattern(s)
+
+## Seed distribution audit
+
+Synthetic deterministic seeds tested: 4096
+
+- Maximum pattern deviation from equal selection: 10.35%
+- Allowed pattern deviation: 15%
+- Maximum profile deviation from equal selection: 5.25%
+- Allowed profile deviation: 12%
+
+## Compatibility protection
+
+The audit is read-only. It does not reorder the pattern catalogue or alter the
+hash/PRNG path. Existing seed outputs remain unchanged.
+
+## Developer status
+
+`DEV CHECKS: 20/20 PASS`
+
+New check:
+
+`COURSE BALANCE: PASS`
+
+
+================================================================================================
+DOCUMENT 40: Marble Run Project Checkpoint
+SOURCE FILE: MARBLE_RUN_CHECKPOINT_8.2(1).md
+================================================================================================
+
+# Marble Run Project Checkpoint
+
+## Current phase
+Phase 8 — Generated Course Refinement and Player Controls
+
+## Completed micro-task
+8.2 — Favourite Seeds and Compact Pick-Screen Layout
+
+## Status
+Awaiting user regression test
+
+## Files modified
+- marblerun.js only
+
+## Added
+- Editable seed/dropdown combo.
+- Blank-seed random generation.
+- Save Seed on every eligible result screen.
+- Save Seed between BO3 rounds.
+- Favourite load, rename and remove controls.
+- Immediate favourite storage writes.
+- Compact Profile/Camera split row.
+- Compact header and recipe description.
+- Favourite Seeds developer audit.
+
+## Protected
+- Seed mapping
+- Seed-1 Obstacle Showcase
+- Existing course catalogue
+- Physics and obstacles
+- Finish Funnel and ranking queue
+- Payouts
+- Single, Duel and BO3
+- Shared extension files
+
+## Expected status
+DEV CHECKS: 21/21 PASS
+
+## Next task after confirmation
+8.3 — Player Course-Length and Obstacle-Frequency Controls
+
+================================================================================================
+DOCUMENT 41: Marble Run — Favourite Seeds and Layout Report 8.2
+SOURCE FILE: MARBLE_RUN_FAVOURITE_SEEDS_REPORT_8.2.md
+================================================================================================
+
+# Marble Run — Favourite Seeds and Layout Report 8.2
+
+## Result
+
+**PASS — implementation and syntax validation**
+
+## Favourite management
+
+Stored favourite entries contain:
+
+- Seed
+- Selection mode: Generated Course or Profile Seed
+- Editable display name
+- Last generated recipe label
+- Saved timestamp
+- Last-used timestamp
+
+Maximum saved entries: 30
+
+Duplicate seed/mode pairs update the existing entry rather than creating
+multiple copies.
+
+## Pick-screen layout
+
+The course controls now use three compact layers:
+
+1. Profile and Start Camera in one split row.
+2. Editable seed/dropdown combo.
+3. Profile Seed, Generate and Manual action row.
+
+The dropdown is absolutely positioned and does not consume permanent page
+height when closed.
+
+## Blank-seed generation
+
+Selecting Generate with an empty field creates:
+
+`run-<timestamp>-<random value>`
+
+The value is normalized, displayed in the text box and reproducible when saved.
+
+## Result-screen workflow
+
+Every completed seeded race can save its seed.
+
+- Single: Save Seed + Play Again
+- Duel: Save Seed + Play Again
+- BO3 rounds 1–2: Save Seed + Next Round
+- BO3 round 3: Save Seed + Play Again
+
+The storage write is awaited before the button confirms completion.
+
+## Regression protection
+
+Retained:
+
+- 20 previous developer audits
+- Permanent seed-1 showcase
+- Generated-course balance mapping
+- Finish Funnel and first-to-last queue
+- Drop Tower and all Phase 7 obstacles
+- Dynamic geometry
+- Camera presets
+- Payout and tournament behaviour
+
+## Developer status
+
+New audit:
+
+`FAVOURITE SEEDS: PASS`
+
+Expected compact summary:
+
+`DEV CHECKS: 21/21 PASS`
+
+================================================================================================
+DOCUMENT 42: Marble Run — Funnel Obstacle Library Report 7.2
+SOURCE FILE: MARBLE_RUN_FUNNEL_LIBRARY_REPORT_7.2.md
+================================================================================================
+
+# Marble Run — Funnel Obstacle Library Report 7.2
+
+## Result
+
+**PASS**
+
+## Library contents
+
+| Section | Builder | Funnels | Extra objects | Height | Fixed-course requirement |
+|---|---|---:|---:|---:|---|
+| Funnel 1 | `funnel1` | 1 | 0 | 100px | Required |
+| Funnel 2 | `funnel2` | 1 | 0 | 100px | Required |
+| Funnel 3 | `funnel3` | 1 | 0 | 100px | Required |
+| Pinpoint Funnel | `funnelPinpoint` | 1 | 0 | 140px | Optional |
+| Twin Funnel | `funnelTwin` | 2 | 1 splitter peg | 140px | Optional |
+
+## New sections
+
+### Pinpoint Funnel
+
+A long centred funnel narrows from 320px to 34px. Its purpose is to compress
+the pack into a tight release before the following section.
+
+Component:
+
+- `funnel-pinpoint`
+
+### Twin Funnel
+
+A large centre peg divides incoming marbles between two narrowing channels.
+The channels release on opposite sides and allow later sections to recombine
+the pack.
+
+Components:
+
+- `twin-splitter-peg`
+- `funnel-twin-left`
+- `funnel-twin-right`
+
+## Generated patterns
+
+Two patterns were added:
+
+- `pinpoint-plunge`
+- `twin-channel`
+
+Total controlled generated patterns: **8**
+
+## Automated validation
+
+Testing covered:
+
+- 3 fixed profiles
+- 2,000 generated seeds
+- 8/8 generated patterns
+- 2/2 new Funnel variants
+- Same-seed reproduction
+- Full builder, connection, assembly, compatibility and geometry validation
+
+All tests passed.
+
+## Fixed-course regression
+
+Classic, Rapid and Deep remain:
+
+- 13 sections
+- 13 segments
+- 55 pegs
+- 3 funnels
+- 3 mixers
+- Finish at 2400px
+
+## Developer status
+
+`DEV CHECKS: 11/11 PASS`
+
+New check:
+
+`FUNNEL LIBRARY: PASS`
+
+================================================================================================
+DOCUMENT 43: Marble Run — Controlled Generated Course Report 6.6
+SOURCE FILE: MARBLE_RUN_GENERATED_COURSE_REPORT_6.6.md
+================================================================================================
+
+# Marble Run — Controlled Generated Course Report 6.6
+
+## Result
+
+**PASS**
+
+## Generation model
+
+A normalized seed drives a deterministic pseudo-random generator. It selects:
+
+1. One of four controlled structural patterns.
+2. One of the validated Classic, Rapid or Deep mixer profiles.
+
+The same seed reproduces both selections.
+
+## Generated patterns
+
+| Pattern | Structural change |
+|---|---|
+| Switchback Mix | Swaps Plinko 1 and Plinko 2 |
+| Short Circuit | Omits the Loop Section |
+| Double Drop | Repeats Mid Mixer and Funnel 2 |
+| Overtake Gauntlet | Repeats Late Mixer and Funnel 3 |
+
+## Dynamic assembly
+
+Generated sections are laid out vertically at runtime:
+
+- Every instance receives a unique ID.
+- Existing builder geometry is translated to the instance position.
+- Repeated mixers receive unique runtime IDs.
+- Adjacent entries and exits are aligned.
+- Finish and world height derive from the resulting course.
+- Camera limits derive from the generated world height.
+
+## Validation
+
+Automated testing covered:
+
+- All three original profiles.
+- 200 generated seeds.
+- All four structural patterns.
+- Repeated generation using the same seed.
+
+All tested courses passed:
+
+- Physics fairness
+- Track connections
+- Section builders
+- Track assembly
+- Full track validation
+- Section compatibility
+- Dynamic geometry
+- Generated-course validation
+
+## Current development status
+
+The compact drawer now reports:
+
+`DEV CHECKS: 8/8 PASS`
+
+Classic, Rapid and Deep still use the original fixed layout. Structural changes
+occur only when the player selects `GENERATE COURSE`.
+
+================================================================================================
+DOCUMENT 44: Marble Run Hotfix Report 7.7.1
+SOURCE FILE: MARBLE_RUN_HOTFIX_REPORT_7.7.1.md
+================================================================================================
+
+# Marble Run Hotfix Report 7.7.1
+
+## Result
+
+**PASS**
+
+## Issue
+
+The Slalom Loop section followed the Spiral Bowl in Obstacle Showcase. Its
+three circular obstacles left an open vertical lane around the course centre.
+
+Marbles released near x=200 could therefore fall through the section without
+interacting with any of the green Loop obstacles.
+
+## Fix
+
+Two short green curve rails now form a centre chevron:
+
+- Left rail: centre to left
+- Right rail: centre to right
+
+The chevron is placed at the Slalom Loop entrance and redirects the direct
+centre drop before the first circular Loop.
+
+## Verification
+
+A direct simulation tested:
+
+- Nine starting x positions across the former centre lane
+- Five horizontal velocities at each position
+- 45 total approaches
+
+Results:
+
+- Redirected away from the centre: 45/45
+- Cleared the Slalom Loop section: 45/45
+- Stuck recovery required: 0
+- Loop Library audit: PASS
+- Obstacle Showcase audit: PASS
+- JavaScript syntax: PASS
+
+## Scope
+
+This is a targeted geometry hotfix only. No other obstacle, course recipe,
+camera, payout, physics-profile or game-mode behaviour was changed.
+
+================================================================================================
+DOCUMENT 45: Marble Run Hotfix Report 7.9.1
+SOURCE FILE: MARBLE_RUN_HOTFIX_REPORT_7.9.1.md
+================================================================================================
+
+# Marble Run Hotfix Report 7.9.1
+
+## Result
+
+**PASS — implementation and syntax validation**
+
+## Replaced section
+
+Old section:
+
+- Label: Final Sprint
+- Three separated zigzag ramps
+- Exit width: 240px
+
+New section:
+
+- Label: Finish Funnel
+- Two full-width funnel rails
+- Two vertical chute walls
+- Exit width: 48px
+- Four physical collision segments
+
+## Finish queue
+
+When a marble genuinely crosses the finish line:
+
+1. Its finish time is recorded.
+2. All genuine finishers are sorted by finish time.
+3. They are placed into a centred vertical queue below the finish.
+4. Each slot is separated by 30px.
+5. Standings continue to use the original finish times.
+
+DNF or retired marbles are not inserted into the genuine-finisher queue.
+
+## Updated safeguards
+
+- Final Sprint builder count: 4 segments
+- Fixed-course segment count: 14
+- Finish-section entry width: 48px
+- JavaScript syntax: PASS
+- Funnel covers the full legal marble x-range
+- Ranking badges use official standings
+
+## Scope
+
+Only `marblerun.js` was modified. No shared extension file or unrelated game
+was changed.
+
+================================================================================================
+DOCUMENT 46: Marble Run — Physics Fairness Report
+SOURCE FILE: MARBLE_RUN_PHYSICS_FAIRNESS_REPORT.md
+================================================================================================
+
+# Marble Run — Physics Fairness Report
+
+## Result
+
+**PASS**
+
+The current implementation does not assign different physics to individual
+colours.
+
+## Shared immutable profile
+
+Every marble uses the same values for:
+
+- Radius: 11
+- Gravity: 0.45
+- Maximum vertical velocity: 11
+- Maximum horizontal velocity: 7
+- Boundary bounce: 0.5
+- Wall restitution: 0.62
+- Peg restitution: 0.88
+- Peg side impulse: 0.85
+- Minimum escape velocity: 1.35
+- Friction: 0.995
+- Physics substeps: 2
+- Progress/stuck detection thresholds
+- Recovery-attempt limit
+
+These values are held in one frozen `PHYSICS_PROFILE`.
+
+## Marble definitions
+
+Each colour contains only:
+
+- ID
+- Name
+- Display colour
+- Glow colour
+
+There are no per-colour values for mass, size, gravity, friction, bounce,
+speed, restitution, acceleration or recovery.
+
+## Runtime behaviour
+
+- Starting slots are assigned after the colour roster is shuffled.
+- Launch velocity is based on physical starting slot, not colour.
+- Peg, wall, funnel and loop collisions call the same functions for every
+  marble.
+- Mixer orbit duration and direction use the same random distributions for
+  every marble.
+- Stuck detection and recovery use the same thresholds for every marble.
+- Choosing a marble affects camera targeting, HUD styling and payout tracking;
+  it does not create a physics override.
+
+## Guard added
+
+The game now checks:
+
+1. Marble descriptors for non-cosmetic properties.
+2. Active racers for per-marble physics overrides.
+3. The shared profile is immutable and numerically valid.
+4. Mixers do not contain identity-specific rules.
+
+A visible PASS/REVIEW panel is shown in the game. A failed audit also generates
+a console warning.
+
+## Conclusion
+
+Milestone 4 can be considered complete after basic regression testing.
+The next roadmap item is **Milestone 5.1 — Section Definition Format**.
+
+================================================================================================
+DOCUMENT 47: Marble Run — Plinko Obstacle Library Report 7.1
+SOURCE FILE: MARBLE_RUN_PLINKO_LIBRARY_REPORT_7.1.md
+================================================================================================
+
+# Marble Run — Plinko Obstacle Library Report 7.1
+
+## Result
+
+**PASS**
+
+## Library contents
+
+| Section | Builder | Pegs | Height | Fixed-course requirement |
+|---|---|---:|---:|---|
+| Plinko 1 | `plinko1` | 32 | 260px | Required |
+| Plinko 2 | `plinko2` | 23 | 160px | Required |
+| Zigzag Plinko | `plinkoZigzag` | 30 | 240px | Optional |
+| Diamond Plinko | `plinkoDiamond` | 21 | 220px | Optional |
+
+## New sections
+
+### Zigzag Plinko
+
+The field uses six alternating five-peg rows. Some pegs are larger to break
+straight-line paths and create stronger side-to-side movement.
+
+Components:
+
+- `plinko-zigzag-pegs`
+- `plinko-zigzag-floor`
+
+### Diamond Plinko
+
+The field uses a 3–4–5–4–3–2 row pattern centred on the course. Larger pegs in
+the middle create a compact split-and-recombine obstacle.
+
+Components:
+
+- `plinko-diamond-pegs`
+- `plinko-diamond-floor`
+
+## Generated patterns
+
+Two patterns were added:
+
+- `zigzag-rush`
+- `diamond-drop`
+
+Total controlled generated patterns: **6**
+
+## Validation
+
+Automated testing covered:
+
+- 3 manual profiles
+- 1,000 generated seeds
+- 6/6 generated patterns
+- Both new Plinko variants
+- Same-seed reproduction
+
+All tested tracks passed the complete framework.
+
+## Developer status
+
+`DEV CHECKS: 10/10 PASS`
+
+New check:
+
+`OBSTACLE LIBRARY: PASS`
+
+================================================================================================
+DOCUMENT 48: Marble Run Roadmap Notes
+SOURCE FILE: MARBLE_RUN_ROADMAP_NOTES.md
+================================================================================================
+
+# Marble Run Roadmap Notes
+
+## Phase 7
+Complete.
+
+## Phase 8
+- 8.1 Generated-course balance audit — complete
+- 8.2 Favourite seeds and compact pick-screen layout — awaiting confirmation
+- 8.3 Course-length and obstacle-frequency controls — next
+- 8.4 Long-course timeout and pacing refinement
+- 8.5 Overview and Course Preview visual polish
+- 8.6 Stable-version developer diagnostic cleanup
+
+## Permanent seed-1 rule
+Generate Course seeds 1, seed-1 and course-1 remain the evolving Obstacle
+Showcase and must include every registered obstacle.
+
+## Favourite seed behaviour
+- Save after Single, Duel or any BO3 round.
+- Load from the seed-field dropdown.
+- Rename or remove inside the dropdown.
+- Blank Generate creates a fresh random seed.
+
+================================================================================================
+DOCUMENT 49: Marble Run — Section Builder Report 5.3
+SOURCE FILE: MARBLE_RUN_SECTION_BUILDER_REPORT_5.3.md
+================================================================================================
+
+# Marble Run — Section Builder Report 5.3
+
+## Result
+
+**PASS — 13/13 named builders reproduced the current fixed course**
+
+## Builder registry
+
+| Order | Section | Builder key | Components |
+|---:|---|---|---|
+| 1 | Start Chute | `startChute` | chute walls, opening ramps |
+| 2 | Speed Zone | `speedZone` | boost pads, speed floor |
+| 3 | Early Mixer | `earlyMixer` | early vortex, mixer floor |
+| 4 | Funnel 1 | `funnel1` | funnel 1 |
+| 5 | Plinko 1 | `plinko1` | peg field, floor |
+| 6 | Mid Mixer | `midMixer` | mid vortex |
+| 7 | Funnel 2 | `funnel2` | funnel 2 |
+| 8 | Loop Section | `loopSection` | two loops, floor |
+| 9 | Late Mixer | `lateMixer` | late vortex |
+| 10 | Plinko 2 | `plinko2` | peg field, floor |
+| 11 | Funnel 3 | `funnel3` | funnel 3 |
+| 12 | Final Sprint | `finalSprint` | three ramps |
+| 13 | Finish | `finishLine` | finish line |
+
+## Object-count guard
+
+The builder audit expects:
+
+- 13 segments
+- 55 pegs
+- 3 boosts
+- 3 funnels
+- 2 loops
+- 0 legacy domes
+- 3 mandatory vortex mixers
+
+A changed count produces `SECTION BUILDERS: REVIEW`.
+
+## Regression comparison
+
+The 5.3 generated arrays were compared with the 5.2 arrays after removing only
+the new `sectionId` and `componentId` metadata.
+
+All gameplay arrays matched exactly:
+
+- Segments: exact match
+- Pegs: exact match
+- Boosts: exact match
+- Funnels: exact match
+- Loops: exact match
+- Domes: exact match
+- Mixers: exact match
+
+Therefore this refactor does not intentionally change track geometry or physics.
+
+## Runtime additions
+
+The built track now also includes:
+
+```javascript
+track.sectionBuilds
+```
+
+Each build record contains:
+
+- Section order
+- Section ID
+- Builder key
+- Produced component IDs
+- Item counts by obstacle collection
+
+## Scope
+
+This milestone converts construction code only. Section ordering remains fixed,
+and random track generation remains out of scope.
+
+================================================================================================
+DOCUMENT 50: Marble Run — Section Compatibility Report 6.4
+SOURCE FILE: MARBLE_RUN_SECTION_COMPATIBILITY_REPORT_6.4.md
+================================================================================================
+
+# Marble Run — Section Compatibility Report 6.4
+
+## Result
+
+**PASS — 3/3 controlled recipes comply with the new rules**
+
+## Type rules
+
+Rules now exist for:
+
+- Start
+- Speed
+- Mixer
+- Transition
+- Plinko
+- Loop
+- Sprint
+- Finish
+
+Each rule defines:
+
+- Maximum occurrences in one recipe
+- Allowed previous section types
+- Allowed next section types
+- Whether identical types may be adjacent
+
+## Section repetition limits
+
+All thirteen registered section IDs have explicit limits.
+
+- Start Chute, Final Sprint and Finish remain unique.
+- Ten gameplay sections are marked reusable.
+- No section may be duplicated immediately beside itself.
+- Start must be first.
+- Finish must be last.
+- A recipe must contain exactly one Start and one Finish.
+
+## Current recipes
+
+- Classic: PASS
+- Rapid: PASS
+- Deep: PASS
+
+The three current recipes still share the validated fixed section order. This
+phase adds guardrails only and does not alter the live course.
+
+## Runtime behaviour
+
+`buildTrack()` now validates compatibility before section assembly. A future
+recipe that violates the rules is rejected rather than creating a broken race.
+
+The developer drawer now includes:
+
+`SECTION COMPATIBILITY: PASS`
+
+The compact summary becomes:
+
+`DEV CHECKS: 6/6 PASS`
+
+================================================================================================
+DOCUMENT 51: Marble Run — Section Definition Format
+SOURCE FILE: MARBLE_RUN_SECTION_FORMAT_5.1.md
+================================================================================================
+
+# Marble Run — Section Definition Format
+
+## Purpose
+
+Milestone 5.1 introduces metadata for the current fixed course. The metadata
+does not build or alter obstacles yet. It gives later track-framework work a
+stable description of every section.
+
+## Format
+
+Each section includes:
+
+| Field | Purpose |
+|---|---|
+| `id` | Stable unique identifier |
+| `label` | Human-readable name |
+| `type` | Start, speed, mixer, transition, Plinko, loop, sprint or finish |
+| `builderKey` | Future key for routing to a section builder |
+| `startY` / `endY` | Existing vertical bounds |
+| `entry` | Entry X, Y and usable width |
+| `exit` | Exit X, Y and usable width |
+| `repeatable` | Whether later generators may reuse the section |
+| `mixingStrength` | None, low, medium or high |
+| `difficulty` | Suggested gameplay difficulty |
+| `componentIds` | Existing obstacle groups associated with the section |
+
+## Current section manifest
+
+1. `start-chute`
+2. `speed-zone`
+3. `early-mixer`
+4. `funnel-1`
+5. `plinko-1`
+6. `mid-mixer`
+7. `funnel-2`
+8. `loop-section`
+9. `late-mixer`
+10. `plinko-2`
+11. `funnel-3`
+12. `final-sprint`
+13. `finish`
+
+## Safety
+
+The master definitions and their nested connection/component data are frozen.
+`buildTrack()` receives a fresh manifest copy through
+`createTrackSectionManifest()`. This lets future connection and validation
+steps annotate an individual track without altering the authoritative section
+definitions.
+
+## Current behaviour
+
+`buildTrack()` still creates the same:
+
+- Segments
+- Boosts
+- Funnels
+- Pegs
+- Loops
+- Mixers
+- Finish line
+
+It now additionally returns `sections`. No current rendering or physics path
+uses the metadata, so gameplay remains unchanged in Milestone 5.1.
+
+================================================================================================
+DOCUMENT 52: Marble Run — Seeded Recipe Selection Report 6.3
+SOURCE FILE: MARBLE_RUN_SEEDED_SELECTION_REPORT_6.3.md
+================================================================================================
+
+# Marble Run — Seeded Recipe Selection Report 6.3
+
+## Result
+
+**PASS — deterministic selection added for all three validated recipes**
+
+## Selection model
+
+The player now has two modes:
+
+### Manual
+
+The player directly selects:
+
+- Classic
+- Rapid
+- Deep
+
+### Seeded
+
+The player enters a seed. A stable FNV-1a 32-bit hash maps the normalized seed
+to one of the three registered recipes.
+
+The mapping is:
+
+```text
+recipe index = seed hash modulo 3
+```
+
+## Deterministic verification examples
+
+| Seed | Selected recipe |
+|---|---|
+| `seed-0` | Deep |
+| `seed-1` | Classic |
+| `seed-2` | Rapid |
+
+Repeating the same seed returns the same recipe.
+
+## Normalization
+
+Before hashing, seeds are:
+
+- Trimmed
+- Converted to lowercase
+- Limited to 32 characters
+- Restricted to letters, numbers, `_` and `-`
+- Other character groups are replaced with `-`
+
+This means equivalent normalized inputs resolve consistently.
+
+## Storage
+
+New Marble Run-only storage keys:
+
+- `mr_track_selection_mode_v1`
+- `mr_track_seed_v1`
+
+The existing recipe key remains:
+
+- `mr_track_recipe_v1`
+
+No storage belonging to another mini-game is touched.
+
+## Race records
+
+Start-position audit records now include:
+
+- `selectionMode`
+- `seed`
+
+The audit summary remains grouped by recipe so existing fairness samples remain
+comparable.
+
+## Scope protection
+
+Seeded selection chooses a recipe profile only. The section order remains the
+validated fixed order, and race physics still use normal runtime randomness.
+
+No change was made to:
+
+- Track geometry
+- Section order
+- Finish height
+- Physics
+- Cameras
+- Payouts
+- Single, Duel or BO3 rules
+- Shared extension files
+
+================================================================================================
+DOCUMENT 53: Marble Run — Spiral Bowl and Obstacle Showcase Report 7.6
+SOURCE FILE: MARBLE_RUN_SPIRAL_SHOWCASE_REPORT_7.6(1).md
+================================================================================================
+
+# Marble Run — Spiral Bowl and Obstacle Showcase Report 7.6
+
+## Result
+
+**PASS**
+
+## Spiral Bowl
+
+The Spiral Bowl builds:
+
+- One visible spiral shell
+- One mandatory hidden physics core
+- A 21px centre hole
+- A long inward orbit
+- A release below the centre
+
+Direct simulation:
+
+- Marbles tested: 8
+- Captured and released: 8/8
+- Maximum simulated orbit steps: 139
+- Result: PASS
+
+## Generated pattern
+
+- ID: `spiral-descent`
+- Test seed: `spiral-0`
+- Uses the original Loop Section followed by Spiral Bowl and Plinko 2.
+
+## Obstacle Showcase
+
+Reserved Generate Course aliases:
+
+- `1`
+- `seed-1`
+- `course-1`
+
+All resolve to:
+
+- Pattern: `obstacle-showcase`
+- Label: `OBSTACLE SHOWCASE COURSE`
+- Sections: 23
+- Registered obstacle coverage: 19/19
+- Finish: 4616px
+- World height: 5416px
+- Dynamic race timeout: 230800ms
+
+## Future-proof rule
+
+The showcase audit derives its required obstacle list from the registered track
+section definitions, excluding only:
+
+- Start Chute
+- Speed Zone
+- Final Sprint
+- Finish
+
+A future obstacle definition will therefore produce a developer REVIEW result
+until its section is deliberately inserted into the showcase order.
+
+## Framework verification
+
+The showcase passed:
+
+- Physics fairness
+- Connections
+- Named builders
+- Assembly
+- Full track validation
+- Section compatibility
+- Dynamic geometry
+- Generated-course validation
+- Camera preview
+- Every obstacle-library audit
+
+## Developer status
+
+`DEV CHECKS: 16/16 PASS`
+
+================================================================================================
+DOCUMENT 54: Marble Run — Split Gate Report 7.8
+SOURCE FILE: MARBLE_RUN_SPLIT_GATE_REPORT_7.8(1).md
+================================================================================================
+
+# Marble Run — Split Gate Report 7.8
+
+## Result
+
+**PASS**
+
+## New section
+
+| Section | Builder | Moving gates | Guide/floor segments | Height | Fixed-course requirement |
+|---|---|---:|---:|---:|---|
+| Split Gate | `splitGate` | 1 | 5 | 260px | Optional |
+
+## Behaviour
+
+The Split Gate uses one downward-hinged paddle.
+
+It includes:
+
+- Alternating target direction
+- Spring and damping
+- Capped angular velocity
+- Safe minimum and maximum angles
+- Controlled collision restitution
+- Left/right side impulse
+- Downward escape bias
+- A lower centre-blocking chevron
+
+The paddle changes direction during play. Closely grouped marbles can therefore
+be separated into different lanes.
+
+## Generated pattern
+
+- ID: `split-decision`
+- Label: `SPLIT DECISION`
+- Test seed: `gate-3`
+
+## Direct simulation
+
+Seventy-two approaches were tested across:
+
+- Nine starting positions
+- Eight horizontal approach speeds
+- Different gate switching timings
+
+Results:
+
+- Cleared the section: 72/72
+- Left lane: 28
+- Right lane: 44
+- Direct centre bypasses: 0
+- Stuck recoveries: 0
+- Moving-paddle contacts: 55
+
+The lower chevron redirected the remaining approaches safely.
+
+## Obstacle Showcase
+
+Reserved Generate Course seeds remain:
+
+- `1`
+- `seed-1`
+- `course-1`
+
+Current showcase:
+
+- Registered obstacle coverage: 21/21
+- Total sections: 25
+- Finish: 5156px
+- World height: 5956px
+- Split Gate included: yes
+
+## Generated catalogue
+
+- Normal generated patterns: 16
+- Reserved showcase pattern: 1
+- Total catalogue entries: 17
+
+## Automated validation
+
+Passed:
+
+- Three fixed profiles
+- 5,000 generated seeds
+- All 16 normal patterns
+- Same-seed reproduction
+- Unique gate IDs
+- Safe gate angles and speed
+- Builder/component counts
+- Full framework validation
+
+## Developer status
+
+`DEV CHECKS: 18/18 PASS`
+
+New check:
+
+`SPLIT GATE: PASS`
+
+================================================================================================
+DOCUMENT 55: Marble Run — Fixed Track Assembly Report 5.4
+SOURCE FILE: MARBLE_RUN_TRACK_ASSEMBLY_REPORT_5.4(1).md
+================================================================================================
+
+# Marble Run — Fixed Track Assembly Report 5.4
+
+## Result
+
+**PASS — 13/13 sections assembled from the explicit fixed recipe**
+
+## Recipe identity
+
+- ID: `classic-fixed-v1`
+- Label: `CLASSIC FIXED COURSE`
+- Version: `1`
+- Randomised: `false`
+- Duplicates allowed: `false`
+
+## Authoritative order
+
+```text
+start-chute
+speed-zone
+early-mixer
+funnel-1
+plinko-1
+mid-mixer
+funnel-2
+loop-section
+late-mixer
+plinko-2
+funnel-3
+final-sprint
+finish
+```
+
+## Assembly safeguards
+
+The assembly step rejects:
+
+- Unknown section IDs
+- Duplicate sections in the fixed recipe
+- Missing required sections
+- A recipe that does not begin with a start section
+- A recipe that does not end with a finish section
+- Missing registered section builders
+
+## Runtime data
+
+The built track now exposes:
+
+```javascript
+track.recipe
+track.assembly
+track.sections
+track.connections
+track.sectionBuilds
+```
+
+`track.assembly` includes:
+
+- Recipe metadata
+- Assembled section list
+- Pass/review status
+- Issues
+- Stable section-order signature
+
+## Regression comparison
+
+The 5.4 generated track was compared against 5.3 after removing only internal
+metadata fields.
+
+Exact matches:
+
+- Segments: 13 / 13
+- Pegs: 55 / 55
+- Boosts: 3 / 3
+- Funnels: 3 / 3
+- Loops: 2 / 2
+- Domes: 0 / 0
+- Mixers: 3 / 3
+
+Therefore Milestone 5.4 changes track assembly architecture only. It does not
+intentionally alter course geometry, physics or game behaviour.
+
+================================================================================================
+DOCUMENT 56: Marble Run — Full Track Validation Report 5.5
+SOURCE FILE: MARBLE_RUN_TRACK_VALIDATION_REPORT_5.5(1).md
+================================================================================================
+
+# Marble Run — Full Track Validation Report 5.5
+
+## Result
+
+**PASS**
+
+## Structural validation
+
+- Recipe: `classic-fixed-v1`
+- Sections: 13
+- Connections: 12
+- Start sections: 1
+- Finish sections: 1
+- Section IDs: unique
+- Builder registrations: complete
+- Connection validation: 12/12 passing
+
+## Generated track objects
+
+| Collection | Count |
+|---|---:|
+| Segments | 13 |
+| Pegs | 55 |
+| Boosts | 3 |
+| Funnels | 3 |
+| Loops | 2 |
+| Legacy domes | 0 |
+| Vortex mixers | 3 |
+| **Total validated objects** | **79** |
+
+Every generated object:
+
+- Has valid numeric geometry.
+- Remains inside the 400px-wide, 3200px-high world.
+- References a known section.
+- Uses a component ID declared by that section.
+
+## Mixer validation
+
+Required mixers:
+
+- `early-vortex`
+- `mid-vortex`
+- `late-vortex`
+
+Result: **3/3 present**
+
+The section manifest contains five high-mixing sections:
+
+- Early Mixer
+- Plinko 1
+- Mid Mixer
+- Late Mixer
+- Plinko 2
+
+## Finish validation
+
+- Finish segments found: 1
+- Finish segment owner: `finish`
+- Finish line Y: 2400px
+- `FINISH_Y`: 2400px
+- Finish section bounds: 2380–2420px
+
+Result: **aligned**
+
+## Height validation
+
+- First track content Y: 40px
+- Last track content Y: 2400px
+- Declared course end: 2420px
+- World height: 3200px
+
+The assembled course fits inside the configured world.
+
+## Conclusion
+
+The fixed course now passes:
+
+1. Physics fairness
+2. Section connections
+3. Section builders
+4. Fixed recipe assembly
+5. Full structural track validation
+
+Milestone 5 can be closed after Single, Duel and BO3 regression tests.

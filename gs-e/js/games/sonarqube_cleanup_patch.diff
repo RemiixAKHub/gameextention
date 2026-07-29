@@ -1,0 +1,81 @@
+--- sonarqube_before/blackjack.js	2026-07-09 08:39:21.890820852 +0000
++++ blackjack.js	2026-07-09 08:39:23.931270649 +0000
+@@ -56,7 +56,7 @@
+   function cardValue(card) {
+     if (['J','Q','K'].includes(card.r)) return 10;
+     if (card.r==='A') return 11;
+-    return parseInt(card.r);
++    return Number.parseInt(card.r, 10);
+   }
+ 
+   function handValue(hand) {
+@@ -374,7 +374,7 @@
+     `;
+ 
+     container.querySelectorAll('.bj-chip-btn[data-amt]').forEach(b=>{
+-      b.addEventListener('click',()=>placeBet(parseInt(b.dataset.amt)));
++      b.addEventListener('click',()=>placeBet(Number.parseInt(b.dataset.amt, 10)));
+     });
+     container.querySelector('#bj-clear').addEventListener('click',()=>{
+       if(phase==='bet'){chips+=bet;bet=0;render();}
+--- sonarqube_before/chess.js	2026-07-09 08:39:21.891608484 +0000
++++ chess.js	2026-07-09 08:39:23.931977182 +0000
+@@ -63,7 +63,7 @@
+     for (const row of parts[0].split('/')) {
+       const r = [];
+       for (const ch of row) {
+-        if (/\d/.test(ch)) for (let i = 0; i < parseInt(ch); i++) r.push('');
++        if (/\d/.test(ch)) for (let i = 0; i < Number.parseInt(ch, 10); i++) r.push('');
+         else r.push(ch);
+       }
+       board.push(r);
+@@ -75,7 +75,7 @@
+   }
+ 
+   function algebraicToRC(sq) {
+-    return [8 - parseInt(sq[1]), sq.charCodeAt(0) - 97];
++    return [8 - Number.parseInt(sq[1], 10), sq.codePointAt(0) - 97];
+   }
+ 
+   // ── Move generation ───────────────────────────────────────────────────────
+--- sonarqube_before/connect4.js	2026-07-09 08:39:21.892103519 +0000
++++ connect4.js	2026-07-09 08:39:23.932540728 +0000
+@@ -239,7 +239,7 @@
+     container.querySelector('.c4-board').addEventListener('click', (e) => {
+       const cell = e.target.closest('.c4-cell');
+       if (!cell) return;
+-      cursor = parseInt(cell.dataset.c);
++      cursor = Number.parseInt(cell.dataset.c, 10);
+       playerDrop();
+     });
+ 
+--- sonarqube_before/marblerun.js	2026-07-09 08:39:21.893011502 +0000
++++ marblerun.js	2026-07-09 08:39:23.933372631 +0000
+@@ -732,14 +732,14 @@
+ 
+     paneEl.querySelectorAll('.mr-marble-card').forEach(card => {
+       card.addEventListener('click', () => {
+-        selected = parseInt(card.dataset.id, 10);
++        selected = Number.parseInt(card.dataset.id, 10);
+         renderMarbles();
+         renderStartBtn();
+       });
+     });
+     paneEl.querySelectorAll('.mr-wager-btn').forEach(btn => {
+       btn.addEventListener('click', () => {
+-        wager = parseInt(btn.dataset.wager, 10);
++        wager = Number.parseInt(btn.dataset.wager, 10);
+         renderWager();
+         renderStartBtn();
+       });
+--- sonarqube_before/picpoker.js	2026-07-09 08:39:21.893542242 +0000
++++ picpoker.js	2026-07-09 08:39:23.933950295 +0000
+@@ -178,7 +178,7 @@
+     if (playerHand.length) {
+       playerEl.innerHTML=playerHand.map((c,i)=>cardHTML(c,false,held[i],i)).join('');
+       playerEl.querySelectorAll('.pp-card[data-idx]').forEach(el=>{
+-        el.addEventListener('click',()=>toggleHold(parseInt(el.dataset.idx)));
++        el.addEventListener('click',()=>toggleHold(Number.parseInt(el.dataset.idx, 10)));
+       });
+     } else {
+       playerEl.innerHTML='<div class="pp-hand-empty">Your cards appear here</div>';

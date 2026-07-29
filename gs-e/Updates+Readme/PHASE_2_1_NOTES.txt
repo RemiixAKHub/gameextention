@@ -1,0 +1,27 @@
+JEWEL DROP — PHASE 2.1
+
+Replace:
+1. js/games/jeweldrop.js
+2. popup.css
+
+No changes were made to popup.html, js/popup.js, manifest.json, storage.js,
+or any other game module.
+
+Added:
+- 5,000-point target
+- 20-move limit
+- objective progress bar
+- live moves-remaining display
+- automatic win state when the target is reached
+- automatic loss state when moves run out
+- disabled board after round completion
+- Play Again / Retry controls
+- round status included in save/resume
+
+Testing:
+- Make repeated clears and confirm Moves shows used/limit.
+- Confirm progress bar increases with score.
+- Reach 5,000 points and confirm the win panel appears.
+- Alternatively use all 20 moves below target and confirm the loss panel.
+- Close/reopen during a round and after a completed round.
+- Confirm Best remains preserved after Play Again/Retry.

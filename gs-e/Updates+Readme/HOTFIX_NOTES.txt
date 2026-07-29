@@ -1,0 +1,12 @@
+JEWEL DROP — PHASE 1.2.1 INPUT UNLOCK HOTFIX
+
+Replace only:
+  js/games/jeweldrop.js
+
+Fix:
+- After the clear/drop animation, the board is rendered again after animating is set to false.
+- This removes the disabled attribute from the newly rendered jewel buttons.
+- Multiple moves can now be played normally.
+
+No shared files are included or changed.
+All other games and existing popup files remain untouched.
