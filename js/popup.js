@@ -17,6 +17,7 @@ const GAMES = {
   'marblerun':  { module: () => GameMarbleRun,    label: 'Marble'  },
   'contexto':   { module: () => GameContexto,     label: 'Context' },
   'wordly':     { module: () => GameWordly,       label: 'Wordly'  },
+  'jeweldrop':  { module: () => GameJewelDrop,    label: 'Jewels'  },
 };
 
 const MOUSE_ONLY = new Set(['mine','chess','blackjack','solitaire','picpoker','trafficjam','marblerun']);

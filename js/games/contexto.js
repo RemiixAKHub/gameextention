@@ -2,16 +2,6 @@
 // Uses CONTEXTO_CLUSTERS from contexto-data.js (must load first — see popup.html snippet).
 // Follows the same module pattern / Storage usage as other games (see solitaire.js).
 const GameContexto = (() => {
-
-  function randomUnit() {
-    const values = new Uint32Array(1);
-    crypto.getRandomValues(values);
-    return values[0] / 0x100000000;
-  }
-
-  function randomInt(max) {
-    return Math.floor(randomUnit() * max);
-  }
   const STATE_KEY = 'game_contexto_state';
   const STATS_KEY = 'game_contexto_stats';
 
@@ -31,13 +21,13 @@ const GameContexto = (() => {
 
   function hashStr(str) {
     let h = 0;
-    for (let i = 0; i < str.length; i++) h = (h * 31 + str.codePointAt(i)) | 0;
+    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
     return Math.abs(h);
   }
 
   function seedToIndex(seed, len) { return hashStr(seed) % len; }
 
-  function defaultState(mode, clusterIndex, date) {
+  function defaultState(mode, clusterIndex, date, recentPractice) {
     return {
       date, mode, clusterIndex,
       guesses: [],       // [{word, rank}]
@@ -46,6 +36,7 @@ const GameContexto = (() => {
       done: false,
       statsCounted: false,
       revealed: false,
+      recentPractice: recentPractice || [], // last N practice cluster indexes, oldest first
     };
   }
 
@@ -53,29 +44,81 @@ const GameContexto = (() => {
     return { played: 0, wins: 0, losses: 0, totalGuesses: 0, currentStreak: 0, bestStreak: 0 };
   }
 
+  // Simple, hand-picked category relationships — used only as a fallback
+  // signal when a guess is absent from the current cluster's rankedWords.
+  const CATEGORY_RELATIONS = {
+    Animals:    ['Nature', 'Geography', 'Food'],
+    Nature:     ['Animals', 'Geography', 'Science', 'Travel'],
+    Geography:  ['Nature', 'Travel', 'History'],
+    Food:       ['Household', 'Travel', 'Animals'],
+    Travel:     ['Geography', 'Transport', 'Nature'],
+    Transport:  ['Travel', 'Technology'],
+    Space:      ['Science', 'Technology'],
+    Science:    ['Space', 'Nature', 'Technology'],
+    Technology: ['Science', 'Transport', 'Jobs'],
+    Music:      ['Movies'],
+    Movies:     ['Music'],
+    Household:  ['Food', 'Jobs'],
+    Jobs:       ['Technology', 'Household'],
+    History:    ['Geography'],
+    Sports:     [],
+  };
+  // Food/animal terms allowed to bridge Animals<->Food even though most
+  // food words shouldn't feel close to an animal target (and vice versa).
+  const FISH_SEAFOOD_WORDS = new Set(['fish','seafood','salmon','tuna','shrimp','crab','lobster','oyster','shell']);
+
+  // word -> Set(category) index, built once lazily across every cluster.
+  let wordCategoryIndex = null;
+  function buildWordCategoryIndex() {
+    wordCategoryIndex = new Map();
+    CONTEXTO_CLUSTERS.forEach(c => {
+      const cats = wordCategoryIndex.get(c.target) || new Set();
+      cats.add(c.category);
+      wordCategoryIndex.set(c.target, cats);
+      c.rankedWords.forEach(w => {
+        const s = wordCategoryIndex.get(w) || new Set();
+        s.add(c.category);
+        wordCategoryIndex.set(w, s);
+      });
+    });
+  }
+
   function rankGuess(cluster, word) {
     if (word === cluster.target) return 1;
     const idx = cluster.rankedWords.indexOf(word);
     if (idx !== -1) return idx + 1;
-    return 500 + (hashStr(word + cluster.target) % 701); // deterministic 500–1200
-  }
 
-  function closenessWidth(rank) {
-    if (rank === 1) return 100;
-    const cappedRank = Math.min(Math.max(rank, 1), 1200);
-    return Math.max(6, Math.round(100 - ((cappedRank - 1) / 1199) * 92));
+    if (!wordCategoryIndex) buildWordCategoryIndex();
+    const wordCats = wordCategoryIndex.get(word);
+    if (wordCats) {
+      // Same category as the current puzzle (word just missing from this
+      // specific cluster's list) — treat as a near-miss, not a cold guess.
+      if (wordCats.has(cluster.category)) {
+        return 120 + (hashStr(word + cluster.target) % 100); // 120–219
+      }
+      // Related category via the hand-picked relation table.
+      const related = CATEGORY_RELATIONS[cluster.category] || [];
+      const isRelated = [...wordCats].some(c => related.includes(c));
+      // Special-case: fish/seafood words feel close to an Animals target
+      // even when the target's own category isn't Food.
+      const isFoodBridge = FISH_SEAFOOD_WORDS.has(word) &&
+        (cluster.category === 'Animals' || wordCats.has('Animals'));
+      if (isRelated || isFoodBridge) {
+        return 250 + (hashStr(word + cluster.target) % 200); // 250–449
+      }
+    }
+    return 500 + (hashStr(word + cluster.target) % 701); // deterministic 500–1200, true cold
   }
 
   function heatInfo(rank) {
-    const width = closenessWidth(rank);
-    if (rank === 1)   return { label: 'Correct',      cls: 'ctx-correct',      width };
-    if (rank <= 10)   return { label: 'Very hot',     cls: 'ctx-very-hot',     width };
-    if (rank <= 25)   return { label: 'Hot',          cls: 'ctx-hot',          width };
-    if (rank <= 50)   return { label: 'Warm',         cls: 'ctx-warm',         width };
-    if (rank <= 100)  return { label: 'Getting warm', cls: 'ctx-getting-warm', width };
-    if (rank <= 250)  return { label: 'Cool',         cls: 'ctx-cool',         width };
-    if (rank <= 500)  return { label: 'Far',          cls: 'ctx-far',          width };
-    return { label: 'Cold', cls: 'ctx-cold', width };
+    if (rank === 1)                return { label: 'Correct',      cls: 'ctx-correct',      pct: 100 };
+    if (rank <= 10)                return { label: 'Very hot',     cls: 'ctx-very-hot',      pct: 88  };
+    if (rank <= 25)                return { label: 'Hot',          cls: 'ctx-hot',           pct: 72  };
+    if (rank <= 50)                return { label: 'Warm',         cls: 'ctx-warm',          pct: 56  };
+    if (rank <= 100)               return { label: 'Getting warm', cls: 'ctx-getting-warm',  pct: 42  };
+    if (rank <= 300)               return { label: 'Cool',         cls: 'ctx-cool',          pct: 28  };
+    if (rank <= 700)               return { label: 'Far',          cls: 'ctx-far',           pct: 14  };
+    return { label: 'Cold', cls: 'ctx-cold', pct: 5 };
   }
 
   // ── Persistence ──────────────────────────────────────────────────────────
@@ -164,12 +207,29 @@ const GameContexto = (() => {
     renderAll();
   }
 
+  const RECENT_PRACTICE_LIMIT = 20;
+  const MIN_POOL_FOR_NO_REPEAT = 25; // below this, recent-avoidance isn't worth the constraint
+
   function startPracticePuzzle() {
-    let idx = randomInt(CONTEXTO_CLUSTERS.length);
-    if (CONTEXTO_CLUSTERS.length > 1) {
-      while (idx === state.clusterIndex) idx = randomInt(CONTEXTO_CLUSTERS.length);
+    const total = CONTEXTO_CLUSTERS.length;
+    const recent = (state && Array.isArray(state.recentPractice)) ? state.recentPractice : [];
+    const avoid = new Set(recent);
+    if (state) avoid.add(state.clusterIndex);
+
+    let idx;
+    if (total >= MIN_POOL_FOR_NO_REPEAT && avoid.size < total) {
+      // Full no-repeat behavior: skip the current cluster + last 20 practice picks.
+      do { idx = Math.floor(Math.random() * total); } while (avoid.has(idx));
+    } else if (total > 1) {
+      // Small dataset, or the avoid-set already covers everything — just
+      // dodge the current cluster, same as the original Phase-1 behavior.
+      do { idx = Math.floor(Math.random() * total); } while (state && idx === state.clusterIndex);
+    } else {
+      idx = 0;
     }
-    state = defaultState('practice', idx, todayStr());
+
+    const updatedRecent = [...recent, idx].slice(-RECENT_PRACTICE_LIMIT);
+    state = defaultState('practice', idx, todayStr(), updatedRecent);
     saveState();
     renderAll();
   }
@@ -244,14 +304,11 @@ const GameContexto = (() => {
       const row = document.createElement('div');
       row.className = `ctx-guess-row ${info.cls}`;
       row.innerHTML = `
-        <div class="ctx-guess-main">
-          <span class="ctx-word">${g.word.toUpperCase()}</span>
-          <span class="ctx-rank">#${g.rank}</span>
-          <span class="ctx-label">${info.label}</span>
+        <div class="ctx-guess-row-top">
+          <span class="ctx-word">${g.word.toUpperCase()}</span><span class="ctx-rank">#${g.rank}</span><span class="ctx-label">${info.label}</span>
         </div>
-        <div class="ctx-closeness-bar" aria-hidden="true">
-          <div class="ctx-closeness-fill" style="width:${info.width}%"></div>
-        </div>`;
+        <div class="ctx-closeness-bar"><div class="ctx-closeness-fill" style="width:${info.pct}%"></div></div>
+      `;
       historyEl.appendChild(row);
     });
 

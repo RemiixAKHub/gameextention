@@ -1,7 +1,7 @@
-// contexto-data.js — Static offline word clusters for Contexto (Phase 3: full 100-cluster dataset)
+// contexto-data.js — Static offline word clusters for Contexto (Phase 6: full 200-cluster dataset)
 // No network calls, no embeddings — closeness is simulated via curated rankedWords order.
 // target MUST always equal rankedWords[0]. All words lowercase. No duplicate targets.
-// Clusters 1-20: original Phase 1 starter set. Clusters 21-100: Phase 2 expansion.
+// Clusters 1-20: Phase 1 starter set. Clusters 21-100: Phase 2 expansion. Clusters 101-200: Phase 6 expansion.
 
 const CONTEXTO_CLUSTERS = [
   {
@@ -250,7 +250,7 @@ const CONTEXTO_CLUSTERS = [
     target: "dolphin",
     category: "Animals",
     hints: ["It is a highly intelligent sea mammal.", "It communicates with clicks and whistles.", "It often leaps out of the water."],
-    rankedWords: ["dolphin","ocean","fin","mammal","pod","sea","whale","splash","intelligent","echo","click","aquarium","jump","blowhole","marine","swim","trainer","flipper","blue","tail","water","playful"]
+    rankedWords: ["dolphin","porpoise","whale","marine","ocean","sea","mammal","fin","flipper","pod","swim","water","splash","blowhole","tail","intelligent","echo","click","aquarium","jump","playful","fish","trainer","blue"]
   },
   {
     target: "wolf",
@@ -262,7 +262,7 @@ const CONTEXTO_CLUSTERS = [
     target: "penguin",
     category: "Animals",
     hints: ["It is a flightless bird.", "It lives in cold climates.", "It waddles on ice."],
-    rankedWords: ["penguin","ice","antarctica","waddle","flightless","cold","egg","colony","snow","feather","fish","swim","chick","arctic","black","white","tuxedo","zoo","glacier","huddle","ocean","wing"]
+    rankedWords: ["penguin","ice","waddle","swim","fish","antarctica","flightless","cold","egg","colony","snow","feather","chick","arctic","black","white","tuxedo","zoo","glacier","huddle","ocean","wing"]
   },
   {
     target: "butterfly",
@@ -274,7 +274,7 @@ const CONTEXTO_CLUSTERS = [
     target: "shark",
     category: "Animals",
     hints: ["It is a predator found in the ocean.", "It has rows of sharp teeth.", "Its fin sticks above the water."],
-    rankedWords: ["shark","teeth","ocean","fin","predator","jaws","bite","sea","fish","attack","water","blue","great","reef","hunter","danger","gill","tank","aquarium","deep","fear","swim"]
+    rankedWords: ["shark","fish","ocean","fin","teeth","predator","sea","jaws","bite","gill","water","attack","reef","hunter","great","blue","danger","deep","tank","aquarium","fear","swim"]
   },
   {
     target: "burger",
@@ -683,6 +683,606 @@ const CONTEXTO_CLUSTERS = [
     category: "History",
     hints: ["It is a settlement controlled by a distant ruling country.", "Settlers moved here to build new lives.", "Many became independent nations later."],
     rankedWords: ["colony","settler","settlement","territory","empire","independence","land","ruler","trade","government","expedition","founding","migration","governor","plantation","tax","rebellion","frontier","homeland","colonist","flag","treaty"]
-  }
+  },
+  {
+    target: "thunder",
+    category: "Nature",
+    hints: ["It is the loud sound after lightning.", "It often follows a bright flash in the sky.", "It can rumble during a storm."],
+    rankedWords: ["thunder","lightning","storm","rain","boom","clap","sky","cloud","rumble","flash","thunderstorm","weather","loud","crack","dark","noise","downpour","strike","echo","roll","electric","summer","warning","wind","roar","gray"]
+  },
+  {
+    target: "storm",
+    category: "Nature",
+    hints: ["It brings heavy rain and strong winds.", "It can include thunder and lightning.", "Ships and travelers watch for it."],
+    rankedWords: ["storm","rain","wind","thunder","lightning","cloud","weather","hurricane","downpour","gale","flood","dark","forecast","warning","gust","tempest","clouds","shelter","umbrella","gray","howl","waves","cyclone","chaos","alert","brew"]
+  },
+  {
+    target: "snow",
+    category: "Nature",
+    hints: ["It falls as soft white flakes.", "It covers the ground in winter.", "Children build men out of it."],
+    rankedWords: ["snow","snowflake","winter","cold","ice","white","frost","blizzard","snowman","sled","snowball","chill","frozen","flurry","snowfall","mountain","ski","snowplow","glove","boot","icy","december","frosty","powder","slush","drift"]
+  },
+  {
+    target: "sunrise",
+    category: "Nature",
+    hints: ["It happens at the start of the day.", "The sky turns orange and pink.", "The sun appears over the horizon."],
+    rankedWords: ["sunrise","dawn","morning","horizon","sun","sky","light","orange","pink","daybreak","early","glow","east","golden","rise","warmth","clouds","silhouette","calm","beautiful","daylight","hope","new","beach","hill","peaceful"]
+  },
+  {
+    target: "tiger",
+    category: "Animals",
+    hints: ["It has orange fur with black stripes.", "It is one of the biggest wild cats.", "It hunts alone in the jungle."],
+    rankedWords: ["tiger","stripe","jungle","predator","claw","roar","fur","orange","big","wild","cat","hunt","prey","asia","fang","forest","endangered","zoo","paw","fierce","stealth","stripes","den","carnivore","strong","territory"]
+  },
+  {
+    target: "giraffe",
+    category: "Animals",
+    hints: ["It has a very long neck.", "It eats leaves from tall trees.", "It is the tallest land animal."],
+    rankedWords: ["giraffe","neck","tall","spots","africa","savanna","leaves","tree","herbivore","legs","herd","zoo","wildlife","yellow","brown","gentle","grass","safari","towering","gallop","patches","browsing","gaze","calf","everyday"]
+  },
+  {
+    target: "monkey",
+    category: "Animals",
+    hints: ["It swings through trees using its arms.", "It is closely related to apes.", "It often eats bananas."],
+    rankedWords: ["monkey","banana","jungle","tree","primate","swing","tail","ape","branch","troop","climb","chimp","forest","zoo","playful","chatter","grip","wild","mischief","fur","vine","curious","canopy","howl","peel"]
+  },
+  {
+    target: "rabbit",
+    category: "Animals",
+    hints: ["It has long ears and a fluffy tail.", "It hops instead of walking.", "It lives in a burrow underground."],
+    rankedWords: ["rabbit","bunny","hop","burrow","ears","carrot","fur","fluffy","hare","warren","cute","nose","wild","pet","tail","cottontail","hutch","spring","garden","meadow","twitch","soft","litter","field","nibble"]
+  },
+  {
+    target: "banana",
+    category: "Food",
+    hints: ["It is a curved yellow fruit.", "Monkeys are often shown eating it.", "It grows in bunches on trees."],
+    rankedWords: ["banana","yellow","fruit","peel","bunch","tropical","monkey","smoothie","sweet","potassium","curved","ripe","snack","bread","split","plantain","market","soft","tree","fiber","dessert","fresh","muffin","slice","everyday"]
+  },
+  {
+    target: "apple",
+    category: "Food",
+    hints: ["It can be red, green, or yellow.", "It grows on trees and is picked in fall.", "Doctors say one a day keeps them away."],
+    rankedWords: ["apple","fruit","red","tree","orchard","juice","pie","core","seed","crisp","sweet","cider","bite","basket","fall","harvest","snack","green","stem","market","sauce","slice","fresh","peel","crunchy"]
+  },
+  {
+    target: "sandwich",
+    category: "Food",
+    hints: ["It is made with two slices of bread.", "It has fillings like cheese or meat.", "It is a common lunch item."],
+    rankedWords: ["sandwich","bread","slice","filling","lunch","cheese","meat","lettuce","mustard","mayo","toast","deli","wrap","picnic","snack","layered","club","panini","bite","bag","packed","fresh","ham","spread","crust"]
+  },
+  {
+    target: "bakery",
+    category: "Food",
+    hints: ["It is a shop that sells bread and pastries.", "The smell of fresh dough fills the air.", "Cakes and cookies are often made here."],
+    rankedWords: ["bakery","bread","pastry","oven","dough","cake","baker","fresh","muffin","cookie","croissant","flour","sweet","shop","bun","aroma","display","counter","warm","loaf","icing","treats","kitchen","apron","market"]
+  },
+  {
+    target: "suitcase",
+    category: "Travel",
+    hints: ["It is used to pack clothes for a trip.", "It usually has wheels and a handle.", "You check it in at the airport."],
+    rankedWords: ["suitcase","luggage","pack","travel","handle","wheels","trip","airport","clothes","zipper","bag","vacation","tag","carryon","hardshell","fold","strap","journey","hotel","checkin","organize","weight","label","carousel","stuff"]
+  },
+  {
+    target: "museum",
+    category: "Travel",
+    hints: ["It displays historical or artistic objects.", "Visitors walk through quiet exhibit halls.", "It preserves items from the past."],
+    rankedWords: ["museum","exhibit","history","art","gallery","artifact","tour","display","curator","collection","statue","painting","admission","culture","ancient","glass","hall","guide","visit","relic","preserve","education","sculpture","ticket","learn"]
+  },
+  {
+    target: "village",
+    category: "Travel",
+    hints: ["It is a small community smaller than a town.", "Houses are close together with a shared center.", "It often has a quiet, rural feel."],
+    rankedWords: ["village","town","rural","community","houses","countryside","farm","market","neighbors","small","cottage","square","local","quiet","tradition","population","road","field","church","gathering","chapel","lane","harvest","folk","hamlet"]
+  },
+  {
+    target: "stadium",
+    category: "Travel",
+    hints: ["It is a large venue for sports events.", "Thousands of fans fill its seats.", "It often has a field in the middle."],
+    rankedWords: ["stadium","arena","crowd","seats","field","sports","fans","game","cheer","tickets","bleachers","event","concert","lights","turf","score","team","gate","roar","venue","match","entrance","banner","tunnel","capacity"]
+  },
+  {
+    target: "keyboard",
+    category: "Technology",
+    hints: ["You type on it to enter text.", "It has letters, numbers, and symbols.", "It connects to a computer."],
+    rankedWords: ["keyboard","keys","type","computer","letters","typing","laptop","qwerty","button","input","shortcut","space","enter","tab","click","wireless","desk","monitor","cable","mouse","code","word","press","layout","mechanical"]
+  },
+  {
+    target: "printer",
+    category: "Technology",
+    hints: ["It puts words and images onto paper.", "It connects to a computer or network.", "It uses ink or toner."],
+    rankedWords: ["printer","paper","ink","print","toner","document","scanner","office","copy","page","cartridge","laser","inkjet","tray","output","device","wireless","photo","report","queue","jam","cable","file","desk","fax"]
+  },
+  {
+    target: "calculator",
+    category: "Technology",
+    hints: ["It helps you solve math problems.", "It has buttons for numbers and operations.", "Students use it during exams."],
+    rankedWords: ["calculator","numbers","math","buttons","add","subtract","multiply","divide","screen","equation","solve","school","device","digits","formula","exam","total","sum","display","battery","function","key","arithmetic","result","pocket"]
+  },
+  {
+    target: "headphones",
+    category: "Technology",
+    hints: ["You wear them over your ears to listen to sound.", "They connect to a phone or music player.", "They can be wired or wireless."],
+    rankedWords: ["headphones","earbuds","music","sound","ears","wireless","audio","volume","listen","bluetooth","speaker","cable","microphone","podcast","noise","cancelling","plug","band","device","song","stereo","charge","case","cushion","jack"]
+  },
+  {
+    target: "planet",
+    category: "Science",
+    hints: ["It orbits a star like our sun.", "Earth is one example of it.", "It can be rocky or gas-covered."],
+    rankedWords: ["planet","orbit","earth","sun","space","mars","solarsystem","moon","gravity","astronomy","rotation","atmosphere","universe","star","science","sky","telescope","discovery","rocky","gas","distance","satellite","system","celestial","cosmic"]
+  },
+  {
+    target: "asteroid",
+    category: "Science",
+    hints: ["It is a rocky object that orbits the sun.", "It is smaller than a planet.", "It can be found in a belt between Mars and Jupiter."],
+    rankedWords: ["asteroid","rock","space","orbit","belt","meteor","crater","impact","comet","solarsystem","debris","mars","jupiter","science","telescope","collision","stone","field","chunk","mining","nasa","gravity","fragment","cosmic","tracking"]
+  },
+  {
+    target: "magnet",
+    category: "Science",
+    hints: ["It attracts metal objects like iron.", "It has a north and south pole.", "It sticks to a refrigerator."],
+    rankedWords: ["magnet","attract","metal","iron","pole","force","fridge","magnetic","field","science","north","south","pull","steel","experiment","compass","physics","stick","repel","invisible","classroom","toy","electromagnet","charge","strong"]
+  },
+  {
+    target: "microscope",
+    category: "Science",
+    hints: ["It magnifies objects too small to see.", "Scientists use it to study cells.", "It has a lens and a stage for samples."],
+    rankedWords: ["microscope","lens","magnify","cell","science","lab","slide","tiny","biology","observe","specimen","zoom","research","eyepiece","focus","classroom","germ","study","detail","light","scientist","sample","view","experiment","precision"]
+  },
+  {
+    target: "football",
+    category: "Sports",
+    hints: ["Players try to score a touchdown.", "It is played with an oval ball.", "Teams battle for yards on a field."],
+    rankedWords: ["football","touchdown","field","quarterback","tackle","team","helmet","pass","yard","stadium","coach","goalpost","huddle","kick","referee","offense","defense","gridiron","league","fans","play","snap","score","jersey","block"]
+  },
+  {
+    target: "cricket",
+    category: "Sports",
+    hints: ["It is played with a bat and a small ball.", "A bowler throws the ball toward a wicket.", "It is very popular in England and India."],
+    rankedWords: ["cricket","bat","bowler","wicket","pitch","innings","stump","boundary","team","over","run","fielder","umpire","match","ball","stadium","batsman","test","catch","score","league","helmet","crease","tour","captain"]
+  },
+  {
+    target: "running",
+    category: "Sports",
+    hints: ["It involves moving quickly on foot.", "People do it for exercise or in races.", "Marathons are a long form of it."],
+    rankedWords: ["running","jog","marathon","race","sprint","exercise","track","shoes","fitness","stamina","pace","runner","trail","finish","training","cardio","endurance","stride","breath","fast","laps","warmup","treadmill","athlete","route"]
+  },
+  {
+    target: "golf",
+    category: "Sports",
+    hints: ["Players hit a small ball into holes.", "It is played on a large grassy course.", "A club is used to strike the ball."],
+    rankedWords: ["golf","club","ball","course","hole","tee","swing","putt","fairway","caddie","green","bunker","score","par","cart","bag","driver","links","tournament","stroke","flag","chip","sand","clubhouse","match"]
+  },
+  {
+    target: "sun",
+    category: "Space",
+    hints: ["It is the star at the center of our solar system.", "It provides light and warmth to Earth.", "It rises in the east and sets in the west."],
+    rankedWords: ["sun","star","light","warmth","solarsystem","sky","rays","heat","daylight","planet","sunrise","sunset","energy","bright","astronomy","orbit","yellow","summer","shine","earth","horizon","solar","glow","radiant","core"]
+  },
+  {
+    target: "moon",
+    category: "Space",
+    hints: ["It orbits the Earth.", "It appears to change shape through the month.", "Astronauts have walked on its surface."],
+    rankedWords: ["moon","orbit","earth","night","crater","lunar","astronaut","sky","phase","glow","tide","satellite","space","nasa","surface","rocket","stars","fullmoon","dark","gravity","explore","landing","reflect","dust","cycle"]
+  },
+  {
+    target: "meteor",
+    category: "Space",
+    hints: ["It is a streak of light in the night sky.", "It burns up as it enters Earth's atmosphere.", "People call it a shooting star."],
+    rankedWords: ["meteor","shootingstar","sky","streak","space","asteroid","burn","atmosphere","night","wish","comet","fireball","trail","glow","fall","crater","cosmic","fast","light","meteorite","observe","telescope","flash","rare","astronomy"]
+  },
+  {
+    target: "spaceship",
+    category: "Space",
+    hints: ["It carries astronauts beyond Earth.", "It launches using powerful rockets.", "It can travel to the moon or other planets."],
+    rankedWords: ["spaceship","rocket","astronaut","launch","nasa","orbit","crew","spacecraft","mission","capsule","engine","space","moon","fuel","cockpit","voyage","exploration","thruster","docking","station","gravity","cosmic","flight","countdown","pilot"]
+  },
+  {
+    target: "singer",
+    category: "Music",
+    hints: ["This person performs songs for an audience.", "They may record albums in a studio.", "Their voice is their main instrument."],
+    rankedWords: ["singer","voice","song","microphone","concert","album","stage","music","vocalist","performer","melody","lyrics","studio","fans","tour","chart","band","recording","audience","spotlight","harmony","fame","note","celebrity","talent"]
+  },
+  {
+    target: "album",
+    category: "Music",
+    hints: ["It is a collection of songs released together.", "Artists spend months recording it.", "Fans wait for its release date."],
+    rankedWords: ["album","song","tracklist","release","artist","music","record","studio","single","cover","chart","vinyl","playlist","streaming","hit","band","producer","recording","launch","fans","discography","tour","lyrics","genre","download"]
+  },
+  {
+    target: "trumpet",
+    category: "Music",
+    hints: ["It is a brass instrument played by blowing air.", "It has three valves pressed to change notes.", "It is common in jazz bands."],
+    rankedWords: ["trumpet","brass","valve","horn","jazz","band","blow","mouthpiece","note","music","orchestra","player","shiny","fanfare","marching","sound","musician","tune","concert","section","gold","instrument","melody","practice","reed"]
+  },
+  {
+    target: "karaoke",
+    category: "Music",
+    hints: ["People sing along to instrumental tracks.", "Lyrics are shown on a screen.", "It is a fun activity at parties or bars."],
+    rankedWords: ["karaoke","sing","microphone","lyrics","screen","song","party","bar","performance","music","track","fun","stage","crowd","voice","tune","booth","applause","playlist","friends","night","celebration","duet","cheer","spotlight"]
+  },
+  {
+    target: "comedy",
+    category: "Movies",
+    hints: ["It is meant to make audiences laugh.", "It often has funny characters and situations.", "Stand-up performers work in this genre too."],
+    rankedWords: ["comedy","funny","laugh","humor","joke","genre","film","sitcom","punchline","actor","script","satire","parody","audience","comedian","lighthearted","gag","banter","standup","witty","silly","spoof","fun","timing","slapstick"]
+  },
+  {
+    target: "mystery",
+    category: "Movies",
+    hints: ["It involves solving a puzzling crime or secret.", "Clues are revealed throughout the story.", "A detective is often the main character."],
+    rankedWords: ["mystery","detective","clue","crime","suspense","investigate","suspect","plot","twist","secret","solve","whodunit","evidence","thriller","case","noir","puzzle","mysterious","witness","unravel","riddle","clueless","enigma","shadow","reveal"]
+  },
+  {
+    target: "popcorn",
+    category: "Movies",
+    hints: ["It is a crunchy snack often eaten at the cinema.", "Kernels pop open when heated.", "It is often salted or buttered."],
+    rankedWords: ["popcorn","snack","cinema","butter","salt","kernel","bucket","movie","crunchy","theater","pop","bag","salty","treat","concession","fluffy","bowl","microwave","corn","munch","classic","tub","warm","white","crisp"]
+  },
+  {
+    target: "screenplay",
+    category: "Movies",
+    hints: ["It is the written script for a film.", "It includes dialogue and scene directions.", "Writers spend months crafting its story."],
+    rankedWords: ["screenplay","script","dialogue","scene","writer","story","film","draft","format","plot","character","direction","act","page","studio","pitch","narrative","revision","producer","adaptation","outline","structure","industry","everyday","familiar"]
+  },
+  {
+    target: "blanket",
+    category: "Household",
+    hints: ["It keeps you warm while sleeping.", "It is often placed on a bed or sofa.", "It can be soft, wool, or fleece."],
+    rankedWords: ["blanket","warm","bed","cozy","sleep","fleece","wool","cover","soft","quilt","throw","comforter","winter","snug","couch","fabric","fold","nap","cotton","weighted","texture","home","knit","layer","cuddle"]
+  },
+  {
+    target: "candle",
+    category: "Household",
+    hints: ["It provides light through a burning wick.", "It can have a pleasant scent.", "It is often lit during dinners or celebrations."],
+    rankedWords: ["candle","wax","flame","wick","light","scent","glow","holder","melt","fire","aroma","birthday","romantic","tealight","fragrance","burn","dark","warm","decor","match","spa","relax","soft","flicker","dinner"]
+  },
+  {
+    target: "sofa",
+    category: "Household",
+    hints: ["It is a long cushioned seat for a living room.", "Several people can sit on it at once.", "It often faces a television."],
+    rankedWords: ["sofa","couch","cushion","livingroom","seat","comfortable","furniture","fabric","recliner","lounge","armrest","pillow","relax","nap","television","home","leather","sit","d\u00e9cor","loveseat","upholstery","family","cozy","room","stretch"]
+  },
+  {
+    target: "window",
+    category: "Household",
+    hints: ["It lets light into a room.", "It can be opened for fresh air.", "Curtains often hang beside it."],
+    rankedWords: ["window","glass","frame","curtain","view","light","sill","open","house","room","pane","breeze","shade","blind","reflection","sunlight","screen","ledge","outside","daylight","clean","latch","home","air","transparent"]
+  },
+  {
+    target: "nurse",
+    category: "Jobs",
+    hints: ["This person cares for patients in a hospital.", "They assist doctors and administer medicine.", "They often wear scrubs."],
+    rankedWords: ["nurse","hospital","patient","medicine","care","scrubs","clinic","health","doctor","injection","stethoscope","ward","shift","bandage","checkup","treatment","vitals","compassion","medical","emergency","chart","assist","recovery","hygiene","everyday"]
+  },
+  {
+    target: "lawyer",
+    category: "Jobs",
+    hints: ["This person represents clients in legal matters.", "They argue cases in a courtroom.", "They study law for many years."],
+    rankedWords: ["lawyer","court","law","case","judge","client","justice","attorney","trial","evidence","argument","legal","contract","verdict","defense","prosecutor","brief","suit","hearing","witness","office","gavel","litigation","counsel","everyday"]
+  },
+  {
+    target: "mechanic",
+    category: "Jobs",
+    hints: ["This person repairs cars and engines.", "They work in a garage with tools.", "They diagnose problems under the hood."],
+    rankedWords: ["mechanic","car","engine","garage","repair","tools","wrench","grease","tire","oil","vehicle","auto","diagnose","bolt","workshop","overhaul","brake","service","shop","parts","fix","technician","hood","inspect","maintenance"]
+  },
+  {
+    target: "plumber",
+    category: "Jobs",
+    hints: ["This person fixes pipes and leaks.", "They work with water systems in homes.", "They carry wrenches and other tools."],
+    rankedWords: ["plumber","pipe","leak","water","wrench","sink","drain","repair","toilet","faucet","tools","plumbing","clog","fix","valve","home","service","pressure","install","hose","bathroom","kitchen","technician","fitting","tank"]
+  },
+  {
+    target: "bus",
+    category: "Transport",
+    hints: ["It carries many passengers along a fixed route.", "It stops at designated stops.", "It is a common form of public transport."],
+    rankedWords: ["bus","route","passenger","stop","driver","fare","transit","seat","school","transport","commute","public","ride","schedule","aisle","depot","city","road","ticket","luggage","doubledecker","station","travel","window","journey"]
+  },
+  {
+    target: "taxi",
+    category: "Transport",
+    hints: ["It is a car hired to transport passengers.", "You can hail it on the street.", "It runs on a meter or set fare."],
+    rankedWords: ["taxi","cab","driver","fare","meter","ride","street","hail","passenger","yellow","car","city","trip","dispatch","route","service","booking","license","curb","destination","luggage","night","travel","stand","radio"]
+  },
+  {
+    target: "airplane",
+    category: "Transport",
+    hints: ["It flies through the sky carrying passengers.", "It has wings and powerful engines.", "It takes off and lands at an airport."],
+    rankedWords: ["airplane","wing","flight","pilot","airport","engine","runway","sky","passenger","cabin","altitude","jet","takeoff","landing","cockpit","cruise","aviation","seatbelt","luggage","turbulence","aisle","boarding","fuel","travel","cloud"]
+  },
+  {
+    target: "scooter",
+    category: "Transport",
+    hints: ["It has two wheels and a standing platform.", "It is smaller and lighter than a motorcycle.", "Many people rent them in cities."],
+    rankedWords: ["scooter","wheels","ride","electric","handlebar","city","commute","balance","motor","rental","helmet","speed","street","battery","lightweight","kickstand","park","app","brake","zip","compact","fun","urban","glide","short"]
+  },
+  {
+    target: "bridge",
+    category: "Geography",
+    hints: ["It connects two areas across a gap.", "It is often built over a river or valley.", "Cars and pedestrians can cross it."],
+    rankedWords: ["bridge","river","span","cross","road","structure","arch","cable","water","engineer","connect","crossing","steel","suspension","landmark","traffic","valley","overpass","construction","toll","view","gap","pillar","design","travel"]
+  },
+  {
+    target: "tunnel",
+    category: "Geography",
+    hints: ["It is a passage that goes underground or through a mountain.", "Trains and cars can travel through it.", "It shortens long journeys."],
+    rankedWords: ["tunnel","underground","passage","dark","mountain","train","road","dig","construction","light","enclosed","subway","route","excavation","engineer","echo","cave","shortcut","entrance","exit","concrete","travel","narrow","bore","cross"]
+  },
+  {
+    target: "valley",
+    category: "Geography",
+    hints: ["It is low land between hills or mountains.", "A river often flows through it.", "Farmers may grow crops in its fertile soil."],
+    rankedWords: ["valley","hills","mountain","river","land","lowland","farm","fertile","landscape","slope","green","scenic","gorge","stream","countryside","basin","terrain","vineyard","meadow","view","ridge","nature","canyon","field","crop"]
+  },
+  {
+    target: "coastline",
+    category: "Geography",
+    hints: ["It is where the land meets the sea.", "It can be rocky or sandy.", "Ships and boats sail along its edge."],
+    rankedWords: ["coastline","coast","shore","beach","sea","ocean","cliff","waves","sand","harbor","tide","boat","bay","rocky","horizon","seaside","dunes","fishing","lighthouse","port","scenic","erosion","landscape","peninsula","water"]
+  },
+  {
+    target: "monarchy",
+    category: "History",
+    hints: ["It is a system ruled by a king or queen.", "Power often passes down through a royal family.", "It has existed throughout many centuries."],
+    rankedWords: ["monarchy","king","queen","royal","throne","crown","kingdom","ruler","dynasty","palace","succession","empire","noble","reign","court","heir","coronation","sovereign","tradition","government","royalty","castle","subjects","power","historic"]
+  },
+  {
+    target: "treaty",
+    category: "History",
+    hints: ["It is a formal agreement between nations.", "It often ends a war or conflict.", "Diplomats negotiate its terms."],
+    rankedWords: ["treaty","agreement","nations","peace","negotiate","diplomat","sign","war","border","alliance","government","document","terms","history","ceasefire","pact","conference","ratify","international","policy","accord","conflict","resolve","summit","legal"]
+  },
+  {
+    target: "ruins",
+    category: "History",
+    hints: ["They are the remains of an old structure.", "Archaeologists study them to learn about the past.", "They are often found in ancient cities."],
+    rankedWords: ["ruins","ancient","stone","archaeologist","remains","history","excavation","broken","temple","civilization","rubble","site","artifact","discovery","overgrown","crumbling","wall","column","relic","past","dig","preserve","fragment","lost","exploration"]
+  },
+  {
+    target: "legacy",
+    category: "History",
+    hints: ["It is what someone or something leaves behind.", "It can influence future generations.", "It is remembered long after events happen."],
+    rankedWords: ["legacy","history","influence","impact","memory","tradition","future","inherit","remembered","achievement","generation","honor","reputation","legend","contribution","values","enduring","story","heritage","mark","lasting","record","recognition","tribute","everyday"]
+  },
+  {
+    target: "chess",
+    category: "Games",
+    hints: ["It is played on a checkered board with 64 squares.", "Pieces include kings, queens, and knights.", "Players try to checkmate the opponent."],
+    rankedWords: ["chess","board","king","queen","knight","bishop","pawn","rook","checkmate","strategy","move","match","tournament","piece","square","opponent","clock","gambit","player","tactic","endgame","castle","capture","thinking","classic"]
+  },
+  {
+    target: "puzzle",
+    category: "Games",
+    hints: ["It challenges you to fit pieces together.", "It can be solved by matching shapes or patterns.", "Jigsaw is a popular type of it."],
+    rankedWords: ["puzzle","jigsaw","pieces","solve","fit","picture","challenge","brain","game","pattern","frame","edge","match","logic","riddle","board","complete","cardboard","table","hobby","tricky","assemble","think","fun","everyday"]
+  },
+  {
+    target: "dice",
+    category: "Games",
+    hints: ["It is a small cube used in games of chance.", "Each side shows a different number of dots.", "You roll it to get a random result."],
+    rankedWords: ["dice","roll","cube","numbers","dots","game","random","board","gamble","pair","chance","throw","luck","table","boardgame","casino","six","sided","tumble","bet","toss","fair","player","spot","turn"]
+  },
+  {
+    target: "arcade",
+    category: "Games",
+    hints: ["It is a place filled with coin-operated games.", "Bright lights and sounds fill the room.", "Players compete for high scores."],
+    rankedWords: ["arcade","game","coin","joystick","highscore","cabinet","lights","sound","token","pinball","player","fun","retro","console","button","screen","competition","tickets","prize","neon","gaming","classic","machine","credits","zone"]
+  },
+  {
+    target: "hurricane",
+    category: "Weather",
+    hints: ["It is a powerful storm that forms over warm ocean water.", "It has a calm center called an eye.", "It can cause major flooding and damage."],
+    rankedWords: ["hurricane","storm","wind","ocean","eye","rain","flood","warning","category","evacuate","damage","cyclone","tropical","gust","surge","forecast","shelter","disaster","spiral","weather","coast","landfall","gale","alert","destruction"]
+  },
+  {
+    target: "tornado",
+    category: "Weather",
+    hints: ["It is a spinning column of air that touches the ground.", "It can destroy buildings in seconds.", "It often follows severe thunderstorms."],
+    rankedWords: ["tornado","funnel","wind","spin","storm","twister","destruction","warning","shelter","sky","dark","siren","damage","chase","spiral","debris","alert","weather","touchdown","powerful","danger","cloud","rotate","fierce","evacuate"]
+  },
+  {
+    target: "drizzle",
+    category: "Weather",
+    hints: ["It is a light, gentle rain.", "The drops are smaller than normal rain.", "It often falls from low gray clouds."],
+    rankedWords: ["drizzle","rain","light","mist","gentle","cloud","gray","damp","weather","shower","sprinkle","umbrella","soft","droplets","overcast","moist","fine","wet","spring","cool","fog","breeze","puddle","calm","forecast"]
+  },
+  {
+    target: "humidity",
+    category: "Weather",
+    hints: ["It measures how much moisture is in the air.", "High levels can make weather feel sticky.", "It often rises in summer."],
+    rankedWords: ["humidity","moisture","air","damp","weather","sticky","summer","climate","sweat","tropical","forecast","level","muggy","condensation","temperature","heat","wet","measure","thermometer","greenhouse","dew","warm","atmosphere","balance","everyday"]
+  },
+  {
+    target: "library",
+    category: "School",
+    hints: ["It is a quiet place filled with books.", "People borrow books using a card.", "Students often study here."],
+    rankedWords: ["library","books","quiet","shelf","study","reading","borrow","librarian","card","research","novel","desk","silence","aisle","catalog","fiction","chapter","reference","room","knowledge","stacks","checkout","archive","everyday","familiar"]
+  },
+  {
+    target: "notebook",
+    category: "School",
+    hints: ["It has blank or lined pages for writing.", "Students use it to take notes in class.", "It can have a spiral binding."],
+    rankedWords: ["notebook","paper","pages","write","notes","school","pen","spiral","cover","journal","binder","study","class","doodle","lines","pencil","backpack","subject","homework","blank","record","jot","sketch","everyday","familiar"]
+  },
+  {
+    target: "classroom",
+    category: "School",
+    hints: ["It is a room where lessons take place.", "Students sit at desks facing a board.", "A teacher leads lessons here."],
+    rankedWords: ["classroom","desk","teacher","student","board","school","lesson","chalk","chair","learning","lecture","textbook","whiteboard","subject","class","education","backpack","attendance","seat","assignment","study","group","recess","quiz","curriculum"]
+  },
+  {
+    target: "homework",
+    category: "School",
+    hints: ["It is schoolwork done outside of class.", "Students complete it at home in the evening.", "Teachers assign it to reinforce lessons."],
+    rankedWords: ["homework","assignment","study","school","textbook","deadline","teacher","exercise","practice","notebook","evening","project","essay","math","reading","due","grade","effort","desk","review","subject","task","complete","struggle","learning"]
+  },
+  {
+    target: "stapler",
+    category: "Office",
+    hints: ["It fastens sheets of paper together.", "It uses small metal pins.", "You press it down to bind pages."],
+    rankedWords: ["stapler","staples","paper","office","desk","fasten","clip","binder","press","metal","pages","supplies","clamp","cabinet","tool","organize","report","document","stack","bind","hole","punch","everyday","familiar","common"]
+  },
+  {
+    target: "meeting",
+    category: "Office",
+    hints: ["It is a gathering to discuss work topics.", "People sit around a table with an agenda.", "It can be held in person or online."],
+    rankedWords: ["meeting","agenda","team","discuss","conference","office","schedule","boardroom","presentation","minutes","colleague","project","call","zoom","notes","decision","update","attendee","room","planning","brainstorm","deadline","report","collaborate","talk"]
+  },
+  {
+    target: "spreadsheet",
+    category: "Office",
+    hints: ["It organizes data into rows and columns.", "It is used to calculate totals and budgets.", "Excel is a common program for it."],
+    rankedWords: ["spreadsheet","excel","rows","columns","cell","data","formula","budget","chart","office","calculate","table","sum","report","numbers","workbook","sheet","analysis","total","filter","graph","finance","tab","input","organize"]
+  },
+  {
+    target: "cubicle",
+    category: "Office",
+    hints: ["It is a small partitioned workspace in an office.", "Employees sit inside it to work quietly.", "It has walls but no ceiling."],
+    rankedWords: ["cubicle","office","desk","workspace","partition","wall","chair","employee","corporate","computer","quiet","space","job","routine","gray","panel","coworker","phone","folder","monitor","workstation","confined","business","organize","everyday"]
+  },
+  {
+    target: "hospital",
+    category: "Health",
+    hints: ["It is a building where sick people are treated.", "Doctors and nurses work here.", "Emergency rooms are part of it."],
+    rankedWords: ["hospital","doctor","nurse","patient","emergency","medicine","ward","clinic","surgery","ambulance","bed","treatment","health","stretcher","waiting","room","care","staff","recovery","checkup","x-ray","icu","appointment","medical","facility"]
+  },
+  {
+    target: "medicine",
+    category: "Health",
+    hints: ["It treats illness or relieves pain.", "A doctor may prescribe it.", "It can come as pills or liquid."],
+    rankedWords: ["medicine","pill","doctor","prescription","dose","treatment","health","pharmacy","tablet","medication","cure","illness","syrup","capsule","remedy","therapy","dosage","clinic","symptom","relief","bottle","chemist","injection","care","recovery"]
+  },
+  {
+    target: "vaccine",
+    category: "Health",
+    hints: ["It helps the body build immunity to a disease.", "It is usually given as an injection.", "It can prevent serious illness."],
+    rankedWords: ["vaccine","injection","immunity","disease","shot","health","prevention","dose","needle","clinic","doctor","protection","virus","booster","syringe","medicine","antibody","public","safety","research","schedule","arm","outbreak","protect","everyday"]
+  },
+  {
+    target: "therapy",
+    category: "Health",
+    hints: ["It helps people heal physically or emotionally.", "A trained professional guides the sessions.", "It can involve talking or physical exercises."],
+    rankedWords: ["therapy","counselor","session","healing","mental","physical","support","talk","exercise","recovery","wellness","emotional","treatment","patient","health","coping","progress","therapist","calm","guidance","stress","balance","growth","reflection","care"]
+  },
+  {
+    target: "hammer",
+    category: "Tools",
+    hints: ["It is used to drive nails into wood.", "It has a heavy head and a handle.", "Carpenters rely on it often."],
+    rankedWords: ["hammer","nail","tool","wood","strike","handle","build","carpenter","workshop","pound","construction","claw","hardware","hit","toolbox","repair","fix","grip","swing","metal","project","garage","bang","craft","forceful"]
+  },
+  {
+    target: "wrench",
+    category: "Tools",
+    hints: ["It grips and turns nuts and bolts.", "Mechanics use it to fix machines.", "It comes in different sizes."],
+    rankedWords: ["wrench","bolt","nut","tool","tighten","mechanic","grip","turn","toolbox","adjustable","socket","repair","garage","metal","fix","loosen","engine","hardware","spanner","workshop","pipe","handle","steel","project","everyday"]
+  },
+  {
+    target: "screwdriver",
+    category: "Tools",
+    hints: ["It turns screws into or out of surfaces.", "It has a flat or cross-shaped tip.", "It is a common household tool."],
+    rankedWords: ["screwdriver","screw","tool","turn","handle","flathead","phillips","toolbox","tighten","loosen","repair","hardware","fix","drill","workshop","project","grip","metal","garage","assemble","diy","kit","household","twist","point"]
+  },
+  {
+    target: "ladder",
+    category: "Tools",
+    hints: ["It helps you reach high places.", "It has rungs to climb up.", "Painters and workers use it often."],
+    rankedWords: ["ladder","climb","rungs","height","reach","step","tall","tool","balance","workman","attic","paint","safety","fold","aluminum","rest","garage","construction","up","stable","extend","platform","risk","everyday","familiar"]
+  },
+  {
+    target: "jacket",
+    category: "Clothing",
+    hints: ["It is worn over other clothes for warmth.", "It often has sleeves and a zipper.", "It is common in fall and winter."],
+    rankedWords: ["jacket","coat","zipper","sleeve","warm","winter","clothing","hood","pocket","fabric","wear","outerwear","fall","layer","closet","fashion","button","fleece","leather","cozy","style","waterproof","collar","fit","shell"]
+  },
+  {
+    target: "shoes",
+    category: "Clothing",
+    hints: ["They are worn on your feet.", "They come in pairs and many styles.", "Sneakers are a common type of them."],
+    rankedWords: ["shoes","sneakers","feet","laces","sole","footwear","pair","boots","walk","closet","brand","comfort","size","sandals","heel","fashion","sport","leather","style","fit","tie","step","wear","shop","athletic"]
+  },
+  {
+    target: "necklace",
+    category: "Clothing",
+    hints: ["It is jewelry worn around the neck.", "It can have a pendant or beads.", "It is often given as a gift."],
+    rankedWords: ["necklace","jewelry","pendant","chain","beads","neck","gift","gold","silver","accessory","clasp","gem","fashion","wear","sparkle","charm","string","elegant","box","shine","design","strand","piece","everyday","familiar"]
+  },
+  {
+    target: "scarf",
+    category: "Clothing",
+    hints: ["It is worn around the neck for warmth or style.", "It can be knitted or made of silk.", "People wear it in cold weather."],
+    rankedWords: ["scarf","wrap","neck","warm","knit","fabric","winter","wool","fashion","cozy","style","silk","accessory","wear","drape","pattern","soft","loop","closet","layer","cold","tie","texture","colorful","comfort"]
+  },
+  {
+    target: "mall",
+    category: "Shopping",
+    hints: ["It is a large building with many stores.", "People walk from shop to shop inside it.", "It often has a food court."],
+    rankedWords: ["mall","shopping","store","shops","escalator","foodcourt","brand","retail","crowd","aisle","bag","sale","outlet","parking","center","browse","cart","checkout","fashion","entertainment","directory","kiosk","cinema","level","weekend"]
+  },
+  {
+    target: "cart",
+    category: "Shopping",
+    hints: ["You push it while shopping in a store.", "It has wheels and holds your items.", "You unload it at checkout."],
+    rankedWords: ["cart","wheels","shopping","push","basket","aisle","store","groceries","checkout","load","handle","supermarket","items","trolley","metal","stack","bag","line","fill","roll","market","child","seat","goods","errand"]
+  },
+  {
+    target: "receipt",
+    category: "Shopping",
+    hints: ["It is a paper proof of purchase.", "It lists items and their prices.", "You may need it to return an item."],
+    rankedWords: ["receipt","purchase","paper","price","total","store","proof","transaction","cashier","bag","return","itemized","tax","register","print","record","checkout","slip","payment","summary","exchange","invoice","copy","everyday","familiar"]
+  },
+  {
+    target: "discount",
+    category: "Shopping",
+    hints: ["It is a reduction in the price of an item.", "Stores often offer it during sales.", "Coupons can help you get one."],
+    rankedWords: ["discount","sale","price","coupon","offer","save","percent","promo","deal","markdown","clearance","reduced","bargain","cheaper","voucher","shopping","special","limited","checkout","code","rebate","promotion","budget","savings","value"]
+  },
+  {
+    target: "happiness",
+    category: "Emotions",
+    hints: ["It is a feeling of joy and contentment.", "Smiling often shows this emotion.", "People seek it in daily life."],
+    rankedWords: ["happiness","joy","smile","content","cheerful","positive","laughter","delight","glad","bliss","gratitude","warmth","optimism","pleasure","satisfaction","sunshine","lighthearted","hopeful","peace","fulfillment","glee","excited","bright","wellbeing","enjoy"]
+  },
+  {
+    target: "sadness",
+    category: "Emotions",
+    hints: ["It is a feeling of sorrow or unhappiness.", "Tears can be a sign of this emotion.", "People may feel it after a loss."],
+    rankedWords: ["sadness","sorrow","tears","cry","grief","down","gloomy","upset","heartache","blue","melancholy","loss","lonely","hurt","disappointment","frown","despair","empty","longing","ache","withdrawn","quiet","reflect","comfort","support"]
+  },
+  {
+    target: "anger",
+    category: "Emotions",
+    hints: ["It is a strong feeling of displeasure.", "People may raise their voice when feeling it.", "It can be triggered by frustration."],
+    rankedWords: ["anger","frustration","mad","rage","upset","annoyed","furious","temper","irritated","yell","fume","clench","heated","resentment","outburst","tense","provoke","argument","calm","cool","control","boil","snap","fury","grudge"]
+  },
+  {
+    target: "surprise",
+    category: "Emotions",
+    hints: ["It is a reaction to something unexpected.", "Your eyes may widen when you feel it.", "Parties often include this feeling for the guest."],
+    rankedWords: ["surprise","shock","unexpected","gasp","startled","astonish","wow","reaction","widen","gift","party","reveal","stun","amazed","sudden","jaw-drop","wonder","twist","event","excitement","unforeseen","jolt","everyday","familiar","common"]
+  },
+  {
+    target: "painting",
+    category: "Hobbies",
+    hints: ["It involves applying color to a canvas.", "Artists use brushes to create it.", "It can show landscapes, people, or abstract shapes."],
+    rankedWords: ["painting","brush","canvas","color","art","paint","artist","palette","easel","gallery","stroke","acrylic","watercolor","oil","sketch","creative","frame","studio","hobby","masterpiece","design","texture","paintbrush","hue","exhibit"]
+  },
+  {
+    target: "fishing",
+    category: "Hobbies",
+    hints: ["It involves catching fish from water.", "A rod and reel are common tools.", "People enjoy it at lakes or the ocean."],
+    rankedWords: ["fishing","rod","reel","bait","hook","lake","river","catch","fish","boat","tackle","cast","water","angler","net","calm","patience","dock","hobby","stream","lure","outdoors","relax","sunrise","gear"]
+  },
+  {
+    target: "camping",
+    category: "Hobbies",
+    hints: ["It involves sleeping outdoors in nature.", "A tent is often used for shelter.", "A campfire is a common part of it."],
+    rankedWords: ["camping","tent","campfire","outdoors","sleepingbag","nature","forest","hiking","marshmallow","lantern","wilderness","backpack","trail","stars","cooler","adventure","cabin","woods","trip","gear","fresh air","site","cookout","explore","weekend"]
+  },
+  {
+    target: "knitting",
+    category: "Hobbies",
+    hints: ["It uses needles and yarn to make fabric.", "Sweaters and scarves are common results.", "It is a relaxing, repetitive craft."],
+    rankedWords: ["knitting","yarn","needle","stitch","wool","sweater","craft","pattern","loop","handmade","scarf","cozy","hobby","thread","weave","cardigan","skein","relaxing","project","texture","warm","creative","spool","design","practice"]
+  },
 
 ];

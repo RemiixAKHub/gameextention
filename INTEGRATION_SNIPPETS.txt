@@ -1,0 +1,31 @@
+JEWEL DROP — PHASE 1.1 INTEGRATION
+
+This phase intentionally avoids replacing shared files because the current uploaded popup.html/popup.js copies may not include the latest completed Wordly fixes.
+
+1. Copy:
+   js/games/jeweldrop.js
+   into your extension at:
+   js/games/jeweldrop.js
+
+2. Append the entire contents of JEWELDROP_CSS_PATCH.css to the END of your CURRENT popup.css.
+
+3. In your CURRENT popup.html, add this line after the other game scripts and before js/popup.js:
+   <script src="js/games/jeweldrop.js"></script>
+
+4. In your CURRENT js/popup.js GAMES object, add:
+   'jeweldrop': { module: () => GameJewelDrop, label: 'Jewels' },
+
+5. Add 'jeweldrop' to MOUSE_ONLY because this phase uses mouse controls only.
+
+6. Reload the unpacked extension.
+
+TEST CHECKLIST
+- Jewel tab appears.
+- Clicking one jewel selects every connected jewel of the same colour.
+- Single isolated jewels do not clear.
+- Clicking the selected group again removes it.
+- Jewels fall and refill from above.
+- Score and move count increase.
+- Closing/reopening the popup restores the current board.
+- New Game resets the current score but preserves Best.
+- Wordly, Contexto, Solitaire and Marble Run still open normally.

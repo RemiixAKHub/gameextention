@@ -1,0 +1,28 @@
+JEWEL DROP — PHASE 1.2
+
+Included replacement files:
+- popup.html
+- popup.css
+- js/popup.js
+- js/games/jeweldrop.js
+
+Changes made:
+1. Added Jewel Drop to the existing GAMES registry without changing existing entries.
+2. Added jeweldrop.js before js/popup.js in the existing script sequence.
+3. Appended a fully scoped Jewel Drop CSS section to the bottom of popup.css.
+4. Added animated group clearing, jewel drop/refill feedback, score burst animation,
+   and input locking while animations run.
+5. Preserved current score, moves, resume state and separately stored best score.
+
+Install:
+Copy the four replacement files into the matching extension folders.
+Do not remove any other game files.
+
+Recommended tests:
+- Confirm Wordly still opens and retains its current formatting.
+- Confirm Contexto, Solitaire, Tetris and Marble Run still open.
+- In Jewel Drop, select a group and click it again.
+- Confirm the group pops away, jewels drop in, and the score burst appears.
+- Try clicking rapidly during animation; only one move should register.
+- Close/reopen the extension and confirm the Jewel Drop run resumes.
+- Start a new game and confirm Best Score is retained.

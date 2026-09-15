@@ -187,6 +187,7 @@ const GameWordly = (() => {
   }
 
   function buildSkeleton() {
+    container.classList.add('wly-pane');
     container.innerHTML = `
       <div class="wly-wrap">
         <div class="wly-header">
@@ -197,8 +198,8 @@ const GameWordly = (() => {
         <div class="wly-message"></div>
         <div class="wly-keyboard"></div>
         <div class="wly-actions">
-          <button class="wly-btn wly-new-daily">Daily</button>
-          <button class="wly-btn wly-new-random">New Puzzle</button>
+          <button type="button" class="wly-btn wly-new-daily">Daily</button>
+          <button type="button" class="wly-btn wly-new-random">New Puzzle</button>
         </div>
       </div>
     `;
@@ -247,8 +248,10 @@ const GameWordly = (() => {
 
   function makeKey(label, cls = '', keyOverride = null) {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = `wly-key ${cls}`.trim();
     btn.textContent = label;
+    btn.setAttribute('aria-label', keyOverride || label);
     btn.addEventListener('click', () => pressKey(keyOverride || label));
     return btn;
   }

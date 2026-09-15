@@ -1,0 +1,50 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   JEWEL DROP — Phase 1.1
+   Fully scoped to the Jewel Drop pane.
+═══════════════════════════════════════════════════════════════════════════ */
+.game-pane[data-game="jeweldrop"] {
+  padding: 8px 8px 7px;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.jd-wrap { width: 100%; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.jd-header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.jd-title { font-size: 17px; font-weight: 900; letter-spacing: 0.1em; color: #d9c4ff; }
+.jd-subtitle { margin-top: 2px; font-size: 8px; color: var(--text-dim); letter-spacing: 0.12em; }
+.jd-new-btn { padding: 4px 10px; }
+
+.jd-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.jd-stats div {
+  padding: 5px 4px; text-align: center; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 5px;
+}
+.jd-stats span { display: block; font-size: 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+.jd-stats strong { display: block; margin-top: 2px; font-size: 14px; color: var(--text); }
+
+.jd-grid {
+  display: grid; grid-template-columns: repeat(8, 42px); grid-template-rows: repeat(8, 42px);
+  gap: 3px; padding: 6px; background: #0c0b16;
+  border: 1px solid #3c3458; border-radius: 8px;
+}
+.jd-cell {
+  width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 9px;
+  font-family: Arial, sans-serif; font-size: 27px; cursor: pointer;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.22), inset 0 -4px 7px rgba(0,0,0,0.3);
+  transition: transform 0.1s, filter 0.1s, box-shadow 0.1s;
+}
+.jd-cell:hover { filter: brightness(1.18); transform: translateY(-1px); }
+.jd-cell.jd-selected {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(255,255,255,0.9), inset 0 2px 5px rgba(255,255,255,0.4);
+  z-index: 2;
+}
+.jd-ruby { background: linear-gradient(145deg, #ff6b8a, #a60d38); color: #ffd2dc; }
+.jd-sapphire { background: linear-gradient(145deg, #63b8ff, #0753a4); color: #d9efff; }
+.jd-emerald { background: linear-gradient(145deg, #65e8ae, #087347); color: #dbfff0; }
+.jd-topaz { background: linear-gradient(145deg, #ffd86b, #b66b00); color: #fff2c7; }
+.jd-amethyst { background: linear-gradient(145deg, #cf82ff, #6a1b9a); color: #f4dcff; }
+.jd-diamond { background: linear-gradient(145deg, #effcff, #6ca5b5); color: #fff; }
+.jd-message { min-height: 15px; font-size: 10px; color: var(--yellow); text-align: center; }

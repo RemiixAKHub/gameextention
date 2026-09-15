@@ -41,7 +41,7 @@ html, body {
   background: var(--surface);
   flex-shrink: 0;
 }
-#tab-bar { display: flex; flex-direction: column; }
+#tab-bar { display: flex; }
 
 .tab-btn {
   flex: 1;
@@ -233,17 +233,14 @@ html, body {
 .ms-hit { background: #ff0000 !important; }
 .ms-wrong { background: var(--ms-mid); color: red; }
 
+.ms-flagged, .ms-questioned { background: var(--ms-mid); font-size: 12px; }
 .ms-flagged {
-  background: var(--ms-mid);
-  font-size: 12px;
   border-top: 2px solid var(--ms-light);
   border-left: 2px solid var(--ms-light);
   border-bottom: 2px solid var(--ms-dark);
   border-right: 2px solid var(--ms-dark);
 }
 .ms-questioned {
-  background: var(--ms-mid);
-  font-size: 12px;
   border-top: 2px solid var(--ms-light);
   border-left: 2px solid var(--ms-light);
   border-bottom: 2px solid var(--ms-dark);
@@ -468,6 +465,7 @@ html, body {
 .ch-promo-btn:hover { background: #fff; }
 
 /* ── Two-row tab layout ────────────────────────────────────────────────────── */
+#tab-bar { flex-direction: column; }
 .tab-row { display: flex; border-bottom: 1px solid var(--border); }
 .tab-row:last-child { border-bottom: none; }
 
@@ -564,15 +562,12 @@ html, body {
   width: 100%; display: flex; flex-direction: column; gap: 4px;
 }
 
-.bj-dealer-area, .bj-player-area {
+.bj-dealer-area, .bj-player-area, .bj-split-area {
   background: #0a2a0a; border: 1px solid #1a4a1a;
   border-radius: var(--radius); padding: 4px 6px;
 }
-.bj-split-area {
-  background: #0a2a0a; border: 1px solid #1a4a1a;
-  border-radius: var(--radius); padding: 4px 6px;
-  display: flex; flex-direction: column;
-}
+
+.bj-split-area { display: flex; flex-direction: column; }
 .bj-active-hand { border-color: var(--yellow) !important; }
 
 .bj-area-label {
@@ -660,21 +655,13 @@ html, body {
 .sol-auto-btn:hover { color: var(--text); }
 .sol-top-row { display: flex; gap: 4px; align-items: flex-start; width: 100%; }
 .sol-spacer  { flex: 1; }
-.sol-stock {
+.sol-stock, .sol-waste, .sol-foundation {
   width: 46px; height: 66px; border-radius: 4px; cursor: pointer;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;
-  border: 2px solid #333; background: #111;
 }
-.sol-waste {
-  width: 46px; height: 66px; border-radius: 4px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;
-  border: 2px dashed #444;
-}
-.sol-foundation {
-  width: 46px; height: 66px; border-radius: 4px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;
-  border: 2px dashed #2a4a2a;
-}
+.sol-stock      { border: 2px solid #333; background: #111; }
+.sol-waste      { border: 2px dashed #444; }
+.sol-foundation { border: 2px dashed #2a4a2a; }
 .sol-foundation-hint { font-size: 18px; opacity: 0.35; }
 .sol-card {
   width: 46px; height: 66px; background: #fff; color: #111;
@@ -825,7 +812,7 @@ html, body {
 /* Hand of 5 cards */
 .pp-hand { display: flex; gap: 4px; min-height: 72px; align-items: center; }
 .pp-hand-empty {
-  font-size: 10px; color: #aaa; font-style: italic;
+  font-size: 10px; color: #333; font-style: italic;
   display: flex; align-items: center; justify-content: center; width: 100%;
 }
 
@@ -849,7 +836,7 @@ html, body {
   box-shadow: 0 4px 12px rgba(255,213,79,0.4);
 }
 .pp-face { font-size: 28px; line-height: 1; }
-.pp-name { font-size: 8px; color: #555; font-family: Arial, sans-serif; font-weight: 700; margin-top: 2px; }
+.pp-name { font-size: 8px; color: #555; font-family: Arial; font-weight: 700; margin-top: 2px; }
 .pp-hold-tag {
   position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
   background: var(--yellow); color: #000; font-size: 8px; font-weight: 900;
@@ -873,8 +860,6 @@ html, body {
   cursor: pointer; border-radius: 4px; transition: background 0.1s;
 }
 .pp-btn:hover { background: #224422; }
-
-.pp-main-btn { flex: 1; padding: 6px 8px; font-size: 12px; }
 
 /* ── Traffic Jam ────────────────────────────────────────────────────────────
    Append this entire block to the bottom of popup.css
@@ -948,8 +933,7 @@ html, body {
 /* Direction hint text inside each car */
 .tj-car-hint {
   font-size: 9px;
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.65);
+  color: rgba(255,255,255,0.5);
   pointer-events: none;
   letter-spacing: -1px;
 }
@@ -958,7 +942,142 @@ html, body {
 .tj-move-btn {
   position: absolute;
   width: 24px; height: 24px;
-  background: #0b5cad;
+  background: rgba(78,158,255,0.85);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5;
+  transition: background 0.1s;
+  padding: 0;
+  line-height: 1;
+}
+.tj-move-btn:hover { background: var(--accent); }
+
+/* Shared button style for the game */
+.tj-btn {
+  padding: 4px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+}
+.tj-btn:hover { background: #333; border-color: var(--accent); }
+.tj-btn-ghost { color: var(--text-dim); }
+.tj-btn-ghost:hover { color: var(--text); }
+.tj-btn-sm { padding: 3px 8px; font-size: 10px; }
+
+/* Win overlay */
+.tj-win {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 4px;
+  z-index: 20;
+}
+.tj-win-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 24px;
+  text-align: center;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.tj-win-title { font-size: 20px; }
+.tj-win-moves { font-size: 13px; color: var(--accent); }
+.tj-win-best  { font-size: 11px; color: var(--text-dim); }
+.pp-main-btn { flex: 1; padding: 6px 8px; font-size: 12px; }
+
+
+/* ── Traffic Jam ────────────────────────────────────────────────────────────
+   Append this entire block to the bottom of popup.css
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Top bar */
+.tj-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; gap: 6px; padding: 0 2px;
+}
+.tj-status {
+  font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em;
+  text-align: center; flex: 1;
+}
+
+/* Board wrapper — clips overflow and positions win overlay */
+.tj-board-wrap {
+  position: relative;
+  width: 324px; height: 324px;
+  border: 3px solid var(--border);
+  border-radius: 6px;
+  background: #1a1a2e;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* Grid lines painted via background */
+.tj-grid {
+  position: relative;
+  width: 324px; height: 324px;
+  background-image:
+    repeating-linear-gradient(to right, #2a2a3e 0px, #2a2a3e 1px, transparent 1px, transparent 54px),
+    repeating-linear-gradient(to bottom, #2a2a3e 0px, #2a2a3e 1px, transparent 1px, transparent 54px);
+  border-radius: 4px;
+  overflow: visible;
+}
+
+/* Exit arrow — positioned on row 2 right edge */
+.tj-exit-arrow {
+  position: absolute;
+  right: -22px; top: 119px;   /* row 2 = 2*54 + (54-16)/2 centred */
+  color: var(--accent2);
+  font-size: 18px;
+  line-height: 16px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Car tiles */
+.tj-car {
+  position: absolute;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255,255,255,0.15);
+  transition: box-shadow 0.1s, border-color 0.1s, filter 0.1s;
+  z-index: 2;
+  user-select: none;
+}
+.tj-car:hover { filter: brightness(1.15); }
+.tj-car.tj-selected {
+  border-color: rgba(255,255,255,0.7);
+  box-shadow: 0 0 0 2px #fff, 0 2px 8px rgba(0,0,0,0.6);
+  z-index: 3;
+}
+.tj-red-car {
+  border-color: rgba(255,200,200,0.5);
+}
+
+/* Direction hint text inside each car */
+.tj-car-hint {
+  font-size: 9px;
+  color: rgba(255,255,255,0.5);
+  pointer-events: none;
+  letter-spacing: -1px;
+}
+
+/* Directional move buttons that appear around a selected car */
+.tj-move-btn {
+  position: absolute;
+  width: 24px; height: 24px;
+  background: rgba(78,158,255,0.85);
   border: 1px solid var(--accent);
   border-radius: 4px;
   color: #fff;
@@ -1059,18 +1178,18 @@ html, body {
 
 /* Invalid / auto-skipped level (structural error in level data) */
 .tj-sel-btn.tj-sel-invalid {
-  background: #2a1a00; border-color: #c07800; color: #ffcc66;
+  background: #2a1a00; border-color: #7a5000; color: #c07800;
   font-size: 8px;
 }
 .tj-sel-btn.tj-sel-invalid:hover:not(:disabled) {
-  background: #3a2400; border-color: #ffcc66;
+  background: #3a2400; border-color: #c07800;
 }
 
 
 /* Locked level */
 .tj-sel-btn.tj-sel-locked {
-  background: #1a1a1a; border-color: #444;
-  color: #aaa; cursor: default; opacity: 0.65;
+  background: #1a1a1a; border-color: #2a2a2a;
+  color: #3a3a3a; cursor: default; opacity: 0.5;
 }
 
 /* Legend row */
@@ -1081,8 +1200,8 @@ html, body {
 .tj-leg { font-size: 10px; }
 .tj-leg-open    { color: var(--text-dim); }
 .tj-leg-done    { color: var(--green); }
-.tj-leg-locked  { color: #aaa; }
-.tj-leg-invalid { color: #ffcc66; }
+.tj-leg-locked  { color: #3a3a3a; }
+.tj-leg-invalid { color: #c07800; }
 
 
 /* ── Error display ─────────────────────────────────────────────────────── */
@@ -1115,7 +1234,7 @@ html, body {
   width: 100%; font-size: 9px; color: var(--text-dim);
   letter-spacing: 0.1em; text-transform: uppercase;
 }
-.mr-wager-note { color: #aaa; text-transform: none; letter-spacing: 0; }
+.mr-wager-note { color: #555; text-transform: none; letter-spacing: 0; }
 
 /* Marble grid */
 .mr-marble-grid {
@@ -1299,8 +1418,7 @@ html, body {
 .ctx-hint-panel { display: flex; flex-direction: column; gap: 3px; }
 .ctx-hint-item { font-size: 10px; color: var(--yellow); background: #2a2200; border: 1px solid #4a3a00; border-radius: 4px; padding: 4px 6px; }
 .ctx-history { display: flex; flex-direction: column; gap: 3px; max-height: 220px; overflow-y: auto; }
-.ctx-guess-row { display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 4px 8px; border-radius: 4px; font-size: 11px; background: var(--surface2); border: 1px solid var(--border); }
-.ctx-guess-main { display: flex; align-items: center; gap: 8px; width: 100%; }
+.ctx-guess-row { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 4px; font-size: 11px; background: var(--surface2); border: 1px solid var(--border); }
 .ctx-word { flex: 1; font-weight: 700; letter-spacing: 0.03em; }
 .ctx-rank { width: 40px; text-align: right; font-weight: 700; }
 .ctx-label { width: 62px; text-align: right; font-size: 10px; text-transform: uppercase; letter-spacing: 0.03em; }
@@ -1308,87 +1426,445 @@ html, body {
 .ctx-top10 { border-color: #ff6b6b; background: #3a1a1a; color: #ff8f8f; }
 .ctx-top25 { border-color: var(--yellow); background: #3a2e00; color: var(--yellow); }
 .ctx-top50 { border-color: var(--accent); background: #1a2a3a; color: var(--accent); }
-.ctx-top100 { border-color: #aaa; background: #2a2a2a; color: #ddd; }
-.ctx-cold { border-color: #666; background: #1a1a1a; color: #aaa; }
+.ctx-top100 { border-color: #888; background: #2a2a2a; color: var(--text-dim); }
+.ctx-cold { border-color: #444; background: #1a1a1a; color: #666; }
 .ctx-stats-panel { display: flex; flex-direction: column; gap: 2px; font-size: 10px; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 5px; }
 
-
-/* --- Contexto closeness bar color/vividness upgrade --- */
-.ctx-guess-row .ctx-closeness-bar {
-  height: 6px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  margin-top: 4px;
+/* ═══════════════════════════════════════════════════════════════════════════
+   WORDLY — isolated layout protection
+   All selectors are scoped to .wly-wrap so other game CSS cannot override it.
+═══════════════════════════════════════════════════════════════════════════ */
+.wly-wrap,
+.wly-wrap * {
+  box-sizing: border-box;
 }
 
-.ctx-guess-row .ctx-closeness-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.3s ease;
+.wly-wrap {
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 10px;
+  color: var(--text);
+  font-family: var(--font);
+  user-select: none;
 }
 
-.ctx-correct .ctx-closeness-fill      { background: #2ecc71; }
-.ctx-very-hot .ctx-closeness-fill     { background: #27c46b; }
-.ctx-hot .ctx-closeness-fill          { background: #3ddc84; }
-.ctx-warm .ctx-closeness-fill         { background: #f5c518; }
-.ctx-getting-warm .ctx-closeness-fill { background: #f5a623; }
-.ctx-cool .ctx-closeness-fill         { background: #f2994a; }
-.ctx-far .ctx-closeness-fill          { background: #e8623a; }
-.ctx-cold .ctx-closeness-fill         { background: #e74c3c; }
+.wly-wrap .wly-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
 
-.ctx-correct .ctx-word,
-.ctx-correct .ctx-rank,
-.ctx-correct .ctx-label      { color: #2ecc71; }
-.ctx-very-hot .ctx-label,
-.ctx-hot .ctx-label          { color: #3ddc84; }
-.ctx-warm .ctx-label,
-.ctx-getting-warm .ctx-label { color: #f5c518; }
-.ctx-cool .ctx-label,
-.ctx-far .ctx-label          { color: #f2994a; }
-.ctx-cold .ctx-label         { color: #e74c3c; }
+.wly-wrap .wly-title {
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.1;
+}
+
+.wly-wrap .wly-subtitle {
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.wly-wrap .wly-grid {
+  width: 270px;
+  display: grid;
+  grid-template-columns: repeat(5, 50px);
+  grid-template-rows: repeat(6, 50px);
+  gap: 5px;
+  justify-content: center;
+}
+
+.wly-wrap .wly-cell {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #3a3a48;
+  border-radius: 4px;
+  background: #17171d;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.wly-wrap .wly-cell.wly-filled {
+  border-color: #707080;
+}
+
+.wly-wrap .wly-cell.wly-correct,
+.wly-wrap .wly-key.wly-correct {
+  background: #4ade80;
+  border-color: #4ade80;
+  color: #0f0f13;
+}
+
+.wly-wrap .wly-cell.wly-present,
+.wly-wrap .wly-key.wly-present {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0f0f13;
+}
+
+.wly-wrap .wly-cell.wly-absent,
+.wly-wrap .wly-key.wly-absent {
+  background: #374151;
+  border-color: #374151;
+  color: #9ca3af;
+}
+
+.wly-wrap .wly-message {
+  min-height: 16px;
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.wly-wrap .wly-message.wly-win { color: #4ade80; }
+.wly-wrap .wly-message.wly-lost { color: #ff6b6b; }
+
+.wly-wrap .wly-keyboard {
+  width: 100%;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.wly-wrap .wly-key-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.wly-wrap button.wly-key {
+  appearance: none;
+  min-width: 30px;
+  height: 44px;
+  flex: 1 1 0;
+  max-width: 34px;
+  padding: 0 3px;
+  border: 1px solid #3a3a48;
+  border-radius: 4px;
+  background: #2e2e3d;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.wly-wrap button.wly-key.wly-wide-key {
+  min-width: 50px;
+  max-width: 58px;
+  font-size: 10px;
+}
+
+.wly-wrap button.wly-key:hover,
+.wly-wrap button.wly-btn:hover {
+  filter: brightness(1.12);
+}
+
+.wly-wrap button.wly-key:active,
+.wly-wrap button.wly-btn:active {
+  transform: scale(0.96);
+}
+
+.wly-wrap .wly-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.wly-wrap button.wly-btn {
+  appearance: none;
+  min-width: 92px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface2);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   WORDLY
+   JEWEL DROP — Phase 1.2
+   Appended and fully scoped. No existing game selectors are modified.
 ═══════════════════════════════════════════════════════════════════════════ */
-.game-pane[data-game="wordly"] { padding: 8px 8px 6px; gap: 6px; }
-.wly-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
-.wly-header { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.wly-title { font-size: 16px; font-weight: 900; letter-spacing: 0.12em; color: var(--accent); }
-.wly-subtitle { font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em; }
-.wly-grid {
-  display: grid; grid-template-columns: repeat(5, 44px); grid-template-rows: repeat(6, 44px);
-  gap: 4px; justify-content: center;
+.game-pane[data-game="jeweldrop"] {
+  padding: 8px 8px 7px;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 600px;
 }
-.wly-cell {
-  width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
-  background: var(--surface); border: 2px solid var(--border); border-radius: 4px;
-  color: var(--text); font-size: 20px; font-weight: 900; letter-spacing: 0.02em;
+
+.jd-wrap { width: 100%; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.jd-header { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.jd-title { font-size: 17px; font-weight: 900; letter-spacing: 0.1em; color: #d9c4ff; }
+.jd-subtitle { margin-top: 2px; font-size: 8px; color: var(--text-dim); letter-spacing: 0.12em; }
+.jd-new-btn { padding: 4px 10px; }
+
+.jd-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+.jd-stats div {
+  padding: 5px 4px; text-align: center; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 5px;
 }
-.wly-cell.wly-filled { border-color: #555; background: var(--surface2); }
-.wly-cell.wly-correct { background: #1f6f3a; border-color: #2fa85a; color: #fff; }
-.wly-cell.wly-present { background: #8a6f1f; border-color: #c7a532; color: #fff; }
-.wly-cell.wly-absent { background: #3a3a3a; border-color: #555; color: #ddd; }
-.wly-message { min-height: 15px; font-size: 12px; font-weight: 700; color: var(--yellow); text-align: center; }
-.wly-message.wly-win { color: var(--green); }
-.wly-message.wly-lost { color: var(--accent2); }
-.wly-keyboard { display: flex; flex-direction: column; gap: 4px; width: 100%; }
-.wly-key-row { display: flex; justify-content: center; gap: 3px; }
-.wly-key {
-  min-width: 28px; height: 32px; padding: 0 5px;
-  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
-  color: var(--text); font-family: var(--font); font-size: 11px; font-weight: 900;
-  cursor: pointer; transition: background 0.1s, border-color 0.1s;
+.jd-stats span { display: block; font-size: 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+.jd-stats strong { display: block; margin-top: 2px; font-size: 14px; color: var(--text); }
+
+.jd-board-shell { position: relative; }
+.jd-grid {
+  display: grid; grid-template-columns: repeat(8, 42px); grid-template-rows: repeat(8, 42px);
+  gap: 3px; padding: 6px; background: #0c0b16;
+  border: 1px solid #3c3458; border-radius: 8px;
+  overflow: hidden;
 }
-.wly-key:hover { background: #333; border-color: #555; }
-.wly-key.wly-wide-key { min-width: 48px; font-size: 10px; }
-.wly-key.wly-correct { background: #1f6f3a; border-color: #2fa85a; color: #fff; }
-.wly-key.wly-present { background: #8a6f1f; border-color: #c7a532; color: #fff; }
-.wly-key.wly-absent { background: #333; border-color: #666; color: #ddd; }
-.wly-actions { display: flex; gap: 6px; width: 100%; justify-content: center; }
-.wly-btn {
-  padding: 5px 12px; background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 4px; color: var(--text); font-family: var(--font); font-size: 11px;
-  font-weight: 700; cursor: pointer;
+.jd-grid.jd-busy { pointer-events: none; }
+.jd-cell {
+  width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18); border-radius: 9px;
+  font-family: Arial, sans-serif; font-size: 27px; cursor: pointer;
+  box-shadow: inset 0 2px 5px rgba(255,255,255,0.22), inset 0 -4px 7px rgba(0,0,0,0.3);
+  transition: transform 0.1s, filter 0.1s, box-shadow 0.1s, opacity 0.1s;
+  will-change: transform, opacity;
 }
-.wly-btn:hover { border-color: var(--accent); color: var(--accent); }
+.jd-cell:hover { filter: brightness(1.18); transform: translateY(-1px); }
+.jd-cell:disabled { cursor: default; }
+.jd-cell.jd-selected {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(255,255,255,0.9), inset 0 2px 5px rgba(255,255,255,0.4);
+  z-index: 2;
+}
+.jd-cell.jd-clearing { animation: jd-clear-pop 210ms ease-in forwards; z-index: 3; }
+.jd-cell.jd-drop-in { animation: jd-drop-in 280ms cubic-bezier(.2,.8,.25,1) both; animation-delay: var(--jd-delay, 0ms); }
+
+.jd-ruby { background: linear-gradient(145deg, #ff6b8a, #a60d38); color: #ffd2dc; }
+.jd-sapphire { background: linear-gradient(145deg, #63b8ff, #0753a4); color: #d9efff; }
+.jd-emerald { background: linear-gradient(145deg, #65e8ae, #087347); color: #dbfff0; }
+.jd-topaz { background: linear-gradient(145deg, #ffd86b, #b66b00); color: #fff2c7; }
+.jd-amethyst { background: linear-gradient(145deg, #cf82ff, #6a1b9a); color: #f4dcff; }
+.jd-diamond { background: linear-gradient(145deg, #effcff, #6ca5b5); color: #fff; }
+
+.jd-score-burst {
+  position: absolute; top: 44%; left: 50%; z-index: 10;
+  transform: translate(-50%, -50%); pointer-events: none;
+  color: #fff3a6; font-size: 24px; font-weight: 900;
+  text-shadow: 0 0 8px #ffcf40, 0 2px 2px rgba(0,0,0,0.8);
+  opacity: 0;
+}
+.jd-score-burst.jd-score-burst-active { animation: jd-score-burst 500ms ease-out both; }
+.jd-message { min-height: 15px; font-size: 10px; color: var(--yellow); text-align: center; }
+
+@keyframes jd-clear-pop {
+  0% { transform: scale(1.08); opacity: 1; filter: brightness(1.2); }
+  55% { transform: scale(1.28) rotate(4deg); opacity: 1; filter: brightness(1.65); }
+  100% { transform: scale(0.15) rotate(-8deg); opacity: 0; filter: brightness(2); }
+}
+
+@keyframes jd-drop-in {
+  0% { transform: translateY(-30px) scale(0.88); opacity: 0; }
+  70% { transform: translateY(3px) scale(1.03); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes jd-score-burst {
+  0% { opacity: 0; transform: translate(-50%, -25%) scale(0.65); }
+  25% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  100% { opacity: 0; transform: translate(-50%, -95%) scale(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jd-cell, .jd-cell.jd-clearing, .jd-cell.jd-drop-in, .jd-score-burst.jd-score-burst-active {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   JEWEL DROP — Phase 1.3 safe reshuffle additions
+   Appended only. Existing game styles remain unchanged.
+═══════════════════════════════════════════════════════════════════════════ */
+.jd-grid.jd-reshuffle-out .jd-cell {
+  animation: jd-reshuffle-out 170ms ease-in both;
+  pointer-events: none;
+}
+
+.jd-cell.jd-reshuffle-in {
+  animation: jd-reshuffle-in 330ms cubic-bezier(.18,.85,.25,1.12) both;
+  animation-delay: var(--jd-delay, 0ms);
+}
+
+@keyframes jd-reshuffle-out {
+  0% { transform: scale(1) rotate(0); opacity: 1; }
+  55% { transform: scale(0.9) rotate(-4deg); opacity: 0.7; }
+  100% { transform: scale(0.3) rotate(10deg); opacity: 0; }
+}
+
+@keyframes jd-reshuffle-in {
+  0% { transform: scale(0.25) rotate(-12deg); opacity: 0; }
+  65% { transform: scale(1.1) rotate(3deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jd-grid.jd-reshuffle-out .jd-cell,
+  .jd-cell.jd-reshuffle-in {
+    animation: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   JEWEL DROP — Phase 2.1 objective and round-result additions
+   Appended only. Existing game styles above remain unchanged.
+═══════════════════════════════════════════════════════════════════════════ */
+.jd-objective {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid rgba(111, 203, 255, 0.22);
+  border-radius: 7px;
+  background: rgba(12, 20, 38, 0.82);
+}
+.jd-objective-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  color: #9eb4cd;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.jd-objective-row strong { color: #f3f8ff; }
+.jd-objective-track {
+  height: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+}
+.jd-objective-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #31c8ff, #8d65ff, #ff5ea8);
+  box-shadow: 0 0 9px rgba(95, 187, 255, 0.55);
+  transition: width 220ms ease;
+}
+.jd-result {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 8px;
+  text-align: center;
+  background: rgba(10, 15, 28, 0.94);
+}
+.jd-result[hidden] { display: none; }
+.jd-result-win { border-color: rgba(76, 231, 154, 0.65); }
+.jd-result-loss { border-color: rgba(255, 105, 105, 0.65); }
+.jd-result-title {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.jd-result-win .jd-result-title { color: #63efad; }
+.jd-result-loss .jd-result-title { color: #ff8585; }
+.jd-result-text {
+  margin-bottom: 8px;
+  color: #afbdd0;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.jd-replay-btn { color: #e7f4ff; border-color: rgba(111, 203, 255, 0.45); }
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   JEWEL DROP — Phase 2.2 multiple-objective additions
+   Appended only. Existing game styles remain unchanged.
+═══════════════════════════════════════════════════════════════════════════ */
+.jd-objective-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 7px;
+  color: #9eb4cd;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.jd-objective-heading > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.jd-objective-kicker { color: #71849b; font-size: 8px; }
+.jd-objective-title { color: #f4f7ff; font-size: 11px; letter-spacing: 0.06em; }
+.jd-objective-description {
+  color: #9eb4cd;
+  font-size: 9px;
+  line-height: 1.3;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.jd-objective-heading > span { white-space: nowrap; padding-top: 1px; }
+.jd-objective-heading strong { color: #f3f8ff; }
+.jd-objective-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 7px;
+}
+.jd-objective-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 3px 7px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.045);
+  color: #aebcd0;
+  font-size: 9px;
+}
+.jd-objective-item strong { color: #f4f7ff; }
+.jd-objective-item.jd-objective-complete {
+  border-color: rgba(83, 235, 157, 0.55);
+  background: rgba(40, 150, 98, 0.15);
+}
+.jd-objective-gem {
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.16);
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+}
+.jd-objective-name { text-transform: capitalize; }
+.jd-objective-score { width: 100%; justify-content: space-between; border-radius: 5px; }
